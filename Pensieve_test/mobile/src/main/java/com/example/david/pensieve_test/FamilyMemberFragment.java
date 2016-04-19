@@ -23,9 +23,21 @@ import java.util.List;
 public class FamilyMemberFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private TaskAdapter mAdapter;
+    protected int role;
+
+
+    public static FamilyMemberFragment newInstance(int role) {
+        Bundle args = new Bundle();
+        args.putInt("role", role);
+
+        FamilyMemberFragment fragment = new FamilyMemberFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        this.role = getArguments().getInt("role");
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         setHasOptionsMenu(true);
@@ -48,9 +60,11 @@ public class FamilyMemberFragment extends Fragment {
         public TextView mTitleTextView;
         private TextView mTimeTextview;
         private Tasks mTasks;
+        private int role;
 
-        public TaskHolder(View itemView) {
+        public TaskHolder(View itemView, int role) {
             super(itemView);
+            this.role = role;
             itemView.setOnClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_task);
             mTimeTextview = (TextView) itemView.findViewById(R.id.list_textClock);
@@ -65,16 +79,20 @@ public class FamilyMemberFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            Intent intent = TaskPagerActivity.newIntent(getActivity(), mTasks.getId());
-            startActivity(intent);
+            if (this.role == 1) {
+                Intent intent = TaskPagerActivity.newIntent(getActivity(), mTasks.getId());
+                startActivity(intent);
+            }
         }
     }
 
     private class TaskAdapter extends RecyclerView.Adapter<TaskHolder> {
         private List<Tasks> mTasksList;
+        private int role;
 
-        public TaskAdapter(List<Tasks> tasks){
+        public TaskAdapter(List<Tasks> tasks, int role){
             mTasksList = tasks;
+            this.role = role;
         }
 
         @Override
@@ -82,8 +100,7 @@ public class FamilyMemberFragment extends Fragment {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             View view = layoutInflater.inflate(R.layout.list_item, parent, false);
 
-
-            return new TaskHolder(view);
+            return new TaskHolder(view, this.role);
         }
 
         @Override
@@ -111,7 +128,9 @@ public class FamilyMemberFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_menu_family_member, menu);
+        if (this.role == 1) {
+            inflater.inflate(R.menu.fragment_menu_family_member, menu);
+        }
     }
 
     @Override
@@ -133,11 +152,13 @@ public class FamilyMemberFragment extends Fragment {
         List<Tasks> tasks = taskManager.getTasksList();
 
         if (mAdapter == null) {
-            mAdapter = new TaskAdapter(tasks);
+            mAdapter = new TaskAdapter(tasks, this.role);
             mRecyclerView.setAdapter(mAdapter);
         } else {
             mAdapter.setTasks(tasks);
             mAdapter.notifyDataSetChanged();
         }
     }
+
+
 }

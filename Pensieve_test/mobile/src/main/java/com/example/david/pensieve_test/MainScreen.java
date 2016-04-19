@@ -24,7 +24,8 @@ public class MainScreen extends AppCompatActivity {
         mPatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainScreen.this, PatientPhone.class);
+                Intent intent = new Intent(MainScreen.this, TaskListActivity.class);
+                intent.putExtra("role", "0");
                 startActivity(intent);
             }
         });
@@ -34,7 +35,8 @@ public class MainScreen extends AppCompatActivity {
         mFamilyMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainScreen.this, FamilyMemberPhone.class);
+                Intent intent = new Intent(MainScreen.this, TaskListActivity.class);
+                intent.putExtra("role", "1");
                 startActivity(intent);
             }
         });

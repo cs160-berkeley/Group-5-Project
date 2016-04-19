@@ -17,24 +17,25 @@
         </activity>
 
         <activity
-            android:name=".FamilyMemberPhone"
+            android:name=".TaskListActivity"
             android:label="@string/app_name">
-
         </activity>
 
-        <activity
-            android:name=".PatientPhone"
-            android:label="@string/app_name">
-
-        </activity>
 
         <activity android:name=".TaskPagerActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".FamilyMemberPhone">
-
+            android:parentActivityName=".TaskListActivity">
         </activity>
 
 
+        <service android:name=".PhoneToWatchService" />
+        <!-- Listeners are special services that need to be declared like below, as BIND_LISTENER -->
+        <service android:name=".PhoneListenerService"
+                 android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+            </intent-filter>
+        </service>
 
     </application>
 

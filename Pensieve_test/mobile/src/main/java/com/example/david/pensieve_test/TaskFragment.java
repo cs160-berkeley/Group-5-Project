@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.util.UUID;
@@ -15,11 +16,17 @@ import java.util.UUID;
  * Created by david on 4/17/16.
  */
 public class TaskFragment extends Fragment {
+    private final int DIALOG_ID = 0;
+    private int hour;
+    private int min;
+
     private static final String TASK_ID = "task_id";
+    private static final String DIALOG_TIME = "DialogTime";
 
     private Tasks mTasks;
     private EditText mTitleField;
     private EditText mTimeField;
+    private Button mSetTimePickerDialog;
 
     public static TaskFragment newInstance(UUID taskId) {
         Bundle args = new Bundle();
@@ -83,6 +90,22 @@ public class TaskFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        mSetTimePickerDialog = (Button) v.findViewById(R.id.set_time_picker_dialog);
+        mSetTimePickerDialog.setText("Set Time");
+        mSetTimePickerDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                showDialog(DIALOG_ID);
+                android.support.v4.app.FragmentManager manager = getFragmentManager();
+                TimePickerFragment dialog = new TimePickerFragment();
+                dialog.show(manager, DIALOG_TIME);
+
+//                TimePickerFragment dialog = TimePickerFragment.newInstance(mTasks.getTime().toString());
+//                dialog.setTargetFragment(TaskFragment.this, 0);
+//                dialog.show(manager, "hello");
             }
         });
 

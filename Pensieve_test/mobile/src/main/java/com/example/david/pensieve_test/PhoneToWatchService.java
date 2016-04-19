@@ -54,7 +54,7 @@ public class PhoneToWatchService extends Service {
             @Override
             public void run() {
                 mApiClient.connect();
-                sendMessage("/dataToWatch" , dataToWatch);
+                sendMessage("/dataToWatch", dataToWatch);
             }
         }).start();
 

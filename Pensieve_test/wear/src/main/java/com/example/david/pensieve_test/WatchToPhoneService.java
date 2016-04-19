@@ -23,7 +23,6 @@ public class WatchToPhoneService extends Service {
 
     Boolean isZipCode = Boolean.FALSE;
     private String name;
-    private String myZipCode;
 
     private static final String TAG = "@>@>@>@>";
     private GoogleApiClient mWatchApiClient;
@@ -43,7 +42,6 @@ public class WatchToPhoneService extends Service {
                     public void onConnectionSuspended(int cause) {
                     }
                 }).build();
-//        mWatchApiClient.connect();
         Log.d(TAG, "in watch to phone");
     }
 
@@ -61,26 +59,27 @@ public class WatchToPhoneService extends Service {
 
         String thing = extras.getString("nameOrZip");
 
-        try {
-            int intZipCode = Integer.parseInt(thing);
-            myZipCode = "" + intZipCode;
-            isZipCode = Boolean.TRUE;
-            Log.d(TAG, "is it getting through? " + myZipCode);
-        } catch (NumberFormatException e) {
-            name = thing;
-            isZipCode = Boolean.FALSE;
-            Log.d(TAG, "is it getting through? " + name);
-        }
+//        try {
+//            int intZipCode = Integer.parseInt(thing);
+//            myZipCode = "" + intZipCode;
+//            isZipCode = Boolean.TRUE;
+//            Log.d(TAG, "is it getting through? ");
+//        } catch (NumberFormatException e) {
+//            name = thing;
+//            isZipCode = Boolean.FALSE;
+//            Log.d(TAG, "is it getting through? " + name);
+//        }
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 mWatchApiClient.connect();
-                if(isZipCode){
-                    sendMessage("/send_zipcode", myZipCode);
-                } else {
-                    sendMessage("/send_name", name);
-                }
+                sendMessage("/send_name", name);
+//                if(isZipCode){
+//                    sendMessage("/send_zipcode", myZipCode);
+//                } else {
+//                    sendMessage("/send_name", name);
+//                }
                 Log.wtf(TAG, "sent");
             }
         }).start();

@@ -39,10 +39,16 @@ public class FamilyMemberMainActivity extends Activity {
 
     }
 
-
     public void onStartFamilyMemberAddTaskActivity(View view) {
         Intent startIntent = new Intent(this, FamilyMemberAddTaskActivity.class);
         startActivity(startIntent);
     }
+
+    public void onClickSettings(View view){
+        Intent startIntent = new Intent(this, SettingsExpanded.class);
+        startActivity(startIntent);
+    }
+
+
 
 }

@@ -29,6 +29,12 @@
         <activity android:name=".FamilyMemberCreateAccount" />
         <activity android:name=".PatientCreateAccount" />
 
+        <activity android:name=".SettingsExpanded"/>
+        <activity android:name=".Settings"/>
+        <activity android:name=".OverviewGraph"/>
+
+
+
 
         <service android:name=".PhoneToWatchService" />
         <!-- Listeners are special services that need to be declared like below, as BIND_LISTENER -->

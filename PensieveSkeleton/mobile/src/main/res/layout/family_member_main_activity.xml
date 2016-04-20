@@ -25,5 +25,12 @@
         android:layout_below="@+id/plusbutton"
         android:layout_alignParentStart="true"/>
 
+    <TextView
+        android:id="@+id/settings_button"
+        android:layout_width="30dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:onClick="onClickSettings"/>
+
 
 </RelativeLayout>

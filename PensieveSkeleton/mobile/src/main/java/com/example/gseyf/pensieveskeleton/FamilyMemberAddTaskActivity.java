@@ -13,6 +13,7 @@ public class FamilyMemberAddTaskActivity extends Activity {
     @Override
     public void onCreate(Bundle b) {
         super.onCreate(b);
+        setContentView(R.layout.family_member_add_task_activity);
     }
 
     public void onStartFamilyMemberAddTaskTimePickerActivity(View view) {

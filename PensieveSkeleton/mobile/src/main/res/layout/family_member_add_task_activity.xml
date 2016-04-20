@@ -12,8 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="134dp"
         android:layout_marginTop="62dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:onClick="onStartFamilyMemberAddTaskTimePickerActivity"
         android:background="#00ffffff"
         />

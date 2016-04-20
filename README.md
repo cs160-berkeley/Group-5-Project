@@ -1,6 +1,10 @@
 # Group-5-Project
 Group 5 Project
 
+PensieveSkeleton is code for Prog3. The video is based on this code
+
+Pensieve_test is our work in progress code for the actual app. This is for the showcase but not for Prog3
+
 ## Server
 GitHub repository for the authentication and messaging server: https://github.com/daltonboll/PensieveServer
 

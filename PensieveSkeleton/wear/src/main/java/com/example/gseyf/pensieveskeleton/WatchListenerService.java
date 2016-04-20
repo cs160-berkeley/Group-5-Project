@@ -23,7 +23,7 @@ public class WatchListenerService extends WearableListenerService {
         if( messageEvent.getPath().equalsIgnoreCase(dataToWatch) ) {
             String data = new String(messageEvent.getData(), StandardCharsets.UTF_8);
 
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(this, MainWatchScreen.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             intent.putExtra("dataToWatch", data);

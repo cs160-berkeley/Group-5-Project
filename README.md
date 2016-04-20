@@ -28,6 +28,8 @@ TaskManager = deals with getting the data stored in the database.
 
 ## Authors
 
+Chase Smith 
+
 
 ## Demo Video
 

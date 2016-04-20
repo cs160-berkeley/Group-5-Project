@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/cant_remember"
                 android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@drawable/confirmation_notification_2">
 
+    <android.support.wearable.view.DismissOverlayView
+        android:id="@+id/cant_remember"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
-    <TextView
-        android:onClick="forgot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
 
+        <TextView
+            android:onClick="forgot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"/>
+
+    </android.support.wearable.view.DismissOverlayView>
 
 </RelativeLayout>

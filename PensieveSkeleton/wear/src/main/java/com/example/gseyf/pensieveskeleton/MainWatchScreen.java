@@ -3,6 +3,7 @@ package com.example.gseyf.pensieveskeleton;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.wearable.view.DismissOverlayView;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -15,7 +16,7 @@ public class MainWatchScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reminder_confirmation);
 
-        LinearLayout parag = (LinearLayout) findViewById(R.id.initial_reminder);
+        DismissOverlayView parag = (DismissOverlayView) findViewById(R.id.initial_reminder);
         parag.setOnTouchListener(new OnSwipeTouchListener(MainWatchScreen.this) {
 
             @Override

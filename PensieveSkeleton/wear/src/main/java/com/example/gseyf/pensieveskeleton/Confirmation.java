@@ -3,6 +3,7 @@ package com.example.gseyf.pensieveskeleton;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.wearable.view.DismissOverlayView;
 import android.widget.LinearLayout;
 
 /**
@@ -15,7 +16,7 @@ public class Confirmation extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirmation_1);
 
-        LinearLayout parag = (LinearLayout) findViewById(R.id.reminder);
+        DismissOverlayView parag = (DismissOverlayView) findViewById(R.id.reminder);
         parag.setOnTouchListener(new OnSwipeTouchListener(getBaseContext()) {
             public void onSwipeRight() {
             }

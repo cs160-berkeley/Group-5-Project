@@ -3,6 +3,7 @@ package com.example.gseyf.pensieveskeleton;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.wearable.view.DismissOverlayView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -16,7 +17,7 @@ public class cantRemember extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.confirmation_2);
 
-        RelativeLayout parag = (RelativeLayout) findViewById(R.id.cant_remember);
+        DismissOverlayView parag = (DismissOverlayView) findViewById(R.id.cant_remember);
         parag.setOnTouchListener(new OnSwipeTouchListener(getBaseContext()) {
             public void onSwipeRight() {
             }

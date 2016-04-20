@@ -11,28 +11,26 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
         <activity
-            android:name=".MyStubBroadcastActivity"
-            android:label="MyStubBroadcastActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".AlarmNotificationActivity"
+            android:name=".MainWatchScreen"
             android:allowEmbedded="true"
             android:exported="true"
             android:taskAffinity=""
-            android:theme="@android:style/Theme.DeviceDefault.Light"></activity>
+            android:theme="@android:style/Theme.DeviceDefault.Light">
 
-        <receiver
-            android:name=".MyPostNotificationReceiver"
-            android:exported="true">
             <intent-filter>
-                <action android:name="com.example.gseyf.pensieveskeleton.SHOW_NOTIFICATION" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </receiver>
+
+        </activity>
+
+
+        <activity android:name=".cantRemember" />
+
+        <activity android:name=".Confirmation" />
+
+        <activity android:name=".ok" />
+
     </application>
 
 </manifest>

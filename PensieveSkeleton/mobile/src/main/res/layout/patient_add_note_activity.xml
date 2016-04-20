@@ -22,7 +22,6 @@
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:onClick="onStartPatientAddNoteGoBack"
-        android:text="x"
         android:background="#00ffffff"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"

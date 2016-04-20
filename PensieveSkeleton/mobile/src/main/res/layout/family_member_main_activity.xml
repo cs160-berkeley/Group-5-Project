@@ -17,15 +17,14 @@
         android:background="#00ffffff"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
+
     <TextView
         android:id="@+id/familymemberbreakfast"
         android:layout_width="match_parent"
         android:layout_height="91dp"
-        android:layout_marginTop="62dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
         android:background="#00ffffff"
-        />
+        android:layout_below="@+id/plusbutton"
+        android:layout_alignParentStart="true"/>
 
 
 </RelativeLayout>

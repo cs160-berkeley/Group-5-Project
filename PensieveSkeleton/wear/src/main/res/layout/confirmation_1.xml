@@ -3,14 +3,14 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/confirmation_notification_1">
+              android:background="@drawable/confirmation_notification_1_fs8">
 
-    <android.support.wearable.view.DismissOverlayView
+    <android.support.wearable.view.CircledImageView
         android:id="@+id/reminder"
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
-    </android.support.wearable.view.DismissOverlayView>
+    </android.support.wearable.view.CircledImageView>
 
 
 

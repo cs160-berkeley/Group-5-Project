@@ -6,26 +6,27 @@ import android.os.Bundle;
 import android.support.wearable.view.CircledImageView;
 import android.support.wearable.view.DismissOverlayView;
 import android.util.Log;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
-public class MainWatchScreen extends Activity {
+/**
+ * Created by david on 4/19/16.
+ */
+public class yes extends Activity {
     private final String TAG = "@>@>@>";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reminder_confirmation);
+        setContentView(R.layout.confirmation_3);
 
-        CircledImageView parag = (CircledImageView) findViewById(R.id.initial_reminder);
-        parag.setOnTouchListener(new OnSwipeTouchListener(MainWatchScreen.this) {
-
+        CircledImageView parag = (CircledImageView) findViewById(R.id.yes);
+        parag.setOnTouchListener(new OnSwipeTouchListener(getBaseContext()) {
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
-                Toast.makeText(MainWatchScreen.this, "right", Toast.LENGTH_SHORT).show();
+                Toast.makeText(yes.this, "right", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(MainWatchScreen.this, Confirmation.class);
+                Intent intent = new Intent(yes.this, cantRemember.class);
                 startActivity(intent);
                 Log.d(TAG, "swipe right");
             }
@@ -33,16 +34,14 @@ public class MainWatchScreen extends Activity {
             @Override
             public void onSwipeLeft() {
                 super.onSwipeLeft();
+                Toast.makeText(yes.this, "left", Toast.LENGTH_SHORT).show();
 
-                Toast.makeText(MainWatchScreen.this, "left", Toast.LENGTH_SHORT).show();
-
-                Intent intent = new Intent(MainWatchScreen.this, Confirmation.class);
-                startActivity(intent);
+                // Intent intent = new Intent(cantRemember.this, cantRemember.class);
+                // startActivity(intent);
                 Log.d(TAG, "swipe left");
+
             }
         });
-
     }
-
 
 }

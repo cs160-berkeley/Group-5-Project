@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/family_member_add_task"
+    >
+
+    <TextView
+        android:id="@+id/family_member_add_task"
+        android:layout_width="match_parent"
+        android:layout_height="134dp"
+        android:layout_marginTop="62dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:onClick="onStartFamilyMemberAddTaskTimePickerActivity"
+        android:background="#00ffffff"
+        />
+
+
+</RelativeLayout>

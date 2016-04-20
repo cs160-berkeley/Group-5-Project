@@ -11,28 +11,33 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".PatientMainActivity" />
-        <activity
-            android:name=".PatientAddNoteActivity"/>
-        <activity
-            android:name=".FamilyMemberMainActivity" />
-        <activity
-            android:name=".FamilyMemberAddTaskActivity" />
-        <activity
-            android:name=".FamilyMemberAddTaskTimePickerActivity" />
-        <activity
-            android:name=".FamilyMemberGraphDayActivity" />
-        <activity
-            android:name=".FamilyMemberGraphDayMenuOpenActivity" />
-        <activity
-            android:name=".FamilyMemberGraphWeekActivity"/>
+        <activity android:name=".PatientMainActivity" />
+        <activity android:name=".PatientAddNoteActivity"/>
+        <activity android:name=".FamilyMemberMainActivity" />
+        <activity android:name=".FamilyMemberAddTaskActivity" />
+        <activity android:name=".FamilyMemberAddTaskTimePickerActivity" />
+        <activity android:name=".FamilyMemberGraphDayActivity" />
+        <activity android:name=".FamilyMemberGraphDayMenuOpenActivity" />
+        <activity android:name=".FamilyMemberGraphWeekActivity"/>
 
+        <activity android:name=".Login" />
+        <activity android:name=".LoginOrCreateAccount" />
+        <activity android:name=".FamilyMemberCreateAccount" />
+        <activity android:name=".PatientCreateAccount" />
+
+
+        <service android:name=".PhoneToWatchService" />
+        <!-- Listeners are special services that need to be declared like below, as BIND_LISTENER -->
+        <service android:name=".PhoneListenerService"
+                 android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.BIND_LISTENER" />
+            </intent-filter>
+        </service>
 
     </application>
 

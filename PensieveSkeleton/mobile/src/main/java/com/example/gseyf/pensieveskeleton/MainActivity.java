@@ -14,15 +14,15 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
     }
 
-
-    public void onStartPatientMainActivity(View view) {
-        Intent startIntent = new Intent(this, PatientMainActivity.class);
+    public void onStartPatientLogin(View view) {
+        Intent startIntent = new Intent(this, LoginOrCreateAccount.class);
+        startIntent.putExtra("user", "patient");
         startActivity(startIntent);
-
     }
 
-    public void onStartFamilyMemberMainActivity(View view) {
-        Intent startIntent = new Intent(this, FamilyMemberMainActivity.class);
+    public void onStartFamilyMemberLogin(View view) {
+        Intent startIntent = new Intent(this, LoginOrCreateAccount.class);
+        startIntent.putExtra("user", "family_member");
         startActivity(startIntent);
     }
 }

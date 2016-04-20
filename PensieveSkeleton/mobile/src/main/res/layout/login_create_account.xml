@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+                android:background="@drawable/small_login_or_create_account"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+        <!--android:background="@drawable/login_or_create_account"-->
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="50dp"
+        android:onClick="onLogin"
+        android:layout_marginTop="170dp"/>
+
+    <TextView
+        android:id="@+id/create_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="50dp"
+        android:onClick="onCreateAccount"
+        android:layout_below="@id/login"
+        android:layout_marginTop="100dp"/>
+
+
+</RelativeLayout>

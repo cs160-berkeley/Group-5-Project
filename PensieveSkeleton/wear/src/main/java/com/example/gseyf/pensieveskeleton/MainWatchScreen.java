@@ -35,7 +35,6 @@ public class MainWatchScreen extends Activity {
 
                 Toast.makeText(MainWatchScreen.this, "left", Toast.LENGTH_SHORT).show();
 
-
                 Intent intent = new Intent(MainWatchScreen.this, Confirmation.class);
                 startActivity(intent);
                 Log.d(TAG, "swipe left");

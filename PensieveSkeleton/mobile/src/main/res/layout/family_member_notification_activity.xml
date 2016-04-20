@@ -3,7 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/family_member_notification">
+    android:background="@drawable/notification">
+
+    <TextView
+        android:id="@+id/theyre_ok"
+        android:onClick="hesOk"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"/>
 
 
 

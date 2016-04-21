@@ -6,7 +6,13 @@ PensieveSkeleton is code for Prog3. The video is based on this code
 Pensieve_test is our work in progress code for the actual app. This is for the showcase but not for Prog3
 
 ## Server
-GitHub repository for the authentication and messaging server: https://github.com/daltonboll/PensieveServer
+The Pensieve server is hosted on Heroku and runs on Ruby on Rails. The server is used for phone-to-phone communication between family members and patients, and is used for account sign up, authorization, and message transfers.
+
+#### GitHub repository: https://github.com/daltonboll/PensieveServer
+
+#### Heroku: http://pensieve-server.herokuapp.com/
+
+#### Server API documentation
 
 ## Activity Overview
 The database folder contains database related stuff so that even when you exit out of the app, the data will still exist

@@ -57,7 +57,7 @@ public class WatchToPhoneService extends Service {
         Log.d(TAG, "WtoP: on start command");
 
         status = extras.getString("status");
-
+        Log.d(TAG, status);
 
         new Thread(new Runnable() {
             @Override
@@ -65,8 +65,10 @@ public class WatchToPhoneService extends Service {
                 mWatchApiClient.connect();
                 if(status.equals("needHelp")){
                     sendMessage("/need_help", status);
+                    Log.d(TAG, "sent need Help");
                 } else {
                     sendMessage("/good", status);
+                    Log.d(TAG, "sent good");
                 }
 
                 Log.wtf(TAG, "sent");

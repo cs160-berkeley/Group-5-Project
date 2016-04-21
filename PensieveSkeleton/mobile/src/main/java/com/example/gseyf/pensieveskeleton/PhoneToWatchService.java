@@ -46,7 +46,7 @@ public class PhoneToWatchService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //Bundle extras = intent.getExtras();
 
-        Log.d(TAG, "on start command");
+        Log.d(TAG, "PtoW on start command");
 
         //final String dataToWatch = extras.getString("dataToWatch");
 
@@ -54,7 +54,7 @@ public class PhoneToWatchService extends Service {
             @Override
             public void run() {
                 mApiClient.connect();
-                //sendMessage("/dataToWatch", dataToWatch);
+                sendMessage("/dataToWatch", "dataToWatch");
             }
         }).start();
 

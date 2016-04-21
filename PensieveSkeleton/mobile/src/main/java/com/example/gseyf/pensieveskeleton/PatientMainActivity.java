@@ -38,6 +38,7 @@ public class PatientMainActivity extends Activity{
     }
 
     private void startWatch(){
+
         Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
         //sendIntent.putExtra("dataToWatch", watchToData);
         startService(sendIntent);

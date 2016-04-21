@@ -250,11 +250,11 @@ Chase Smith
 Casey Nguyen
 
 
-## Demo Video
+## Demo Videos
 
-Graph Challenge Video 
+Graph Challenge Video: https://www.youtube.com/watch?v=hHlb3SeXTgc
 
-https://www.youtube.com/watch?v=hHlb3SeXTgc
+API Challenge Video: https://youtube.com/watch?v=JpijswasUgI
 
 ## Screenshots
 

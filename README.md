@@ -37,7 +37,9 @@ patient_phone_number | string | Only for "family" role | Must be of the form 111
 
 *Example CURL Request for "patient" account creation:* 
 
-`curl -H "Content-Type: application/json" -X POST -d '{"name":"Bob", "role":"patient", "email":"bob@mail.com", "password":"password", "phone_number":"1112223333"}' http://pensieve-server.herokuapp.com/api/users`
+```
+curl -H "Content-Type: application/json" -X POST -d '{"name":"Bob", "role":"patient", "email":"bob@mail.com", "password":"password", "phone_number":"1112223333"}' http://pensieve-server.herokuapp.com/api/users
+```
 
 *Example Server Response:*
 ```
@@ -47,7 +49,6 @@ patient_phone_number | string | Only for "family" role | Must be of the form 111
         "id": 1,
         "name": "Bob",
         "email": "bob@mail.com",
-        "password": "password",
         "role": "patient",
         "phone_number": "1112223333"
     }
@@ -68,7 +69,6 @@ curl -H "Content-Type: application/json" -X POST -d '{"name":"Jill", "role":"fam
         "id": 2,
         "name": "Jill",
         "email": "jill@mail.com",
-        "password": "password",
         "role": "family",
         "phone_number": "5556667777",
         "patient_phone_number": "1112223333"
@@ -97,6 +97,41 @@ curl -H "Content-Type: application/json" -X POST -d '{"name":"Jill", "role":"fam
 ```
 
 **User Login**
+
+*Description:* Use this API call in order to login to a User account and receive basic information about the account you are logging into.
+
+*Method:* POST
+
+*Route:* http://pensieve-server.herokuapp.com/api/login
+
+*Fields:*
+
+Key | Type | Required | Restrictions
+---- | ---- | ---- | ----
+email | string | Yes | Must exist in the database
+password | string | Yes | Must match the password for the specified email
+
+*Example CURL Request for "patient" login:* 
+
+```
+curl -H "Content-Type: application/json" -X POST -d '{"email":"bob@mail.com",  "password":"password"}' http://pensieve-server.herokuapp.com/api/login
+```
+
+*Example Server Response:*
+```
+{
+    "status": 1,
+    "user": {
+        "id": 1,
+        "name": "Bob",
+        "email": "bob@mail.com",
+        "role": "patient",
+        "phone_number": "1112223333"
+    }
+}
+```
+
+*Note:* The login request for "family" members is exactly the same as it is for a "patient". However, the server response will also contain "relationships" data. See the example response for "family" user account creation.
 
 **Getting User Information**
 

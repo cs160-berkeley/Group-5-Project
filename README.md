@@ -48,5 +48,18 @@ Casey Nguyen
 
 ## Screenshots
 
+<img src="screenshots/Start.png" height="400" alt="Screenshot"/>
+
+<img src="screenshots/Task.png" height="400" alt="Screenshot"/>
+
+<img src="screenshots/Weekly_summary.png" height="400" alt="Screenshot"/>
+
+<img src="screenshots/Set_task.png" height="400" alt="Screenshot"/>
+
+<img src="screenshots/Reminder.png" height="200" alt="Screenshot"/>
+
+<img src="screenshots/Confirmation.png" height="200" alt="Screenshot"/>
+
+
 
 ## Acknowledgments

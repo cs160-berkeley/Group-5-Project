@@ -8,11 +8,57 @@ Pensieve_test is our work in progress code for the actual app. This is for the s
 ## Server
 The Pensieve server is hosted on Heroku and runs on Ruby on Rails. The server is used for phone-to-phone communication between family members and patients, and is used for account sign up, authorization, and message transfers.
 
-#### GitHub repository: https://github.com/daltonboll/PensieveServer
+**GitHub repository:** https://github.com/daltonboll/PensieveServer
 
-#### Heroku: http://pensieve-server.herokuapp.com/
+**Heroku:** http://pensieve-server.herokuapp.com/
 
 #### Server API documentation
+
+Note: All API calls are expected to be sent and received in JSON.
+
+**User Account Creation**
+
+*Description:* Use this API call in order to create a new User account. A "family" account cannot be created without an existing "patient" account. 
+
+*Method:* POST
+
+*Route:* http://pensieve-server.herokuapp.com/api/users
+
+*Fields:*
+
+Key | Type | Required | Restrictions
+---- | ---- | ---- | ----
+name | string | Yes
+email | string | Yes | Must be of the form x@y.domain; Must be unique
+password | string | Yes
+phone_number | string | Yes | Must be unique; Must be of the form 1112223333 or 111-222-3333 or (111) 222-3333 or (111)222-3333
+role | string | Yes | "patient" or "family"
+patient_phone_number | string | Only for "family" role | Must be of the form 1112223333 or 111-222-3333 or (111) 222-3333 or (111)222-3333; Must already belong to an existing "patient" role
+
+*Example CURL Request for "patient" creation:* 
+
+`curl -H "Content-Type: application/json" -X POST -d '{"name":"Bob", "role":"patient", "email":"bob@mail.com", "password":"password", "phone_number":"1112223333"}' http://pensieve-server.herokuapp.com/api/users`
+
+*Example Server Response:*
+```
+{
+    "status": 1,
+    "user": {
+        "id": 7,
+        "name": "Bob",
+        "email": "bob@mail.com",
+        "password": "password",
+        "role": "patient",
+        "phone_number": "1112223333"
+    }
+}
+```
+
+**User Login**
+
+**Getting User Information**
+
+**Getting Information For All Members of a Family**
 
 ## Activity Overview
 The database folder contains database related stuff so that even when you exit out of the app, the data will still exist

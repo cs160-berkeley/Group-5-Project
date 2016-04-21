@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainWatchScreen"
+            android:name=".Hello"
             android:allowEmbedded="true"
             android:exported="true"
             android:taskAffinity=""
@@ -24,7 +24,7 @@
 
         </activity>
 
-
+        <activity android:name=".MainWatchScreen" />
         <activity android:name=".cantRemember" />
         <activity android:name=".Confirmation" />
         <activity android:name=".yes" />

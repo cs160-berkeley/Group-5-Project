@@ -21,12 +21,12 @@ public class WatchListenerService extends WearableListenerService {
         Log.d(TAG, "in WatchListenerService, got: " + messageEvent.getPath());
 
         if( messageEvent.getPath().equalsIgnoreCase(dataToWatch) ) {
-            String data = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            //String data = new String(messageEvent.getData(), StandardCharsets.UTF_8);
 
             Intent intent = new Intent(this, MainWatchScreen.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            intent.putExtra("dataToWatch", data);
+            //intent.putExtra("dataToWatch", data);
 
             startActivity(intent);
         } else {

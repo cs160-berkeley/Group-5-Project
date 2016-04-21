@@ -44,17 +44,17 @@ public class PhoneToWatchService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Bundle extras = intent.getExtras();
+        //Bundle extras = intent.getExtras();
 
         Log.d(TAG, "on start command");
 
-        final String dataToWatch = extras.getString("dataToWatch");
+        //final String dataToWatch = extras.getString("dataToWatch");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 mApiClient.connect();
-                sendMessage("/dataToWatch", dataToWatch);
+                //sendMessage("/dataToWatch", dataToWatch);
             }
         }).start();
 

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.wearable.view.CircledImageView;
 import android.support.wearable.view.DismissOverlayView;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 

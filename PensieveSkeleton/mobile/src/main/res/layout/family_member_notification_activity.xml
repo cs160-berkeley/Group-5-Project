@@ -12,6 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"/>
 
+    <TextView
+        android:id="@+id/call_them"
+        android:onClick="call"
+        android:layout_above="@id/theyre_ok"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"/>
+
 
 
 </RelativeLayout>

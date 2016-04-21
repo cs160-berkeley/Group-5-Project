@@ -3,14 +3,18 @@ package com.example.gseyf.pensieveskeleton;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Timer;
 
 /**
  * Created by david on 4/19/16.
  */
 public class FamilyMemberMainActivity extends Activity {
+    //Timer timer = new Timer();
 
     @Override
     public void onCreate(Bundle b) {

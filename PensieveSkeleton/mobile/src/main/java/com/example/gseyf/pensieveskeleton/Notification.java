@@ -20,4 +20,9 @@ public class Notification extends Activity {
         Intent i = new Intent(this, FamilyMemberMainActivity.class);
         startActivity(i);
     }
+
+    public void call(View view){
+        Intent i = new Intent(this, NotificationResolved.class);
+        startActivity(i);
+    }
 }

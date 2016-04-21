@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.wearable.view.CircledImageView;
 import android.support.wearable.view.DismissOverlayView;
 import android.util.Log;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -45,6 +46,10 @@ public class Confirmation extends Activity{
 
     }
 
-
+    public void confirm(View view){
+        Intent startIntent = new Intent(this, WatchToPhoneService.class);
+        startIntent.putExtra("status", "confirm");
+        startActivity(startIntent);
+    }
 
 }

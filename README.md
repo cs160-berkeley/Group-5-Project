@@ -44,7 +44,7 @@ patient_phone_number | string | Only for "family" role | Must be of the form 111
 {
     "status": 1,
     "user": {
-        "id": 7,
+        "id": 1,
         "name": "Bob",
         "email": "bob@mail.com",
         "password": "password",
@@ -65,13 +65,33 @@ curl -H "Content-Type: application/json" -X POST -d '{"name":"Jill", "role":"fam
 {
     "status": 1,
     "user": {
-        "id": 8,
+        "id": 2,
         "name": "Jill",
         "email": "jill@mail.com",
         "password": "password",
         "role": "family",
         "phone_number": "5556667777",
         "patient_phone_number": "1112223333"
+    },
+    "relationships": {
+        "patient": {
+            "id": 1, 
+            "name": "Bob",
+            "email": "bob@mail.com",
+            "role": "patient",
+            "phone_number": "1112223333"
+        },
+        "family_members": [
+            {
+                "id": 2,
+                "name": "Jill",
+                "email": "jill@mail.com",
+                "role": "family",
+                "phone_number": "5556667777",
+                "patient_phone_number":"1112223333"
+            },
+            ...
+        ]
     }
 }
 ```

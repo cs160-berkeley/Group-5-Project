@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,11 +16,11 @@ import java.util.Timer;
  */
 public class FamilyMemberMainActivity extends Activity {
     //Timer timer = new Timer();
+    private String TAG = "@>@>@>";
 
     @Override
     public void onCreate(Bundle b) {
         super.onCreate(b);
-
         setContentView(R.layout.family_member_main_activity);
 
         TextView txtView = (TextView) findViewById(R.id.familymemberbreakfast);
@@ -39,6 +40,21 @@ public class FamilyMemberMainActivity extends Activity {
                 Intent startIntent = new Intent(FamilyMemberMainActivity.this, FamilyMemberGraphDayActivity.class);
                 startActivity(startIntent);
             }
+        });
+
+
+        TextView parag = (TextView) findViewById(R.id.delete);
+        parag.setOnTouchListener(new OnSwipeTouchListener(getBaseContext()) {
+            @Override
+            public void onSwipeRight() {
+                super.onSwipeRight();
+                Toast.makeText(FamilyMemberMainActivity.this, "right", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(FamilyMemberMainActivity.this, DeleteTask.class);
+                startActivity(intent);
+                Log.d(TAG, "swipe right");
+            }
+
         });
 
     }

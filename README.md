@@ -260,7 +260,7 @@ Casey Nguyen
 <img src="Screenshot/Weekly_summary.png" height="400" alt="Screenshot"/>
 <img src="Screenshot/Set_task.png" height="400" alt="Screenshot"/>
 
-<img src="Screenshot/Reminder.png" height="200" alt="Screenshot"/>
+<img src="Screenshot/Reminder.png" height="200" alt="Screenshot"/>   
 <img src="Screenshot/Confirmation.png" height="200" alt="Screenshot"/>
 
 

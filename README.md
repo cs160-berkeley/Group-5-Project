@@ -35,7 +35,7 @@ phone_number | string | Yes | Must be unique; Must be of the form 1112223333 or 
 role | string | Yes | "patient" or "family"
 patient_phone_number | string | Only for "family" role | Must be of the form 1112223333 or 111-222-3333 or (111) 222-3333 or (111)222-3333; Must already belong to an existing "patient" role
 
-*Example CURL Request for "patient" creation:* 
+*Example CURL Request for "patient" account creation:* 
 
 `curl -H "Content-Type: application/json" -X POST -d '{"name":"Bob", "role":"patient", "email":"bob@mail.com", "password":"password", "phone_number":"1112223333"}' http://pensieve-server.herokuapp.com/api/users`
 
@@ -50,6 +50,28 @@ patient_phone_number | string | Only for "family" role | Must be of the form 111
         "password": "password",
         "role": "patient",
         "phone_number": "1112223333"
+    }
+}
+```
+
+*Example CURL Request for "family" account creation:* 
+
+```
+curl -H "Content-Type: application/json" -X POST -d '{"name":"Jill", "role":"family", "email":"jill@mail.com", "password":"password", "phone_number":"5556667777", "patient_phone_number":"1112223333"}' http://pensieve-server.herokuapp.com/api/users
+```
+
+*Example Server Response:*
+```
+{
+    "status": 1,
+    "user": {
+        "id": 8,
+        "name": "Jill",
+        "email": "jill@mail.com",
+        "password": "password",
+        "role": "family",
+        "phone_number": "5556667777",
+        "patient_phone_number": "1112223333"
     }
 }
 ```

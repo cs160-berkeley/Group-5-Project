@@ -170,6 +170,51 @@ curl -H "Content-Type: application/json" -X GET http://pensieve-server.herokuapp
 
 **4. Getting Information For All Members of a Family**
 
+*Description:* Use this API call in order to get basic information about every member of a specific user's family. This includes information about the "patient" and all regular "family" members. 
+
+*Method:* GET
+
+*Route:* http://pensieve-server.herokuapp.com/api/users/:id/relationships
+
+*Fields:*
+
+Key | Type | Required | Restrictions
+---- | ---- | ---- | ----
+id | string | Yes | Must exist in the database
+
+*Example CURL Request getting basic user information:* 
+
+```
+curl -H "Content-Type: application/json" -X GET http://pensieve-server.herokuapp.com/api/users/2/relationships
+```
+
+*Example Server Response:*
+```
+{
+    "status": 1,
+    "relationships": {
+        "patient": {
+            "id": 1,
+            "name": "Bob",
+            "email": "bob@mail.com",
+            "role": "patient",
+            "phone_number": "1112223333"
+        },
+        "family_members": [
+            {
+                "id": 2,
+                "name": "Jill",
+                "email": "jill@mail.com",
+                "role": "family",
+                "phone_number": "5556667777",
+                "patient_phone_number": "1112223333"
+            },
+            ...
+        ]
+    }
+}
+```
+
 ## Activity Overview
 The database folder contains database related stuff so that even when you exit out of the app, the data will still exist
 

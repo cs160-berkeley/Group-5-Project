@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".Confirmation" />
+        <activity android:name=".cantRemember" />
+        <activity android:name=".yes" />
 
         <service android:name=".WatchToPhoneService"></service>
         <!-- Listeners are special services that need to be declared like below, as BIND_LISTENER -->

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blank_task"
+
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.08"
+        android:weightSum="1"
+        >
+
+        <EditText
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:textSize="75sp"
+            android:text="12:00"
+            android:textColor="#FE6691"
+            android:paddingBottom="0dp"
+            android:textAlignment="gravity"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="86dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FE6691"
+            android:text="PM"
+            android:textSize="20sp"
+            android:paddingTop="35dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="0dp"
+            android:paddingRight="0dp"
+            android:textAlignment="gravity"
+            android:layout_marginTop="5dp"
+            />
+
+
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="380dp"
+        android:layout_height="50dp"
+        android:id="@+id/vidAddTaskName"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.03"
+        android:textSize="20sp"
+        android:layout_marginLeft="15dp"
+        android:hint="Task Name"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="35dp" />
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp">
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButtonSunday"
+            android:src="@drawable/sunday"
+            android:padding="0dp"
+
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="40dp" />
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButtonMonday"
+            android:src="@drawable/monday"
+            android:padding="0dp"
+
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp" />
+
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButtonTuesday"
+            android:src="@drawable/p_tuesday"
+            android:padding="0dp"
+
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButtonWednesday"
+            android:src="@drawable/p_wednesday"
+            android:padding="0dp"
+
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButtonThurday"
+            android:src="@drawable/thursday"
+            android:padding="0dp"
+
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButtonFriday"
+            android:src="@drawable/friday"
+            android:padding="0dp"
+
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageButtonSaturday"
+            android:src="@drawable/saturday"
+            android:padding="0dp"
+
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.08"
+        android:weightSum="1"
+        android:layout_marginTop="40dp">
+
+        <EditText
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="90dp"
+            android:textSize="38sp"
+            android:text="10"
+            android:textColor="#FE6691"
+            android:paddingBottom="0dp"
+            android:textAlignment="gravity"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="145dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#FE6691"
+            android:text="Minutes"
+            android:textSize="20sp"
+            android:paddingTop="32dp"
+            android:paddingLeft="10dp"
+            android:paddingBottom="0dp"
+            android:paddingRight="0dp"
+            android:textAlignment="gravity"
+            android:layout_marginTop="10dp"
+            />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/vidReminderReview1"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.03"
+        android:textSize="18sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="15dp"
+        android:textStyle="italic"
+        android:textColor="#FE6691"
+        android:text="Task Name at 12:00 p.m. every Tuesday and Wednesday" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.08"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#FE6691"
+            android:text="Cancel"
+            android:id="@+id/Cancel"
+            android:capitalize="none"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="80dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#FE6691"
+            android:text="OK"
+            android:id="@+id/OK"
+            android:capitalize="none"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="160dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

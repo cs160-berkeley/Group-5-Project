@@ -41,7 +41,19 @@ public class TaskPagerActivity extends FragmentActivity {
             @Override
             public Fragment getItem(int position) {
                 Tasks t = mTasks.get(position);
-                return TaskFragment.newInstance(t.getId());
+                TaskFragment taskFragment = TaskFragment.newInstance(t.getId());
+                taskFragment.setOnButtonClickListener(new TaskFragment.OnButtonClickListener() {
+                    @Override
+                    public void OnOKButtonClick() {
+                        finish();
+                    }
+
+                    @Override
+                    public void OnCancelButtonClick() {
+                        finish();
+                    }
+                });
+                return taskFragment;
             }
 
             @Override
@@ -50,8 +62,8 @@ public class TaskPagerActivity extends FragmentActivity {
             }
         });
 
-        for (int i=0;i<mTasks.size();i++){
-            if(mTasks.get(i).getId().equals(taskId)){
+        for (int i = 0; i < mTasks.size(); i++) {
+            if (mTasks.get(i).getId().equals(taskId)) {
                 mViewPager.setCurrentItem(i);
                 break;
             }

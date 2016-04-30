@@ -11,7 +11,7 @@ import com.example.david.pensieve_test.database.TasksDbSchema.TasksTable;
  */
 public class TaskBaseHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
-    private static final String DATABASE_NAME = "taskBase.db";
+    private static final String DATABASE_NAME = "taskBaseCN.db";
 
     public TaskBaseHelper(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
@@ -20,11 +20,22 @@ public class TaskBaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TasksTable.NAME + "(" +
-                " _id integer primary key autoincrement," +
-                TasksTable.Cols.UUID + ", " +
-                TasksTable.Cols.TITLE + ", " +
-                TasksTable.Cols.TIME + ", " +
-                TasksTable.Cols.COMPLETED + ")"
+                        " _id integer primary key autoincrement," +
+                        TasksTable.Cols.UUID + ", " +
+                        TasksTable.Cols.TITLE + ", " +
+                        TasksTable.Cols.TIME + ", " +
+                        TasksTable.Cols.COMPLETED + ", " +
+
+                        TasksTable.Cols.MTIMEAMPM + ", " +
+                        TasksTable.Cols.REMINDTIME + ", " +
+                        TasksTable.Cols.REPEATSUNDAY + ", " +
+                        TasksTable.Cols.REPEATMONDAY + ", " +
+                        TasksTable.Cols.REPEATTUESDAY + ", " +
+                        TasksTable.Cols.REPEATWEDNESDAY + ", " +
+                        TasksTable.Cols.REPEATTHURSDAY + ", " +
+                        TasksTable.Cols.REPEATFRIDAY + ", " +
+                        TasksTable.Cols.REPEATSATURDAY +
+                        ")"
         );
     }
 

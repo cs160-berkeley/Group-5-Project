@@ -149,7 +149,8 @@
         android:textColor="#FFFE6691"
         android:textSize="38sp"
         android:layout_weight="0.07"
-        android:typeface="sans" />
+        android:typeface="sans"
+        android:allowUndo="true" />
 
 
 

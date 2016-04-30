@@ -1,236 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blank_task"
-
-    android:weightSum="1">
+    android:fillViewport="true">
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.08"
-        android:weightSum="1"
-        >
-
-        <EditText
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
-            android:textSize="75sp"
-            android:text="12:00"
-            android:textColor="#FE6691"
-            android:paddingBottom="0dp"
-            android:textAlignment="gravity"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="86dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#FE6691"
-            android:text="PM"
-            android:textSize="20sp"
-            android:paddingTop="35dp"
-            android:paddingLeft="10dp"
-            android:paddingBottom="0dp"
-            android:paddingRight="0dp"
-            android:textAlignment="gravity"
-            android:layout_marginTop="5dp"
-            />
-
-
-    </LinearLayout>
-
-    <EditText
-        android:layout_width="380dp"
-        android:layout_height="50dp"
-        android:id="@+id/vidAddTaskName"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.03"
-        android:textSize="20sp"
-        android:layout_marginLeft="15dp"
-        android:hint="Task Name"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="35dp" />
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="35dp">
-
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButtonSunday"
-            android:src="@drawable/sunday"
-            android:padding="0dp"
-
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="40dp" />
-
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButtonMonday"
-            android:src="@drawable/monday"
-            android:padding="0dp"
-
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp" />
-
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButtonTuesday"
-            android:src="@drawable/p_tuesday"
-            android:padding="0dp"
-
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButtonWednesday"
-            android:src="@drawable/p_wednesday"
-            android:padding="0dp"
-
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButtonThurday"
-            android:src="@drawable/thursday"
-            android:padding="0dp"
-
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButtonFriday"
-            android:src="@drawable/friday"
-            android:padding="0dp"
-
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButtonSaturday"
-            android:src="@drawable/saturday"
-            android:padding="0dp"
-
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="20dp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.08"
-        android:weightSum="1"
-        android:layout_marginTop="40dp">
-
-        <EditText
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="90dp"
-            android:textSize="38sp"
-            android:text="10"
-            android:textColor="#FE6691"
-            android:paddingBottom="0dp"
-            android:textAlignment="gravity"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="145dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textColor="#FE6691"
-            android:text="Minutes"
-            android:textSize="20sp"
-            android:paddingTop="32dp"
-            android:paddingLeft="10dp"
-            android:paddingBottom="0dp"
-            android:paddingRight="0dp"
-            android:textAlignment="gravity"
-            android:layout_marginTop="10dp"
-            />
-
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_width="320dp"
         android:layout_height="wrap_content"
-        android:id="@+id/vidReminderReview1"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.03"
-        android:textSize="18sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginRight="15dp"
-        android:textStyle="italic"
-        android:textColor="#FE6691"
-        android:text="Task Name at 12:00 p.m. every Tuesday and Wednesday" />
+        android:background="#f2f2f2"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="38dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.08"
-        android:layout_marginTop="40dp">
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0."
+            android:background="#fcfcfc"
+            android:gravity="center"
+
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/time_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:orientation="vertical"
+                    android:text="12:00"
+                    android:textAlignment="gravity"
+                    android:textColor="#FE6691"
+                    android:textSize="75sp" />
+
+                <TextView
+                    android:id="@+id/time_ampm_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PM"
+                    android:textAlignment="gravity"
+                    android:textColor="#FE6691"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/view_dropshadow" />
+
+        <EditText
+            android:id="@+id/item_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Task Name"
+            android:padding="15dp"
+            android:textSize="20sp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="380dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Repeat:"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="#FE6691"
-            android:text="Cancel"
-            android:id="@+id/Cancel"
-            android:capitalize="none"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="80dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="7">
+
+            <ImageButton
+                android:id="@+id/imageButtonSunday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/sunday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonMonday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/monday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonTuesday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/p_tuesday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonWednesday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/p_wednesday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonThurday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/thursday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonFriday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/friday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSaturday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/saturday" />
+
+        </LinearLayout>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="380dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="15dp"
+            android:text="Length:"
             android:textSize="18sp"
+
+            >
+            <!--android:layout_weight="0.1"-->
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.08"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/pe_add_task_remind_time"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginLeft="145dp"
+                android:layout_marginTop="0dp"
+                android:orientation="vertical"
+                android:paddingBottom="0dp"
+                android:text="10"
+                android:textAlignment="gravity"
+                android:textColor="#FE6691"
+                android:textSize="38sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="0dp"
+                android:paddingTop="32dp"
+                android:text="Minutes"
+                android:textAlignment="gravity"
+                android:textColor="#FE6691"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+
+            >
+            <!--android:layout_weight="0.1"-->
+
+        </TextView>
+
+        <TextView
+            android:layout_width="380dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="Reminder Review:"
+            android:textSize="18sp"
+
+            >
+            <!--android:layout_weight="0.1"-->
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+
+            >
+            <!--android:layout_weight="0.1"-->
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/vidReminderReview1"
+            android:layout_width="320dp"
+            android:layout_height="115dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="0.03"
+            android:text="Task Name at 12:00 p.m. every Tuesday and Wednesday"
             android:textColor="#FE6691"
-            android:text="OK"
-            android:id="@+id/OK"
-            android:capitalize="none"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="160dp" />
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/view_dropshadow" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:layout_weight="0.08"
+            android:background="#fcfcfc"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/pe_add_task_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.45"
+                android:capitalize="none"
+                android:gravity="center"
+                android:text="Cancel"
+                android:textColor="#FE6691"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/pe_add_task_div"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:capitalize="none"
+                android:gravity="center"
+                android:text="|"
+                android:textColor="#080808"
+
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/pe_add_task_ok"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.45"
+                android:capitalize="none"
+                android:gravity="center"
+                android:text="OK"
+                android:textColor="#FE6691"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+
+            android:background="@drawable/view_dropshadow" />
 
     </LinearLayout>
-
-</LinearLayout>
+</ScrollView>

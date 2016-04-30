@@ -92,9 +92,7 @@ public class FamilyMemberFragment extends Fragment {
             mLinearLayoutwrapper = (LinearLayout) itemView.findViewById(R.id.ll_chart_wrapper);
             mLinearLayoutwrapper1 = (LinearLayout) itemView.findViewById(R.id.ll_chart_wrapper1);
             mSpinner = (Spinner) itemView.findViewById(R.id.spinner);
-
-            // dropdown
-            // mAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.range_array, android.R.layout.simple_spinner_item);
+            mAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.range_array, android.R.layout.simple_spinner_item);
             mSpinner.setAdapter(mAdapter);
             mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override

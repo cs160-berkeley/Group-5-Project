@@ -102,14 +102,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/p_tuesday" />
+                android:src="@drawable/tuesday" />
 
             <ImageButton
                 android:id="@+id/imageButtonWednesday"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/p_wednesday" />
+                android:src="@drawable/wednesday" />
 
             <ImageButton
                 android:id="@+id/imageButtonThurday"

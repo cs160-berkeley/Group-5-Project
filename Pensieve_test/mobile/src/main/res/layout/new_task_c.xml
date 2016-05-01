@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f2f2f2"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0."
+            android:background="#fcfcfc"
+            android:gravity="center"
+
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/time_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:orientation="vertical"
+                    android:text="12:00"
+                    android:textAlignment="gravity"
+                    android:textColor="#FE6691"
+                    android:textSize="75sp" />
+
+                <TextView
+                    android:id="@+id/time_ampm_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PM"
+                    android:textAlignment="gravity"
+                    android:textColor="#FE6691"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/view_dropshadow" />
+
+        <EditText
+            android:id="@+id/item_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:hint="Task Name"
+            android:padding="15dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="380dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:text="Repeat:"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="7">
+
+            <ImageButton
+                android:id="@+id/imageButtonSunday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/sunday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonMonday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/monday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonTuesday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/tuesday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonWednesday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/wednesday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonThurday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/thursday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonFriday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/friday" />
+
+            <ImageButton
+                android:id="@+id/imageButtonSaturday"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/saturday" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="380dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:paddingLeft="15dp"
+            android:text="Length:"
+            android:textSize="18sp"
+
+            >
+            <!--android:layout_weight="0.1"-->
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_weight="0.08"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/pe_add_task_remind_time"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:layout_marginLeft="145dp"
+                android:layout_marginTop="0dp"
+                android:orientation="vertical"
+                android:paddingBottom="0dp"
+                android:text="10"
+                android:textAlignment="gravity"
+                android:textColor="#FE6691"
+                android:textSize="38sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="0dp"
+                android:paddingTop="32dp"
+                android:text="Minutes"
+                android:textAlignment="gravity"
+                android:textColor="#FE6691"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+
+            >
+            <!--android:layout_weight="0.1"-->
+
+        </TextView>
+
+        <TextView
+            android:layout_width="380dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:text="Reminder Review:"
+            android:textSize="18sp"
+
+            >
+            <!--android:layout_weight="0.1"-->
+
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+
+            >
+            <!--android:layout_weight="0.1"-->
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/vidReminderReview1"
+            android:layout_width="320dp"
+            android:layout_height="115dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_weight="0.03"
+            android:text="Task Name at 12:00 p.m. every Tuesday and Wednesday"
+            android:textColor="#FE6691"
+            android:textSize="18sp"
+            android:textStyle="italic" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@drawable/view_dropshadow" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="38dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="0dp"
+            android:layout_weight="0.08"
+            android:background="#fcfcfc"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/pe_add_task_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.45"
+                android:capitalize="none"
+                android:gravity="center"
+                android:text="Cancel"
+                android:textColor="#FE6691"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/pe_add_task_div"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1"
+                android:capitalize="none"
+                android:gravity="center"
+                android:text="|"
+                android:textColor="#080808"
+
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/pe_add_task_ok"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0.45"
+                android:capitalize="none"
+                android:gravity="center"
+                android:text="OK"
+                android:textColor="#FE6691"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+
+            android:background="@drawable/view_dropshadow" />
+
+    </LinearLayout>
+</ScrollView>

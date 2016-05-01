@@ -3,6 +3,7 @@ package com.example.david.pensieve_test;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -17,6 +18,7 @@ import java.util.UUID;
  */
 public class TaskPagerActivity extends FragmentActivity {
     public static final String EXTRA_TASK_ID = "com.example.david.pensieve_test.task_id";
+    public static final String EXTRA_TASK = "com.example.david.pensieve_test.task";
 
     private ViewPager mViewPager;
     private List<Tasks> mTasks;
@@ -24,6 +26,7 @@ public class TaskPagerActivity extends FragmentActivity {
     public static Intent newIntent(Context packageContext, UUID taskId) {
         Intent intent = new Intent(packageContext, TaskPagerActivity.class);
         intent.putExtra(EXTRA_TASK_ID, taskId);
+        //intent.putExtra(EXTRA_TASK, (Parcelable) task);
         return intent;
     }
 
@@ -41,7 +44,19 @@ public class TaskPagerActivity extends FragmentActivity {
             @Override
             public Fragment getItem(int position) {
                 Tasks t = mTasks.get(position);
-                return TaskFragment.newInstance(t.getId());
+                TaskFragment taskFragment = TaskFragment.newInstance(t.getId());
+                taskFragment.setOnButtonClickListener(new TaskFragment.OnButtonClickListener() {
+                    @Override
+                    public void OnOKButtonClick() {
+                        finish();
+                    }
+
+                    @Override
+                    public void OnCancelButtonClick() {
+                        finish();
+                    }
+                });
+                return taskFragment;
             }
 
             @Override
@@ -50,8 +65,8 @@ public class TaskPagerActivity extends FragmentActivity {
             }
         });
 
-        for (int i=0;i<mTasks.size();i++){
-            if(mTasks.get(i).getId().equals(taskId)){
+        for (int i = 0; i < mTasks.size(); i++) {
+            if (mTasks.get(i).getId().equals(taskId)) {
                 mViewPager.setCurrentItem(i);
                 break;
             }

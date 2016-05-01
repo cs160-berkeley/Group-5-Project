@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/reminder_2">
+
+
+    <android.support.wearable.view.CircledImageView
+        android:id="@+id/reminder"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+    </android.support.wearable.view.CircledImageView>
+
+
+    <TextView
+        android:id="@+id/task_item"
+        android:text="FEED DOG!!"
+        android:textColor="@color/black"
+        android:textSize="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="35dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+
+</RelativeLayout>

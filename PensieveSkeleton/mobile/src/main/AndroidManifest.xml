@@ -33,8 +33,11 @@
         <activity android:name=".Settings"/>
         <activity android:name=".OverviewGraph"/>
 
-        <activity android:name=".Notification"/>
+        <activity android:name=".Notification">
+        </activity>
+
         <activity android:name=".NotificationResolved"/>
+        <activity android:name=".DeleteTask" />
 
 
         <service android:name=".PhoneToWatchService" />

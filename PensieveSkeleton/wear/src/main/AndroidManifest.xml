@@ -25,7 +25,8 @@
         </activity>
 
         <activity android:name=".MainWatchScreen" />
-        <activity android:name=".cantRemember" />
+        <activity android:name=".cantRemember" >
+        </activity>
         <activity android:name=".Confirmation" />
         <activity android:name=".yes" />
 

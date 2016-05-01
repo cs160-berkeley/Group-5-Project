@@ -5,4 +5,11 @@
     <string name="take_notes">Take Notes</string>
     <string name="ROLE">roles</string>
 
+    <string-array name="range_array">
+        <item>One Day</item>
+        <item>One Week</item>
+        <item>One Month</item>
+        <item>One Year</item>
+    </string-array>
+
 </resources>

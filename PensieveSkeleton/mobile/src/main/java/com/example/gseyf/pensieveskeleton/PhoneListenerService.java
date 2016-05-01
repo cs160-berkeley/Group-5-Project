@@ -17,21 +17,22 @@ public class PhoneListenerService extends WearableListenerService {
     private static final String NEED_HELP = "/need_help";
     private static final String GOOD = "/good";
 
-
     @Override
     public void onMessageReceived(MessageEvent messageEvent) {
+        Log.d(TAG, "WtoP");
         Log.wtf(TAG, "in PhoneListenerService, got: " + messageEvent.getPath());
 
         if( messageEvent.getPath().equalsIgnoreCase(NEED_HELP) ) {
-//            String name = new String(messageEvent.getData(), StandardCharsets.UTF_8);
-//            Log.d(TAG, "in phone listener: " + name);
+            String name = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Log.d(TAG, "in phone listener: " + name);
 
             Intent intent = new Intent(this, Notification.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
 
         } else if( messageEvent.getPath().equalsIgnoreCase(GOOD) ) {
-//            String zipcode = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            String name = new String(messageEvent.getData(), StandardCharsets.UTF_8);
+            Log.d(TAG, "in phone listener: " + name);
 
             Intent i = new Intent(this, PatientMainActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

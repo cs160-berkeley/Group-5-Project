@@ -46,10 +46,5 @@ public class Confirmation extends Activity{
 
     }
 
-    public void confirm(View view){
-        Intent startIntent = new Intent(this, WatchToPhoneService.class);
-        startIntent.putExtra("status", "confirm");
-        startActivity(startIntent);
-    }
 
 }

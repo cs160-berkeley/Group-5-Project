@@ -51,7 +51,7 @@ public class cantRemember extends Activity{
     public void forgot(View view){
         Intent startIntent = new Intent(this, WatchToPhoneService.class);
         startIntent.putExtra("status", "needHelp");
-        startActivity(startIntent);
+        startService(startIntent);
     }
 
 

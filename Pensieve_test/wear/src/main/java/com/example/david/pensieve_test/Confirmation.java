@@ -38,7 +38,6 @@ public class Confirmation extends Activity{
 
                 Intent intent = new Intent(Confirmation.this, cantRemember.class);
                 startActivity(intent);
-                Log.d(TAG, "swipe right");
             }
 
             @Override
@@ -48,7 +47,6 @@ public class Confirmation extends Activity{
 
                 Intent intent = new Intent(Confirmation.this, cantRemember.class);
                 startActivity(intent);
-                Log.d(TAG, "swipe left");
             }
         });
 

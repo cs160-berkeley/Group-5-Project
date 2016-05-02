@@ -22,8 +22,12 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".Confirmation" />
-        <activity android:name=".cantRemember" />
-        <activity android:name=".yes" />
+        <activity android:name=".cantRemember"
+                  android:theme="@style/Theme.AppCompat"
+            />
+        <activity android:name=".yes"
+                  android:theme="@style/Theme.AppCompat"
+            />
 
         <service android:name=".WatchToPhoneService"></service>
         <!-- Listeners are special services that need to be declared like below, as BIND_LISTENER -->

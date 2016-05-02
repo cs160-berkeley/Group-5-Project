@@ -55,6 +55,7 @@
         android:text="Patient"
         android:textAllCaps="false"
         android:textColor="#FFFE6691"
+        android:fontFamily="sans-serif-light"
         android:textSize="20sp" />
 
     <View
@@ -74,6 +75,7 @@
         android:text="Family Member"
         android:textAllCaps="false"
         android:textColor="#FFFE6691"
+        android:fontFamily="sans-serif-light"
         android:textSize="20sp" />
 
     <View

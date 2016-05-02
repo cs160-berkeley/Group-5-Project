@@ -8,8 +8,6 @@
     <!--@drawable/family_member_notification_bg"-->
 
 
-
-
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -21,12 +19,12 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:paddingTop="0dp"
-        android:text="Patient forgot:"
+        android:text="Grandma forgot:"
         android:textColor="#FFFE6691"
         android:textSize="38sp"
         android:textStyle="italic"
         android:textAlignment="center"
-        android:typeface="sans" />
+        android:fontFamily="sans-serif-light" />
 
     <View
         android:layout_width="match_parent"
@@ -38,7 +36,6 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:background="#fefefe"
         android:weightSum="1.0"
         android:layout_weight="0.02">
 
@@ -55,7 +52,7 @@
             android:text="Feed Dog"
 
             android:textIsSelectable="false"
-            android:typeface="sans" />
+            android:fontFamily="sans-serif-light"  />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -74,7 +71,7 @@
                 android:text="3:00"
                 android:textAlignment="center"
                 android:paddingTop="10dp"
-                android:typeface="sans" />
+                android:fontFamily="sans"  />
 
             <TextView
                 android:id="@+id/time2"
@@ -85,16 +82,12 @@
                 android:textSize="15sp"
                 android:text="PM"
                 android:layout_gravity="center_horizontal"
-                android:typeface="sans" />
+                android:fontFamily="sans"  />
 
         </LinearLayout>
 
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="8dp"
-        android:background="@drawable/view_dropshadow" />
 
     <View
         android:layout_width="match_parent"
@@ -110,7 +103,7 @@
         android:textSize="38sp"
         android:textStyle="italic"
         android:textAlignment="center"
-        android:typeface="sans" />
+        android:fontFamily="sans-serif-light"  />
 
     <View
         android:layout_width="match_parent"
@@ -130,7 +123,7 @@
         android:textColor="#FFFE6691"
         android:textSize="38sp"
         android:layout_weight="0.07"
-        android:typeface="sans" />
+        android:fontFamily="sans-serif-light" />
 
     <View
         android:layout_width="match_parent"
@@ -149,7 +142,7 @@
         android:textColor="#FFFE6691"
         android:textSize="38sp"
         android:layout_weight="0.07"
-        android:typeface="sans"
+        android:fontFamily="sans-serif-light"
         android:allowUndo="true" />
 
 

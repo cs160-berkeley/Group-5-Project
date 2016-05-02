@@ -3,12 +3,11 @@ package com.example.david.pensieve_test;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,9 +15,8 @@ import java.util.UUID;
 /**
  * Created by david on 4/17/16.
  */
-public class TaskPagerActivity extends FragmentActivity {
+public class TaskPagerActivity extends AppCompatActivity {
     public static final String EXTRA_TASK_ID = "com.example.david.pensieve_test.task_id";
-    public static final String EXTRA_TASK = "com.example.david.pensieve_test.task";
 
     private ViewPager mViewPager;
     private List<Tasks> mTasks;
@@ -26,7 +24,6 @@ public class TaskPagerActivity extends FragmentActivity {
     public static Intent newIntent(Context packageContext, UUID taskId) {
         Intent intent = new Intent(packageContext, TaskPagerActivity.class);
         intent.putExtra(EXTRA_TASK_ID, taskId);
-        //intent.putExtra(EXTRA_TASK, (Parcelable) task);
         return intent;
     }
 
@@ -35,6 +32,7 @@ public class TaskPagerActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_pager);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         UUID taskId = (UUID) getIntent().getSerializableExtra(EXTRA_TASK_ID);
         mViewPager = (ViewPager) findViewById(R.id.activity_task_pager_view_pager);
 

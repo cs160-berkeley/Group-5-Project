@@ -17,7 +17,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="120dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0."
             android:background="#fcfcfc"
@@ -63,7 +63,8 @@
             android:layout_height="50dp"
             android:hint="Task Name"
             android:padding="15dp"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:layout_width="380dp"
@@ -215,7 +216,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="10dp"
 
             >
             <!--android:layout_weight="0.1"-->
@@ -223,14 +224,14 @@
         </TextView>
 
         <TextView
-            android:id="@+id/vidReminderReview1"
-            android:layout_width="320dp"
-            android:layout_height="115dp"
+            android:id="@+id/pe_add_task_remind_time_review"
+            android:layout_width="340dp"
+            android:layout_height="95dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_weight="0.03"
-            android:text="Task Name at 12:00 p.m. every Tuesday and Wednesday"
+            android:text="Task Name at 12:00 p.m."
             android:textColor="#FE6691"
             android:textSize="18sp"
             android:textStyle="italic" />

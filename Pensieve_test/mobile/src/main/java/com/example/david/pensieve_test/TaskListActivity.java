@@ -22,7 +22,7 @@ public class TaskListActivity extends AppCompatActivity {
 
         if (fragment == null) {
             Intent intent = getIntent();
-            int role = Integer.parseInt(intent.getStringExtra("role"));
+            int role = (int) Integer.parseInt(intent.getStringExtra("role"));
             fm.beginTransaction()
                     .add(R.id.fragment_container, FamilyMemberFragment.newInstance(role))
                     .commit();

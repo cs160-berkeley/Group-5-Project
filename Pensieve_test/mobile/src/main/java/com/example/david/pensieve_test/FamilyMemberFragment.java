@@ -3,12 +3,14 @@ package com.example.david.pensieve_test;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.Time;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -26,7 +28,10 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -79,6 +84,10 @@ public class FamilyMemberFragment extends Fragment {
     }
 
     private class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+        public TextView mTitleTextView;
+        private TextView mTimeAMPMTextview;
+        private TextView mTimeTextview;
+        private View mStatusBar;
         private LinearLayout mLinearLayoutwrapper;
         private LinearLayout mLinearLayoutwrapper1;
         private ArrayAdapter<CharSequence> mAdapter;
@@ -96,6 +105,7 @@ public class FamilyMemberFragment extends Fragment {
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_task);
             mTimeTextview = (TextView) itemView.findViewById(R.id.list_textClock);
             mTimeAMPMTextview = (TextView) itemView.findViewById(R.id.list_textClockAMPM);
+            mStatusBar = (View) itemView.findViewById(R.id.list_status_bar);
             mLinearLayoutwrapper = (LinearLayout) itemView.findViewById(R.id.ll_chart_wrapper);
             mLinearLayoutwrapper1 = (LinearLayout) itemView.findViewById(R.id.ll_chart_wrapper1);
             mSpinner = (Spinner) itemView.findViewById(R.id.spinner);
@@ -118,11 +128,63 @@ public class FamilyMemberFragment extends Fragment {
             mImageView = (ImageView) itemView.findViewById(R.id.chart);
         }
 
+        /*
+        *  Convenience method to add a specified number of minutes to a Date object
+        *  From: http://stackoverflow.com/questions/9043981/how-to-add-minutes-to-my-date
+        *  @param  minutes  The number of minutes to add
+        *  @param  beforeTime  The time that will have minutes added to it
+        *  @return  A date object with the specified number of minutes added to it
+        */
+        private Date addMinutesToDate(int minutes, Date beforeTime) {
+            final long ONE_MINUTE_IN_MILLIS = 60000; //millisecs
+
+            long curTimeInMs = beforeTime.getTime();
+            Date afterAddingMins = new Date(curTimeInMs + (minutes * ONE_MINUTE_IN_MILLIS));
+            return afterAddingMins;
+        }
+
+        private Date getCurrentTime() {
+            Calendar cal = Calendar.getInstance();
+            int hour = cal.get(Calendar.HOUR_OF_DAY);
+            int minute = cal.get(Calendar.MINUTE);
+            SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+            try {
+                return sdf.parse(String.format("%d:%d", hour, minute));
+            } catch (final ParseException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
         public void bindTask(Tasks task) {
             mTasks = task;
             mTitleTextView.setText(task.getTitle());
             mTimeTextview.setText(task.getTime());
             mTimeAMPMTextview.setText(task.getTimeAMPM());
+
+            String time = task.getTime();
+            if (time != null && !time.isEmpty()) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+                    Date current_time = getCurrentTime();
+                    Date start_time = sdf.parse(time);
+                    Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
+
+                    if ((current_time.compareTo(end_time) > 0) && task.isCompleted()) {
+                        mStatusBar.setBackgroundColor(Color.parseColor("#A5D6A7")); // green
+                    } else if ((current_time.compareTo(end_time) > 0) && !task.isCompleted()) {
+                        mStatusBar.setBackgroundColor(Color.parseColor("#EF9A9A")); // pink
+                    } else if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
+                        mTitleTextView.setText("› " + task.getTitle());
+                        mTitleTextView.setTextColor(Color.parseColor("#FE6691"));
+                        mTimeTextview.setTextColor(Color.parseColor("#FE6691"));
+                        mTimeAMPMTextview.setTextColor(Color.parseColor("#FE6691"));
+                        mStatusBar.setBackgroundColor(Color.TRANSPARENT);
+                    }
+                } catch (final ParseException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         @Override

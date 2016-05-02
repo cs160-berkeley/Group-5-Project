@@ -16,11 +16,13 @@ public class MainScreen extends AppCompatActivity {
     private Button mPatient;
     private Button mFamilyMember;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.new_task_c);
         setContentView(R.layout.activity_main);
+
 
         mPatient = (Button) findViewById(R.id.patient_login);
         mPatient.setTextSize(TypedValue.COMPLEX_UNIT_PX, TypeFacesUtils.dpToPx(22));

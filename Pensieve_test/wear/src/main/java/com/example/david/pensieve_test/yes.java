@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.wearable.view.CircledImageView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 /**
@@ -15,20 +16,33 @@ import android.widget.Toast;
 public class yes extends Activity {
     private final String TAG = "@>@>@>";
 
-    private FloatingActionButton button;
+    private Button mButton;
+    //private FloatingActionButton button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.yes);
 
-        button = (FloatingActionButton) findViewById(R.id.check);
-        button.setOnClickListener(new View.OnClickListener() {
+//        button = (FloatingActionButton) findViewById(R.id.check);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                button.setColorFilter(0x99c7c7c7,
+////                        android.graphics.PorterDuff.Mode.MULTIPLY);
+//                //button.setBackgroundTintMode();
+//            }
+//        });
+
+        mButton = (Button) findViewById(R.id.check);
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                button.setColorFilter(0x99c7c7c7,
-//                        android.graphics.PorterDuff.Mode.MULTIPLY);
-                //button.setBackgroundTintMode();
+                mButton.setBackgroundResource(R.drawable.check_changed);
+
+                Intent i = new Intent(getBaseContext(), WatchToPhoneService.class);
+                i.putExtra("/dataToPhone", "nothing");
+                startService(i);
             }
         });
 

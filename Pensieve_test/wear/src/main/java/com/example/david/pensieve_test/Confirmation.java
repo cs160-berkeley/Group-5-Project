@@ -14,6 +14,8 @@ import android.widget.Toast;
 public class Confirmation extends Activity{
     private final String TAG = "@>@>@>";
 
+    private String todoTask = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +25,11 @@ public class Confirmation extends Activity{
         Bundle extras = intent.getExtras();
 
         if (extras != null) {
-            String todoTask = extras.getString("/task_item");
+            todoTask = extras.getString("/task_item");
+            String[] lst = todoTask.split("@@@");
 
             TextView task_item = (TextView) findViewById(R.id.task_item);
-            task_item.setText(todoTask);
+            task_item.setText(lst[0]);
         }
 
         CircledImageView parag = (CircledImageView) findViewById(R.id.reminder);
@@ -37,6 +40,13 @@ public class Confirmation extends Activity{
                 Toast.makeText(Confirmation.this, "right", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Confirmation.this, cantRemember.class);
+                if (todoTask != "") {
+                    intent.putExtra("/dont_remember", todoTask);
+                    Log.d(TAG, "title is not null " + todoTask);
+                } else {
+                    intent.putExtra("/dont_remember", "NOTHING");
+                    Log.d(TAG, "title is empty");
+                }
                 startActivity(intent);
             }
 
@@ -46,6 +56,13 @@ public class Confirmation extends Activity{
                 Toast.makeText(Confirmation.this, "left", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(Confirmation.this, cantRemember.class);
+                if (todoTask != "") {
+                    intent.putExtra("/dont_remember", todoTask);
+                    Log.d(TAG, "title is not null " + todoTask);
+                } else {
+                    intent.putExtra("/dont_remember", "NOTHING");
+                    Log.d(TAG, "title is empty");
+                }
                 startActivity(intent);
             }
         });

@@ -20,13 +20,10 @@ import com.google.android.gms.wearable.Wearable;
  * Created by david on 3/1/16.
  */
 public class WatchToPhoneService extends Service {
-
-    Boolean isZipCode = Boolean.FALSE;
-    private String name;
-
     private static final String TAG = "@>@>@>@>";
     private GoogleApiClient mWatchApiClient;
     final Service _this = this;
+    private String sendData;
 
     @Override
     public void onCreate() {
@@ -57,33 +54,20 @@ public class WatchToPhoneService extends Service {
 
         Log.d(TAG, "WtoP: on start command");
 
-        String thing = extras.getString("nameOrZip");
-
-//        try {
-//            int intZipCode = Integer.parseInt(thing);
-//            myZipCode = "" + intZipCode;
-//            isZipCode = Boolean.TRUE;
-//            Log.d(TAG, "is it getting through? ");
-//        } catch (NumberFormatException e) {
-//            name = thing;
-//            isZipCode = Boolean.FALSE;
-//            Log.d(TAG, "is it getting through? " + name);
-//        }
+        sendData = extras.getString("/dataToPhone");
 
         new Thread(new Runnable() {
             @Override
             public void run() {
                 mWatchApiClient.connect();
-                sendMessage("/send_name", name);
-//                if(isZipCode){
-//                    sendMessage("/send_zipcode", myZipCode);
-//                } else {
-//                    sendMessage("/send_name", name);
-//                }
+                if(sendData.equals("")){
+                    sendMessage("/send_nothing", "nothing");
+                } else {
+                    sendMessage("/send_data", sendData);
+                }
                 Log.wtf(TAG, "sent");
             }
         }).start();
-
 
         return START_STICKY;
     }

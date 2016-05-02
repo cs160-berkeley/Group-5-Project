@@ -40,7 +40,7 @@ public class yes extends Activity {
             public void onClick(View v) {
                 mButton.setBackgroundResource(R.drawable.check_changed);
 
-                Intent i = new Intent(getBaseContext(), WatchToPhoneService.class);
+                Intent i = new Intent(getBaseContext(), WToPService.class);
                 i.putExtra("/dataToPhone", "nothing");
                 startService(i);
             }

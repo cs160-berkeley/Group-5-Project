@@ -15,6 +15,7 @@ public class Confirmation extends Activity{
     private final String TAG = "@>@>@>";
 
     private String todoTask = "";
+    private Boolean set = Boolean.FALSE;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,7 @@ public class Confirmation extends Activity{
 
             TextView task_item = (TextView) findViewById(R.id.task_item);
             task_item.setText(lst[0]);
+            set = Boolean.TRUE;
         }
 
         CircledImageView parag = (CircledImageView) findViewById(R.id.reminder);
@@ -39,15 +41,17 @@ public class Confirmation extends Activity{
                 super.onSwipeRight();
                 Toast.makeText(Confirmation.this, "right", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(Confirmation.this, cantRemember.class);
-                if (todoTask != "") {
-                    intent.putExtra("/dont_remember", todoTask);
-                    Log.d(TAG, "title is not null " + todoTask);
-                } else {
-                    intent.putExtra("/dont_remember", "NOTHING");
-                    Log.d(TAG, "title is empty");
+                if (set) {
+                    Intent intent = new Intent(Confirmation.this, cantRemember.class);
+                    if (todoTask != "") {
+                        intent.putExtra("/dont_remember", todoTask);
+                        Log.d(TAG, "dont remember todotask " + todoTask);
+                    } else {
+                        intent.putExtra("/dont_remember", "NOTHING");
+                        Log.d(TAG, "dont remember todotask nothing");
+                    }
+                    startActivity(intent);
                 }
-                startActivity(intent);
             }
 
             @Override
@@ -55,15 +59,17 @@ public class Confirmation extends Activity{
                 super.onSwipeLeft();
                 Toast.makeText(Confirmation.this, "left", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(Confirmation.this, cantRemember.class);
-                if (todoTask != "") {
-                    intent.putExtra("/dont_remember", todoTask);
-                    Log.d(TAG, "title is not null " + todoTask);
-                } else {
-                    intent.putExtra("/dont_remember", "NOTHING");
-                    Log.d(TAG, "title is empty");
+                if (set) {
+                    Intent intent = new Intent(Confirmation.this, cantRemember.class);
+                    if (todoTask != "") {
+                        intent.putExtra("/dont_remember", todoTask);
+                        Log.d(TAG, "dont remember todotask " + todoTask);
+                    } else {
+                        intent.putExtra("/dont_remember", "NOTHING");
+                        Log.d(TAG, "dont remember todotask nothing");
+                    }
+                    startActivity(intent);
                 }
-                startActivity(intent);
             }
         });
 

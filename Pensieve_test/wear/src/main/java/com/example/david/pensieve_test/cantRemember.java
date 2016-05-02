@@ -18,6 +18,7 @@ public class cantRemember extends Activity{
     private final String TAG = "@>@>@>";
 
     private String todoTask = "";
+    private Boolean set = Boolean.FALSE;
     //private FloatingActionButton button;
 
     private Button mButton;
@@ -41,7 +42,9 @@ public class cantRemember extends Activity{
         Bundle extras = intent.getExtras();
 
         if (extras != null) {
-            todoTask = extras.getString("/task_item");
+            todoTask = extras.getString("/dont_remember");
+            set = Boolean.TRUE;
+            Log.d(TAG, "what is todoTask? " + todoTask);
         }
 
         mButton = (Button) findViewById(R.id.question);
@@ -50,10 +53,12 @@ public class cantRemember extends Activity{
             public void onClick(View v) {
                 mButton.setBackgroundResource(R.drawable.question_changed);
 
-                Intent i = new Intent(getBaseContext(), WatchToPhoneService.class);
-                i.putExtra("/dataToPhone", todoTask);
-                startService(i);
-
+                if (set) {
+                    Intent i = new Intent(getBaseContext(), WToPService.class);
+                    i.putExtra("/dataToPhone", todoTask); //null
+                    startService(i);
+                    Log.d(TAG, "again what is todoTask? " + todoTask);
+                }
             }
         });
 

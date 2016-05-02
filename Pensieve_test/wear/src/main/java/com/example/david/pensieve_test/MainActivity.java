@@ -39,15 +39,15 @@ public class MainActivity extends Activity {
                 super.onSwipeRight();
                 Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(MainActivity.this, Confirmation.class);
-                if (todoTask != "") {
-                    intent.putExtra("/task_item", todoTask);
-                    Log.d(TAG, "title is not null " + todoTask);
-                } else {
-                    intent.putExtra("/task_item", "NOTHING");
-                    Log.d(TAG, "title is empty");
-                }
-                startActivity(intent);
+//                Intent intent = new Intent(MainActivity.this, Confirmation.class);
+//                if (todoTask != "") {
+//                    intent.putExtra("/task_item", todoTask);
+//                    Log.d(TAG, "title is not null " + todoTask);
+//                } else {
+//                    intent.putExtra("/task_item", "NOTHING");
+//                    Log.d(TAG, "title is empty");
+//                }
+//                startActivity(intent);
             }
 
             @Override

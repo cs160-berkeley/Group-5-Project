@@ -72,6 +72,8 @@ public class PhoneToWatchService extends Service {
                 for (Node node : nodes.getNodes()) {
                     MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
                             mApiClient, node.getId(), path, text.getBytes()).await();
+
+                    Log.d(TAG, "result is " + result);
                 }
             }
         }).start();

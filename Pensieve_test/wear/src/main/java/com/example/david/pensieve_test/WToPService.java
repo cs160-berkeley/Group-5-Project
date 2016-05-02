@@ -4,9 +4,13 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.MessageApi;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
@@ -63,7 +67,7 @@ public class WToPService extends Service {
                 } else {
                     sendMessage("/send_data", sendData);
                 }
-                Log.wtf(TAG, "end");
+                Log.wtf(TAG, "send");
             }
         }).start();
 
@@ -74,16 +78,27 @@ public class WToPService extends Service {
     public IBinder onBind(Intent intent) { return null; }
 
     private void sendMessage(final String path, final String text){
+        Log.d(TAG, "hello?");
         new Thread(new Runnable() {
             @Override
             public void run() {
-                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(mApiClient).await();
-                for (Node node : nodes.getNodes()) {
-                    MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
-                            mApiClient, node.getId(), path, text.getBytes()).await();
-                }
+                final PendingResult<NodeApi.GetConnectedNodesResult> nodes = Wearable.NodeApi.getConnectedNodes(mApiClient); //.await()
+                nodes.setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
+                    @Override
+                    public void onResult(@NonNull NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
+                        for (Node node : getConnectedNodesResult.getNodes()) {
+                            Log.d(TAG, "node " + node.toString());
+
+                            MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
+                                    mApiClient, node.getId(), path, text.getBytes()).await();
+
+                            Log.d(TAG, "what is result? " + result);
+                        }
+                    }
+                });
             }
         }).start();
+        Log.d(TAG, "does it get here?");
     }
 
 }

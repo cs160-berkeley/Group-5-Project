@@ -71,9 +71,4 @@ public class yes extends Activity {
         });
     }
 
-    public void confirm(View view){
-        Intent startIntent = new Intent(this, WatchToPhoneService.class);
-        startIntent.putExtra("status", "confirm");
-        startService(startIntent);
-    }
 }

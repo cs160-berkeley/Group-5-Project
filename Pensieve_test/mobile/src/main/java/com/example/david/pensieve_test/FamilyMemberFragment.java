@@ -63,7 +63,7 @@ public class FamilyMemberFragment extends Fragment {
         mInputMethod = (InputMethodManager) getActivity().getBaseContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         if (this.role == 0) {
-            mHandler.postDelayed(sendReminderToWatch, 10000); //10 sec
+            mHandler.postDelayed(sendReminderToWatch, 5000); //5 sec
         }
     }
 
@@ -263,7 +263,6 @@ public class FamilyMemberFragment extends Fragment {
         @Override
         public void run() {
             startWatch();
-            //mHandler.postDelayed(this, 10000); //10 sec
         }
     };
 

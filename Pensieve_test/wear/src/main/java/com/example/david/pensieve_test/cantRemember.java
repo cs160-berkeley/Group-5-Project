@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.wearable.view.CircledImageView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -48,17 +49,34 @@ public class cantRemember extends Activity{
         }
 
         mButton = (Button) findViewById(R.id.question);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mButton.setBackgroundResource(R.drawable.question_changed);
-
-                if (set) {
-                    Intent i = new Intent(getBaseContext(), WToPService.class);
-                    i.putExtra("/dataToPhone", todoTask); //null
-                    startService(i);
-                    Log.d(TAG, "again what is todoTask? " + todoTask);
+//        mButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mButton.setBackgroundResource(R.drawable.question_changed);
+//
+//                if (set) {
+//                    Intent i = new Intent(getBaseContext(), WToPService.class);
+//                    i.putExtra("/dataToPhone", todoTask); //null
+//                    startService(i);
+//                    Log.d(TAG, "again what is todoTask? " + todoTask);
+//                }
+//            }
+//        });
+//
+        mButton.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                if (arg1.getAction() == MotionEvent.ACTION_DOWN) {
+                    mButton.setBackgroundResource(R.drawable.question_changed);
+                } else {
+                    mButton.setBackgroundResource(R.drawable.question);
+                    if (set) {
+                        Intent i = new Intent(getBaseContext(), WToPService.class);
+                        i.putExtra("/dataToPhone", todoTask); //null
+                        startService(i);
+                        Log.d(TAG, "again what is todoTask? " + todoTask);
+                    }
                 }
+            return true;
             }
         });
 

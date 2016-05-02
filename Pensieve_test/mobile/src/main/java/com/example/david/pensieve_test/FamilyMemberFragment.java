@@ -241,6 +241,10 @@ public class FamilyMemberFragment extends Fragment {
                 Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId()); //task
                 startActivity(intent);
                 return true;
+            case R.id.menu_settings:
+                Intent i = new Intent(getActivity(), Notification.class);
+                startActivity(i);
+
             default:
                 return super.onOptionsItemSelected(item);
         }

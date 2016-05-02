@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.wearable.view.CircledImageView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -35,14 +36,24 @@ public class yes extends Activity {
 //        });
 
         mButton = (Button) findViewById(R.id.check);
-        mButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mButton.setBackgroundResource(R.drawable.check_changed);
-
-                Intent i = new Intent(getBaseContext(), WToPService.class);
-                i.putExtra("/dataToPhone", "nothing");
-                startService(i);
+//        mButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mButton.setBackgroundResource(R.drawable.check_changed);
+//
+//                Intent i = new Intent(getBaseContext(), WToPService.class);
+//                i.putExtra("/dataToPhone", "nothing");
+//                startService(i);
+//            }
+//        });
+        mButton.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View arg0, MotionEvent arg1) {
+                if (arg1.getAction() == MotionEvent.ACTION_DOWN) {
+                    mButton.setBackgroundResource(R.drawable.check_changed);
+                } else {
+                    mButton.setBackgroundResource(R.drawable.check);
+                }
+                return true;
             }
         });
 

@@ -2,6 +2,7 @@ package com.example.david.pensieve_test;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +45,7 @@ public class Notification extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), TaskListActivity.class);
+                i.putExtra("role", "0");
                 startActivity(i);
             }
         });
@@ -52,7 +54,8 @@ public class Notification extends Activity {
         call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), TaskListActivity.class);
+                Intent i = new Intent(Intent.ACTION_DIAL);
+                i.setData(Uri.parse("tel:8675309"));
                 startActivity(i);
             }
         });

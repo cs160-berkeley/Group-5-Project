@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
@@ -32,12 +33,22 @@ public class WToPService extends Service {
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
                     @Override
                     public void onConnected(Bundle connectionHint) {
+                        Log.d(TAG, "connection onConnected");
                     }
 
                     @Override
                     public void onConnectionSuspended(int cause) {
+                        Log.d(TAG, "connection Suspended");
                     }
-                }).build();
+                })
+                .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
+                    @Override
+                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+                        Log.d(TAG, "Connection Failed");
+                        mApiClient.connect();
+                    }
+                })
+                .build();
     }
 
     @Override
@@ -78,27 +89,19 @@ public class WToPService extends Service {
     public IBinder onBind(Intent intent) { return null; }
 
     private void sendMessage(final String path, final String text){
-        Log.d(TAG, "hello?");
         new Thread(new Runnable() {
             @Override
             public void run() {
-                final PendingResult<NodeApi.GetConnectedNodesResult> nodes = Wearable.NodeApi.getConnectedNodes(mApiClient); //.await()
-                nodes.setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
-                    @Override
-                    public void onResult(@NonNull NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
-                        for (Node node : getConnectedNodesResult.getNodes()) {
-                            Log.d(TAG, "node " + node.toString());
-
-                            MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
-                                    mApiClient, node.getId(), path, text.getBytes()).await();
-
-                            Log.d(TAG, "what is result? " + result);
-                        }
-                    }
-                });
+                Log.d(TAG, "LOL 0");
+                // the following line hangs forever. Never terminates.
+                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(mApiClient).await();
+                Log.d(TAG, "HHE");
+                for(Node node : nodes.getNodes()) {
+                    Wearable.MessageApi.sendMessage(mApiClient, node.getId(), path, text.getBytes()).await();
+                }
+                Log.d(TAG, "send to PListener");
             }
         }).start();
-        Log.d(TAG, "does it get here?");
     }
 
 }

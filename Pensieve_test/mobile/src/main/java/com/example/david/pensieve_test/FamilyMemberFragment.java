@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,6 +39,8 @@ import java.util.List;
  * Created by david on 4/17/16.
  */
 public class FamilyMemberFragment extends Fragment {
+    private final String TAG = "@>@>@>";
+
     private RecyclerView mRecyclerView;
     private TaskAdapter mAdapter;
     private InputMethodManager mInputMethod;
@@ -192,10 +195,13 @@ public class FamilyMemberFragment extends Fragment {
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
 
-                                //DELETE TASK HERE
+                                Log.d(TAG, "before size " + TaskManager.get(getActivity()).getTasksList().size());
 
                                 TaskManager.get(getActivity()).deleteTask(mTasks);
                                 dialog.dismiss();
+
+                                updateUI();
+                                Log.d(TAG, "after size " + TaskManager.get(getActivity()).getTasksList().size());
                             }
                         })
 
@@ -296,8 +302,11 @@ public class FamilyMemberFragment extends Fragment {
                 Tasks task = new Tasks();
                 TaskManager.get(getActivity()).addTask(task);
                 //adds task to list
+
                 Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId()); //task
                 startActivity(intent);
+
+
                 return true;
             case R.id.menu_settings:
                 Intent i = new Intent(getActivity(), Notification.class);

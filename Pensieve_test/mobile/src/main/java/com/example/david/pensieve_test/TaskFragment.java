@@ -87,8 +87,6 @@ public class TaskFragment extends Fragment {
         dialog.setOnButtonClickListener(new TimePickerFragment.OnButtonClickListener() {
             @Override
             public void OnOKButtonClick() {
-                Log.d(TAG, "set dialog time" + dialog.getTimetoString());
-
                 mTimeField.setText(dialog.getTimetoString());
                 mTimeAMPMField.setText(dialog.getAMPM());
                 updateRemindReview();
@@ -217,16 +215,11 @@ public class TaskFragment extends Fragment {
 
                 mTasks.setTimeAMPM(hourOfDay > 11 ? "PM" : "AM");
 
-                Log.d(TAG, "hourofDay " + hourOfDay); //
-
                 if (hourOfDay == 0) {
                     hourOfDay = 12;
                 } else if (hourOfDay > 13) {
                     hourOfDay -= 12;
                 }
-
-                Log.d(TAG, "next hourofDay " + hourOfDay); //
-
 
                 String sTime = String.format("%d:%02d", hourOfDay, minute);
                 mTasks.setTime(sTime);

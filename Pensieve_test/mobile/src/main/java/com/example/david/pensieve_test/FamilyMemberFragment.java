@@ -350,19 +350,17 @@ public class FamilyMemberFragment extends Fragment {
                 Tasks task = new Tasks();
                 TaskManager.get(getActivity()).addTask(task);
                 //adds task to list
-
                 Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId());
                 startActivityForResult(intent, 1);
-
-                Log.d(TAG, "testing title " + task.getTitle());
-                Log.d(TAG, "testing time " + task.getTime());
-
-
                 return true;
             case R.id.menu_settings:
                 Intent i = new Intent(getActivity(), Notification.class);
                 startActivity(i);
-
+                return true;
+            case R.id.menu_logout:
+                Intent j = new Intent(getActivity(), MainScreen.class);
+                startActivity(j);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

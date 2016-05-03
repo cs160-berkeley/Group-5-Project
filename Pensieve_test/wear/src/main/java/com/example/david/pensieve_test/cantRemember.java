@@ -34,7 +34,6 @@ public class cantRemember extends Activity{
         if (extras != null) {
             todoTask = extras.getString("/dont_remember");
             set = Boolean.TRUE;
-            Log.d(TAG, "what is todoTask? " + todoTask);
         }
 
         mButton = (Button) findViewById(R.id.question);
@@ -49,7 +48,6 @@ public class cantRemember extends Activity{
                         Intent i = new Intent(getBaseContext(), WatchToPhoneService.class); //WToPService
                         i.putExtra("/dataToPhone", todoTask); //null
                         startService(i);
-                        Log.d(TAG, "again what is todoTask? " + todoTask);
                     }
                 }
             return true;

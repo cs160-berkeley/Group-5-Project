@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Pensieve</string>
+    <string name="add_task">Add Task</string>
+    <string name="settings">Settings</string>
+    <string name="take_notes">Take Notes</string>
+    <string name="ROLE">roles</string>
+
+    <string-array name="range_array">
+        <item>One Day</item>
+        <item>One Week</item>
+        <item>One Month</item>
+        <item>One Year</item>
+    </string-array>
+
+</resources>

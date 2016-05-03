@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import java.util.UUID;
 public class TaskFragment extends Fragment {
     private final int DIALOG_ID = 0;
 
+    private String TAG = "@>@>@>";
     private static final String TASK_ID = "task_id";
     private static final String DIALOG_TIME = "DialogTime";
 
@@ -31,10 +33,9 @@ public class TaskFragment extends Fragment {
     private EditText mTitleField;
     private EditText mRemindTimeField;
 
-    private Button mSetTimePickerDialog;
     private TextView mTimeField;
     private TextView mTimeAMPMField;
-    //casey:
+
     private TextView mAddTaskOK;
     private TextView mAddTaskCancel;
 
@@ -77,13 +78,17 @@ public class TaskFragment extends Fragment {
         hour = calendar.get(Calendar.HOUR_OF_DAY);
         minute = calendar.get(Calendar.MINUTE);
         dialog = new TimePickerFragment();
+
         Bundle args = new Bundle();
         args.putInt("hour", hour);
         args.putInt("minute", minute);
         dialog.setArguments(args);
+
         dialog.setOnButtonClickListener(new TimePickerFragment.OnButtonClickListener() {
             @Override
             public void OnOKButtonClick() {
+                Log.d(TAG, "set dialog time" + dialog.getTimetoString());
+
                 mTimeField.setText(dialog.getTimetoString());
                 mTimeAMPMField.setText(dialog.getAMPM());
                 updateRemindReview();
@@ -211,11 +216,18 @@ public class TaskFragment extends Fragment {
                 int minute = dialog.getMinute();
 
                 mTasks.setTimeAMPM(hourOfDay > 11 ? "PM" : "AM");
+
+                Log.d(TAG, "hourofDay " + hourOfDay); //
+
                 if (hourOfDay == 0) {
                     hourOfDay = 12;
-                } else if (hourOfDay > 11) {
+                } else if (hourOfDay > 13) {
                     hourOfDay -= 12;
                 }
+
+                Log.d(TAG, "next hourofDay " + hourOfDay); //
+
+
                 String sTime = String.format("%d:%02d", hourOfDay, minute);
                 mTasks.setTime(sTime);
 

@@ -62,7 +62,9 @@ public class TimePickerFragment extends DialogFragment {
 
     public String getTimetoString() {
         int current_hour;
-        if (hourOfDay > 12) {
+        if (hourOfDay == 0) {
+            current_hour = 12;
+        } else if (hourOfDay > 13) {
             current_hour = hourOfDay - 12;
         } else {
             current_hour = hourOfDay;

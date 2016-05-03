@@ -45,10 +45,6 @@ public class FamilyMemberFragment extends Fragment {
     protected int role;
     private Handler mHandler = new Handler();
 
-    public TextView mTitleTextView;
-    private TextView mTimeAMPMTextview;
-    private TextView mTimeTextview;
-
     public static FamilyMemberFragment newInstance(int role) {
         Bundle args = new Bundle();
         args.putInt("role", role);
@@ -68,10 +64,9 @@ public class FamilyMemberFragment extends Fragment {
         mInputMethod = (InputMethodManager) getActivity().getBaseContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         if (this.role == 0) {
-            mHandler.postDelayed(sendReminderToWatch, 10000); //10 sec
+            mHandler.postDelayed(sendReminderToWatch, 5000); //5 sec
         }
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

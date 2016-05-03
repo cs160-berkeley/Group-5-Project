@@ -3,12 +3,13 @@
                 android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@drawable/cant_remember">
+              >
 
     <android.support.wearable.view.CircledImageView
         android:id="@+id/cant_remember"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:background="@drawable/test">
 
     </android.support.wearable.view.CircledImageView>
 

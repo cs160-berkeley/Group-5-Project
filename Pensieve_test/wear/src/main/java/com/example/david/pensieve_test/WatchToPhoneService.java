@@ -29,6 +29,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     public void onCreate() {
         super.onCreate();
         //initialize the googleAPIClient for message passing
+
         mWatchApiClient = new GoogleApiClient.Builder( this )
                 .addApi( Wearable.API )
                 .addConnectionCallbacks(this)
@@ -41,6 +42,15 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                 .build();
         //and actually connect it
         mWatchApiClient.connect();
+    }
+
+    @Override
+    public int onStartCommand (Intent intent, int flags, int startId) {
+        sendData =(String) intent.getExtras().get("/dataToPhone");
+
+        Log.d(TAG, "what is sendData? " + sendData);
+
+        return START_STICKY;
     }
 
     @Override
@@ -58,9 +68,15 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     public void onConnected(Bundle bundle) {
         Log.d(TAG, "in onconnected");
 
-        if (bundle != null) {
-            sendData = bundle.getString("/dataToPhone");
-        }
+//        Intent intent = getIntent();
+//        Bundle extras = intent.getExtras();
+//
+//        if (bundle != null) {
+//            sendData = bundle.getString("/dataToPhone");
+//        }
+
+        Log.d(TAG, "in Connected , what is sendData? " + sendData);
+
 
         Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
                 .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {

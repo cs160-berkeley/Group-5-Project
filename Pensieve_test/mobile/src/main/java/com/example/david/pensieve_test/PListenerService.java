@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 
 public class PListenerService extends WearableListenerService {
     private static final String TAG = "@>@>@>@>";
-    private static final String DATA = "/dataToPhone";
+    private static final String DATA = "/send_data";
     private static final String NOTHING = "/send_nothing";
 
     @Override

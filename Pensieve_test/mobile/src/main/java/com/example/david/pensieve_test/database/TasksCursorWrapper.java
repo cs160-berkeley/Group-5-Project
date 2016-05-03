@@ -43,7 +43,8 @@ public class TasksCursorWrapper extends CursorWrapper {
         Tasks task = new Tasks(UUID.fromString(uuid));
         task.setTitle(name);
         task.setTime(time);
-        task.setCompleted(isCompleted != 0);
+
+        task.setCompleted(isCompleted);
 
         task.setTimeAMPM(mtimeam_pm);
         task.setRemindTime(remind_time);

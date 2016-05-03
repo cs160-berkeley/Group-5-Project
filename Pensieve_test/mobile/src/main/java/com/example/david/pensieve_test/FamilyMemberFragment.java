@@ -34,6 +34,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by david on 4/17/16.
@@ -94,6 +97,7 @@ public class FamilyMemberFragment extends Fragment {
         private Tasks mTasks;
         private ImageView mImageView;
         private int role;
+        private Timer updateTimer;
 
         public TaskHolder(View itemView, int role) {
             super(itemView);
@@ -124,6 +128,33 @@ public class FamilyMemberFragment extends Fragment {
             });
             mNote = (EditText) itemView.findViewById(R.id.note);
             mImageView = (ImageView) itemView.findViewById(R.id.chart);
+
+            // Periodically check if
+            class updateCurrentTask extends TimerTask {
+                public void run() {
+                    try {
+                        String time = mTasks.getTime();
+                        if (time != null & !time.isEmpty()) {
+                            SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+                            Date current_time = getCurrentTime();
+                            Date start_time = sdf.parse(time);
+                            Date end_time = addMinutesToDate(Integer.valueOf(mTasks.getRemindTime()), start_time);
+                            if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
+                                mTitleTextView.setText("› " + mTasks.getTitle());
+                                mTitleTextView.setTextColor(Color.parseColor("#FE6691"));
+                                mTimeTextview.setTextColor(Color.parseColor("#FE6691"));
+                                mTimeAMPMTextview.setTextColor(Color.parseColor("#FE6691"));
+                                mStatusBar.setBackgroundColor(Color.TRANSPARENT);
+                            }
+                        }
+                    } catch (Exception e) {
+                        return;
+                    }
+                }
+            }
+            Timer updateTimer = new Timer();
+            updateTimer.scheduleAtFixedRate(new updateCurrentTask(), 0, 10000);
+            this.updateTimer = updateTimer;
         }
 
         /*
@@ -163,23 +194,40 @@ public class FamilyMemberFragment extends Fragment {
             String time = task.getTime();
             if (time != null && !time.isEmpty()) {
                 try {
-                    SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
-                    Date current_time = getCurrentTime();
-                    Date start_time = sdf.parse(time);
-                    Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
+//                    SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+//                    Date current_time = getCurrentTime();
+//                    Date start_time = sdf.parse(time);
+//                    Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
+                    Log.i("Completed: ", Integer.toString(task.isCompleted()));
+                    if (task.isCompleted() == -1) {
+                        Random rand = (new Random());
+                        int seed = (rand.nextInt()) % 2;
 
-                    if ((current_time.compareTo(end_time) > 0) && task.isCompleted()) {
-                        mStatusBar.setBackgroundColor(Color.parseColor("#A5D6A7")); // green
-                    } else if ((current_time.compareTo(end_time) > 0) && !task.isCompleted()) {
-                        mStatusBar.setBackgroundColor(Color.parseColor("#EF9A9A")); // pink
-                    } else if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
-                        mTitleTextView.setText("› " + task.getTitle());
-                        mTitleTextView.setTextColor(Color.parseColor("#FE6691"));
-                        mTimeTextview.setTextColor(Color.parseColor("#FE6691"));
-                        mTimeAMPMTextview.setTextColor(Color.parseColor("#FE6691"));
-                        mStatusBar.setBackgroundColor(Color.TRANSPARENT);
+                        // Randomly tag tasks as green/completed or red/not completed
+                        Log.i("seed: ", Integer.toString(seed));
+                        TaskManager taskManager = TaskManager.get(getActivity());
+                        if (seed == 0) {
+                            task.setCompleted(1);
+                            taskManager.updateTask(task);
+                            mStatusBar.setBackgroundColor(Color.parseColor("#A5D6A7")); // green
+                        } else {
+                            task.setCompleted(0);
+                            taskManager.updateTask(task);
+                            mStatusBar.setBackgroundColor(Color.parseColor("#EF9A9A")); // red
+                        }
                     }
-                } catch (final ParseException e) {
+//                    if ((current_time.compareTo(end_time) > 0) && !task.isCompleted()) {
+//                        mStatusBar.setBackgroundColor(Color.parseColor("#A5D6A7")); // green
+//                    } else if ((current_time.compareTo(end_time) > 0) && task.isCompleted()) {
+//                        mStatusBar.setBackgroundColor(Color.parseColor("#EF9A9A")); // red
+//                    } else if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
+//                        mTitleTextView.setText("› " + task.getTitle());
+//                        mTitleTextView.setTextColor(Color.parseColor("#FE6691"));
+//                        mTimeTextview.setTextColor(Color.parseColor("#FE6691"));
+//                        mTimeAMPMTextview.setTextColor(Color.parseColor("#FE6691"));
+//                        mStatusBar.setBackgroundColor(Color.TRANSPARENT);
+//                    }
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -188,6 +236,7 @@ public class FamilyMemberFragment extends Fragment {
         @Override
         public boolean onLongClick(View v) {
             if (this.role == 1) {
+                Log.i("View: ", v.toString());
                 new AlertDialog.Builder(getActivity())
                         //set message, title, and icon
                         .setTitle("Delete")
@@ -195,11 +244,10 @@ public class FamilyMemberFragment extends Fragment {
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
 
+                                // DELETE TASK HERE
                                 Log.d(TAG, "before size " + TaskManager.get(getActivity()).getTasksList().size());
-
                                 TaskManager.get(getActivity()).deleteTask(mTasks);
                                 dialog.dismiss();
-
                                 updateUI();
                                 Log.d(TAG, "after size " + TaskManager.get(getActivity()).getTasksList().size());
                             }
@@ -320,7 +368,7 @@ public class FamilyMemberFragment extends Fragment {
         }
     }
 
-    private void updateUI() {
+    public void updateUI() {
         TaskManager taskManager = TaskManager.get(getActivity());
         List<Tasks> tasks = taskManager.getTasksList();
 

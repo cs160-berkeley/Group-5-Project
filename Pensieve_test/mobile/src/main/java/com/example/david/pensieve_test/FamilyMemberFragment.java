@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -42,14 +43,17 @@ import java.util.TimerTask;
  * Created by david on 4/17/16.
  */
 public class FamilyMemberFragment extends Fragment {
-    private final String TAG = "@>@>@>";
+    protected int role;
 
+    private final String TAG = "@>@>@>";
     private RecyclerView mRecyclerView;
     private TaskAdapter mAdapter;
     private InputMethodManager mInputMethod;
     private View mView;
-    protected int role;
     private Handler mHandler = new Handler();
+    private final static int green = Color.parseColor("#A5D6A7");
+    private final static int red = Color.parseColor("#EF9A9A");
+    private final static int pink = Color.parseColor("#FE6691");
 
     public static FamilyMemberFragment newInstance(int role) {
         Bundle args = new Bundle();
@@ -84,6 +88,34 @@ public class FamilyMemberFragment extends Fragment {
         return view;
     }
 
+    /*
+    *  Convenience method to add a specified number of minutes to a Date object
+    *  From: http://stackoverflow.com/questions/9043981/how-to-add-minutes-to-my-date
+    *  @param  minutes  The number of minutes to add
+    *  @param  beforeTime  The time that will have minutes added to it
+    *  @return  A date object with the specified number of minutes added to it
+    */
+    private Date addMinutesToDate(int minutes, Date beforeTime) {
+        final long ONE_MINUTE_IN_MILLIS = 60000; // Millisecs
+
+        long curTimeInMs = beforeTime.getTime();
+        Date afterAddingMins = new Date(curTimeInMs + (minutes * ONE_MINUTE_IN_MILLIS));
+        return afterAddingMins;
+    }
+
+    private Date getCurrentTime() {
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+        int minute = cal.get(Calendar.MINUTE);
+        SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+        try {
+            return sdf.parse(String.format("%d:%d", hour, minute));
+        } catch (final ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TextView mTitleTextView;
         private TextView mTimeAMPMTextview;
@@ -97,7 +129,6 @@ public class FamilyMemberFragment extends Fragment {
         private Tasks mTasks;
         private ImageView mImageView;
         private int role;
-        private Timer updateTimer;
 
         public TaskHolder(View itemView, int role) {
             super(itemView);
@@ -128,106 +159,43 @@ public class FamilyMemberFragment extends Fragment {
             });
             mNote = (EditText) itemView.findViewById(R.id.note);
             mImageView = (ImageView) itemView.findViewById(R.id.chart);
-
-            // Periodically check if
-            class updateCurrentTask extends TimerTask {
-                public void run() {
-                    try {
-                        String time = mTasks.getTime();
-                        if (time != null & !time.isEmpty()) {
-                            SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
-                            Date current_time = getCurrentTime();
-                            Date start_time = sdf.parse(time);
-                            Date end_time = addMinutesToDate(Integer.valueOf(mTasks.getRemindTime()), start_time);
-                            if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
-                                mTitleTextView.setText("› " + mTasks.getTitle());
-                                mTitleTextView.setTextColor(Color.parseColor("#FE6691"));
-                                mTimeTextview.setTextColor(Color.parseColor("#FE6691"));
-                                mTimeAMPMTextview.setTextColor(Color.parseColor("#FE6691"));
-                                mStatusBar.setBackgroundColor(Color.TRANSPARENT);
-                            }
-                        }
-                    } catch (Exception e) {
-                        return;
-                    }
-                }
-            }
-            Timer updateTimer = new Timer();
-            updateTimer.scheduleAtFixedRate(new updateCurrentTask(), 0, 10000);
-            this.updateTimer = updateTimer;
-        }
-
-        /*
-        *  Convenience method to add a specified number of minutes to a Date object
-        *  From: http://stackoverflow.com/questions/9043981/how-to-add-minutes-to-my-date
-        *  @param  minutes  The number of minutes to add
-        *  @param  beforeTime  The time that will have minutes added to it
-        *  @return  A date object with the specified number of minutes added to it
-        */
-        private Date addMinutesToDate(int minutes, Date beforeTime) {
-            final long ONE_MINUTE_IN_MILLIS = 60000; //millisecs
-
-            long curTimeInMs = beforeTime.getTime();
-            Date afterAddingMins = new Date(curTimeInMs + (minutes * ONE_MINUTE_IN_MILLIS));
-            return afterAddingMins;
-        }
-
-        private Date getCurrentTime() {
-            Calendar cal = Calendar.getInstance();
-            int hour = cal.get(Calendar.HOUR_OF_DAY);
-            int minute = cal.get(Calendar.MINUTE);
-            SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
-            try {
-                return sdf.parse(String.format("%d:%d", hour, minute));
-            } catch (final ParseException e) {
-                e.printStackTrace();
-            }
-            return null;
         }
 
         public void bindTask(Tasks task) {
             mTasks = task;
             mTitleTextView.setText(task.getTitle());
+            mTitleTextView.setTextColor(Color.BLACK);
             mTimeTextview.setText(task.getTime());
+            mTimeTextview.setTextColor(Color.BLACK);
             mTimeAMPMTextview.setText(task.getTimeAMPM());
+            mTimeAMPMTextview.setTextColor(Color.BLACK);
 
             String time = task.getTime();
             if (time != null && !time.isEmpty()) {
                 try {
-//                    SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
-//                    Date current_time = getCurrentTime();
-//                    Date start_time = sdf.parse(time);
-//                    Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
-                    Log.i("Completed: ", Integer.toString(task.isCompleted()));
-                    if (task.isCompleted() == -1) {
-                        Random rand = (new Random());
-                        int seed = (rand.nextInt()) % 2;
+                    SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+                    Date current_time = getCurrentTime();
+                    Date start_time = sdf.parse(time + " " + task.getTimeAMPM());
+                    if ("PM".equals(task.getTimeAMPM()))
+                        start_time = addMinutesToDate(60 * 12, start_time);
+                    Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
 
-                        // Randomly tag tasks as green/completed or red/not completed
-                        Log.i("seed: ", Integer.toString(seed));
-                        TaskManager taskManager = TaskManager.get(getActivity());
-                        if (seed == 0) {
-                            task.setCompleted(1);
-                            taskManager.updateTask(task);
-                            mStatusBar.setBackgroundColor(Color.parseColor("#A5D6A7")); // green
-                        } else {
-                            task.setCompleted(0);
-                            taskManager.updateTask(task);
-                            mStatusBar.setBackgroundColor(Color.parseColor("#EF9A9A")); // red
-                        }
+                    int taskStatus = task.isCompleted();
+                    if (taskStatus == 0) {
+                        mStatusBar.setBackgroundColor(FamilyMemberFragment.green);
+                    } else {
+                        mStatusBar.setBackgroundColor(FamilyMemberFragment.red);
                     }
-//                    if ((current_time.compareTo(end_time) > 0) && !task.isCompleted()) {
-//                        mStatusBar.setBackgroundColor(Color.parseColor("#A5D6A7")); // green
-//                    } else if ((current_time.compareTo(end_time) > 0) && task.isCompleted()) {
-//                        mStatusBar.setBackgroundColor(Color.parseColor("#EF9A9A")); // red
-//                    } else if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
-//                        mTitleTextView.setText("› " + task.getTitle());
-//                        mTitleTextView.setTextColor(Color.parseColor("#FE6691"));
-//                        mTimeTextview.setTextColor(Color.parseColor("#FE6691"));
-//                        mTimeAMPMTextview.setTextColor(Color.parseColor("#FE6691"));
-//                        mStatusBar.setBackgroundColor(Color.TRANSPARENT);
-//                    }
-                } catch (Exception e) {
+
+                    if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
+                        mTitleTextView.setText("› " + task.getTitle());
+                        mTitleTextView.setTextColor(FamilyMemberFragment.pink);
+                        mTimeTextview.setTextColor(FamilyMemberFragment.pink);
+                        mTimeAMPMTextview.setTextColor(FamilyMemberFragment.pink);
+                        mStatusBar.setBackgroundColor(Color.TRANSPARENT);
+                    }
+
+                } catch (final ParseException e) {
                     e.printStackTrace();
                 }
             }
@@ -236,23 +204,17 @@ public class FamilyMemberFragment extends Fragment {
         @Override
         public boolean onLongClick(View v) {
             if (this.role == 1) {
-                Log.i("View: ", v.toString());
                 new AlertDialog.Builder(getActivity())
-                        //set message, title, and icon
+                        // Set message, title, and icon
                         .setTitle("Delete")
                         .setMessage("Are you sure you want to delete this entry?")
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-
-                                // DELETE TASK HERE
-                                Log.d(TAG, "before size " + TaskManager.get(getActivity()).getTasksList().size());
                                 TaskManager.get(getActivity()).deleteTask(mTasks);
                                 dialog.dismiss();
                                 updateUI();
-                                Log.d(TAG, "after size " + TaskManager.get(getActivity()).getTasksList().size());
                             }
                         })
-
                         .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -265,8 +227,6 @@ public class FamilyMemberFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-//                Intent intent = TaskPagerActivity.newIntent(getActivity(), mTasks.getId());
-//                startActivity(intent);
             if (mView != null && mView != mLinearLayoutwrapper)
                 mView.setVisibility(View.GONE);
             if (mLinearLayoutwrapper.getVisibility() == View.GONE) {
@@ -289,10 +249,17 @@ public class FamilyMemberFragment extends Fragment {
                             }
                         });
                 mView = mLinearLayoutwrapper;
-
             } else {
                 mLinearLayoutwrapper.setVisibility(View.GONE);
             }
+        }
+
+        public View getStatusBar() {
+            return mStatusBar;
+        }
+
+        public void setStatusBarColor(String color) {
+            this.mStatusBar.setBackgroundColor(Color.parseColor(color));
         }
     }
 
@@ -350,19 +317,26 @@ public class FamilyMemberFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_add_task:
                 Tasks task = new Tasks();
+                Random rand = (new Random());
+                int seed = ((rand.nextInt()) % 2);
+                task.setCompleted(seed);
                 TaskManager.get(getActivity()).addTask(task);
-                //adds task to list
+
+                // Adds task to list
                 Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId());
                 startActivityForResult(intent, 1);
                 return true;
+
             case R.id.menu_settings:
                 Intent i = new Intent(getActivity(), Notification.class);
                 startActivity(i);
                 return true;
+
             case R.id.menu_logout:
                 Intent j = new Intent(getActivity(), MainScreen.class);
                 startActivity(j);
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -392,7 +366,7 @@ public class FamilyMemberFragment extends Fragment {
         String watchToData = "";
 
         List<Tasks> t = TaskManager.get(getActivity()).getTasksList();
-        Tasks task = t.get(0); //sends 1st one
+        Tasks task = t.get(0); // Sends 1st one
 
         watchToData += task.getTitle() + "@@@" + task.getTime() + "@@@" + task.getTimeAMPM();
 
@@ -400,5 +374,4 @@ public class FamilyMemberFragment extends Fragment {
         sendIntent.putExtra("dataToWatch", watchToData);
         getActivity().startService(sendIntent);
     }
-
 }

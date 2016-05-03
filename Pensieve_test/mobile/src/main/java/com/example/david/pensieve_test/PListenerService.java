@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 
 public class PListenerService extends WearableListenerService {
     private static final String TAG = "@>@>@>@>";
-    private static final String DATA = "/dataToPhone";
+    private static final String DATA = "/send_data";
     private static final String NOTHING = "/send_nothing";
 
     @Override
@@ -29,12 +29,18 @@ public class PListenerService extends WearableListenerService {
             intent.putExtra(DATA, data);
             startActivity(intent);
 
+            Log.d(TAG, "In PListener, sent data to Phone");
+
         } else if( messageEvent.getPath().equalsIgnoreCase(NOTHING) ) {
             String nothing = new String(messageEvent.getData(), StandardCharsets.UTF_8);
 
             Intent i = new Intent(this, TaskListActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            i.putExtra("role", "0"); //goes to patient screen
             startActivity(i);
+
+            Log.d(TAG, "In PListener, sent nothing to Phone");
         } else {
             Log.d(TAG, "does not match");
             super.onMessageReceived(messageEvent);

@@ -57,6 +57,7 @@ public class TaskPagerActivity extends AppCompatActivity {
                         finish();
                         TaskManager.get(getBaseContext()).deleteTask(t);
                         Log.d(TAG, "canceled");
+                        TaskManager.get(getBaseContext()).deleteTask(t);
                     }
                 });
                 return taskFragment;

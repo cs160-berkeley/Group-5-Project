@@ -68,7 +68,6 @@ public class Tasks {
         mTimeAMPM = AMPM;
     }
 
-
     public int isCompleted() {
 //        if (mCompleted == null) {
 //            return Boolean.FALSE;

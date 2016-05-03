@@ -14,6 +14,9 @@ import android.widget.Toast;
 public class Confirmation extends Activity{
     private final String TAG = "@>@>@>";
 
+    private String todoTask = "";
+    private Boolean set = Boolean.FALSE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,10 +26,12 @@ public class Confirmation extends Activity{
         Bundle extras = intent.getExtras();
 
         if (extras != null) {
-            String todoTask = extras.getString("/task_item");
+            todoTask = extras.getString("/task_item");
+            String[] lst = todoTask.split("@@@");
 
             TextView task_item = (TextView) findViewById(R.id.task_item);
-            task_item.setText(todoTask);
+            task_item.setText(lst[0]);
+            set = Boolean.TRUE;
         }
 
         CircledImageView parag = (CircledImageView) findViewById(R.id.reminder);
@@ -36,8 +41,17 @@ public class Confirmation extends Activity{
                 super.onSwipeRight();
                 Toast.makeText(Confirmation.this, "right", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(Confirmation.this, cantRemember.class);
-                startActivity(intent);
+                if (set) {
+                    Intent intent = new Intent(Confirmation.this, cantRemember.class);
+                    if (todoTask != "") {
+                        intent.putExtra("/dont_remember", todoTask);
+                        Log.d(TAG, "dont remember todotask " + todoTask);
+                    } else {
+                        intent.putExtra("/dont_remember", "NOTHING");
+                        Log.d(TAG, "dont remember todotask nothing");
+                    }
+                    startActivity(intent);
+                }
             }
 
             @Override
@@ -45,8 +59,17 @@ public class Confirmation extends Activity{
                 super.onSwipeLeft();
                 Toast.makeText(Confirmation.this, "left", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(Confirmation.this, cantRemember.class);
-                startActivity(intent);
+                if (set) {
+                    Intent intent = new Intent(Confirmation.this, cantRemember.class);
+                    if (todoTask != "") {
+                        intent.putExtra("/dont_remember", todoTask);
+                        Log.d(TAG, "dont remember todotask " + todoTask);
+                    } else {
+                        intent.putExtra("/dont_remember", "NOTHING");
+                        Log.d(TAG, "dont remember todotask nothing");
+                    }
+                    startActivity(intent);
+                }
             }
         });
 

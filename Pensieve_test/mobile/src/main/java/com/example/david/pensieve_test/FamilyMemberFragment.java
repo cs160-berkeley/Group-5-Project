@@ -299,6 +299,10 @@ public class FamilyMemberFragment extends Fragment {
                 Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId()); //task
                 startActivity(intent);
                 return true;
+            case R.id.menu_settings:
+                Intent i = new Intent(getActivity(), Notification.class);
+                startActivity(i);
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -321,7 +325,6 @@ public class FamilyMemberFragment extends Fragment {
         @Override
         public void run() {
             startWatch();
-            //mHandler.postDelayed(this, 10000); //10 sec
         }
     };
 
@@ -331,7 +334,7 @@ public class FamilyMemberFragment extends Fragment {
         List<Tasks> t = TaskManager.get(getActivity()).getTasksList();
         Tasks task = t.get(0); //sends 1st one
 
-        watchToData += task.getTitle() + "@@@" + task.getTime() + " " + task.getTimeAMPM();
+        watchToData += task.getTitle() + "@@@" + task.getTime() + "@@@" + task.getTimeAMPM();
 
         Intent sendIntent = new Intent(getActivity(), PhoneToWatchService.class);
         sendIntent.putExtra("dataToWatch", watchToData);

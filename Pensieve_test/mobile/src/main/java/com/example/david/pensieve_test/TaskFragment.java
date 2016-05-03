@@ -217,7 +217,7 @@ public class TaskFragment extends Fragment {
 
                 if (hourOfDay == 0) {
                     hourOfDay = 12;
-                } else if (hourOfDay > 13) {
+                } else if (hourOfDay >= 13) {
                     hourOfDay -= 12;
                 }
 

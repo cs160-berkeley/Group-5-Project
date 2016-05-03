@@ -9,7 +9,7 @@ public class TaskDialogInfo {
 
     public static  ArrayList<String> mTitle;
     public static  int hour ;
-    public static   int minute ;
+    public static  int minute ;
     public static  boolean am ;
 
     public static  int remindTime ; // in minutes

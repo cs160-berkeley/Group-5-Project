@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.david.pensieve_test.database.TaskBaseHelper;
 import com.example.david.pensieve_test.database.TasksCursorWrapper;
@@ -44,6 +45,7 @@ public class TaskManager {
     public void deleteTask(Tasks task) {
         String uuidString = task.getId().toString();
         ContentValues values = getContentValues(task);
+        Log.i("delete: ", uuidString);
 
         mDatabase.delete(TasksTable.NAME, TasksTable.Cols.UUID + " = ?", null);
     }

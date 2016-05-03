@@ -11,6 +11,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -190,6 +191,7 @@ public class FamilyMemberFragment extends Fragment {
         @Override
         public boolean onLongClick(View v) {
             if (this.role == 1) {
+                Log.i("View: ", v.toString());
                 new AlertDialog.Builder(getActivity())
                         //set message, title, and icon
                         .setTitle("Delete")
@@ -197,8 +199,7 @@ public class FamilyMemberFragment extends Fragment {
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
 
-                                //DELETE TASK HERE
-
+                                // DELETE TASK HERE
                                 TaskManager.get(getActivity()).deleteTask(mTasks);
                                 dialog.dismiss();
                             }
@@ -309,7 +310,7 @@ public class FamilyMemberFragment extends Fragment {
         }
     }
 
-    private void updateUI() {
+    public void updateUI() {
         TaskManager taskManager = TaskManager.get(getActivity());
         List<Tasks> tasks = taskManager.getTasksList();
 

@@ -17,8 +17,8 @@ public class Tasks {
     private String mTime;
     private boolean mCompleted;
 
-    private String mTimeAMPM ;
-    private String remindTime ;
+    private String mTimeAMPM;
+    private String remindTime;
     private boolean repeatSunday;
     private boolean repeatMonday;
     private boolean repeatTuesday;
@@ -27,12 +27,14 @@ public class Tasks {
     private boolean repeatFriday;
     private boolean repeatSaturday;
 
+    private String mPatientNote;
+    private String mFamilyMemberNote;
 
     public Tasks() {
         this(UUID.randomUUID());
     }
 
-    public Tasks(UUID id){
+    public Tasks(UUID id) {
         mId = id;
     }
 
@@ -67,7 +69,6 @@ public class Tasks {
     public void setTimeAMPM(String AMPM) {
         mTimeAMPM = AMPM;
     }
-
 
     public boolean isCompleted() {
         return mCompleted;
@@ -140,6 +141,28 @@ public class Tasks {
     public void setRepeatFriday(boolean repeatFriday) {
         this.repeatFriday = repeatFriday;
     }
+
+    public String getmFamilyMemberNote() {
+        return mFamilyMemberNote;
+    }
+
+    public void setmFamilyMemberNote(String mFamilyMemberNote) {
+        this.mFamilyMemberNote = mFamilyMemberNote;
+    }
+
+    public String getmPatientNote() {
+        return mPatientNote;
+    }
+
+    public void setmPatientNote(String mPatientNote) {
+        this.mPatientNote = mPatientNote;
+    }
+    // hardcode : task.setmPatientNote("I am hurt");
+    // display on screen: "Patient Note: I am hurt" on textview of patientnote (Family member screen)
+    // colortext is blue.
+    // first version : only UI display on patient note view
+
+    // second version: include save into database and read from database. ( if time is OK)
 }
 
 

@@ -157,27 +157,32 @@ public class FamilyMemberFragment extends Fragment {
         public void bindTask(Tasks task) {
             mTasks = task;
             mTitleTextView.setText(task.getTitle());
+            mTitleTextView.setTextColor(Color.BLACK);
             mTimeTextview.setText(task.getTime());
+            mTimeTextview.setTextColor(Color.BLACK);
             mTimeAMPMTextview.setText(task.getTimeAMPM());
+            mTimeAMPMTextview.setTextColor(Color.BLACK);
+            mStatusBar.setBackgroundColor(Color.TRANSPARENT);
 
             String time = task.getTime();
             if (time != null && !time.isEmpty()) {
                 try {
                     SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
                     Date current_time = getCurrentTime();
-                    Date start_time = sdf.parse(time);
+                    Date start_time = sdf.parse(time + " " + task.getTimeAMPM());
+                    if ("PM".equals(task.getTimeAMPM()))
+                        start_time = addMinutesToDate(60 * 12, start_time);
                     Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
 
-                    if ((current_time.compareTo(end_time) > 0) && task.isCompleted()) {
-                        mStatusBar.setBackgroundColor(Color.parseColor("#A5D6A7")); // green
-                    } else if ((current_time.compareTo(end_time) > 0) && !task.isCompleted()) {
-                        mStatusBar.setBackgroundColor(Color.parseColor("#EF9A9A")); // pink
-                    } else if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
+                    if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
                         mTitleTextView.setText("› " + task.getTitle());
                         mTitleTextView.setTextColor(Color.parseColor("#FE6691"));
                         mTimeTextview.setTextColor(Color.parseColor("#FE6691"));
                         mTimeAMPMTextview.setTextColor(Color.parseColor("#FE6691"));
-                        mStatusBar.setBackgroundColor(Color.TRANSPARENT);
+                    } else if ((current_time.compareTo(end_time) > 0) && task.isCompleted()) {
+                        mStatusBar.setBackgroundColor(Color.parseColor("#A5D6A7")); // green
+                    } else if ((current_time.compareTo(end_time) > 0) && !task.isCompleted()) {
+                        mStatusBar.setBackgroundColor(Color.parseColor("#EF9A9A")); // pink
                     }
                 } catch (final ParseException e) {
                     e.printStackTrace();
@@ -224,7 +229,7 @@ public class FamilyMemberFragment extends Fragment {
             if (mLinearLayoutwrapper.getVisibility() == View.GONE) {
                 mLinearLayoutwrapper.setVisibility(View.VISIBLE);
                 mLinearLayoutwrapper1.setVisibility(role == 1 ? View.VISIBLE : View.GONE);
-                mInputMethod.showSoftInput(mNote, InputMethodManager.SHOW_IMPLICIT);
+                mInputMethod.hideSoftInputFromWindow(mNote.getWindowToken(), 0);
                 mNote.setOnEditorActionListener(
                         new EditText.OnEditorActionListener() {
                             @Override

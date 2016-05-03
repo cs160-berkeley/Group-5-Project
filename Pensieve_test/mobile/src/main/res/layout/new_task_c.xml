@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fillViewport="true">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,7 +51,6 @@
             </LinearLayout>
         </RelativeLayout>
 
-
         <View
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -61,10 +60,12 @@
             android:id="@+id/item_title"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginTop="10dp"
             android:hint="Task Name"
+            android:imeOptions="actionDone"
             android:padding="15dp"
-            android:textSize="20sp"
-            android:layout_marginTop="10dp" />
+            android:singleLine="true"
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="380dp"
@@ -173,11 +174,11 @@
                 android:layout_marginTop="0dp"
                 android:orientation="vertical"
                 android:paddingBottom="0dp"
+                android:singleLine="true"
                 android:text="10"
                 android:textAlignment="gravity"
                 android:textColor="#FE6691"
-                android:textSize="38sp"
-                android:singleLine="true"/>
+                android:textSize="38sp" />
 
             <TextView
                 android:layout_width="wrap_content"

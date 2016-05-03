@@ -220,10 +220,8 @@ public class TaskFragment extends Fragment {
                 } else if (hourOfDay > 13) {
                     hourOfDay -= 12;
                 }
-
                 String sTime = String.format("%d:%02d", hourOfDay, minute);
                 mTasks.setTime(sTime);
-
                 updateRemindReview();
 
                 TaskManager.get(getActivity()).updateTask(mTasks);
@@ -263,7 +261,6 @@ public class TaskFragment extends Fragment {
         mTitleField.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
@@ -276,8 +273,8 @@ public class TaskFragment extends Fragment {
             // Escape newlines when entering task title
             public void afterTextChanged(Editable s) {
                 for (int i = s.length(); i > 0; i--) {
-                    if (s.subSequence(i-1, i).toString().equals("\n")) {
-                        s.replace(i-1, i, "");
+                    if (s.subSequence(i - 1, i).toString().equals("\n")) {
+                        s.replace(i - 1, i, "");
                     }
                 }
                 String textString = s.toString();
@@ -287,39 +284,34 @@ public class TaskFragment extends Fragment {
     }
 
     public void updateRemindReview() {
-
         boolean isRepeat = isFridayCheck | isMondayCheck | isSaturdayCheck | isSundayCheck
-                | isThursdayCheck | isTuesdayCheck | isWednesdayCheck ;
+                | isThursdayCheck | isTuesdayCheck | isWednesdayCheck;
         boolean isRepeatAll = isFridayCheck & isMondayCheck & isSaturdayCheck & isSundayCheck
-                & isThursdayCheck & isTuesdayCheck & isWednesdayCheck ;
+                & isThursdayCheck & isTuesdayCheck & isWednesdayCheck;
 
-        String sr0 = (isRepeat?" every":"") + (isSundayCheck? " Sunday" :"") +
-                (isMondayCheck? " Monday" :"") + (isTuesdayCheck? " Tuesday" :"") +
-                (isWednesdayCheck? " Wednesday" :"") + (isThursdayCheck? " Thursday" :"") +
-                (isFridayCheck? " Friday" :"") + (isSaturdayCheck? " Saturday" :"") +
-                 ".";
+        String sr0 = (isRepeat ? " every" : "") + (isSundayCheck ? " Sunday" : "") +
+                (isMondayCheck ? " Monday" : "") + (isTuesdayCheck ? " Tuesday" : "") +
+                (isWednesdayCheck ? " Wednesday" : "") + (isThursdayCheck ? " Thursday" : "") +
+                (isFridayCheck ? " Friday" : "") + (isSaturdayCheck ? " Saturday" : "") +
+                ".";
 
 
         String s1 = mTitleField.getText().toString();
         String s2 = mTimeField.getText().toString();
         String s3 = (mTimeAMPMField.getText().toString().toLowerCase());
-        String sr1 ;
+        String sr1;
 
-        String s5 = s1+" at "+s2+s3;
-        if( isRepeatAll) {
-            sr1 = s5+ " everyday.";
+        String s5 = s1 + " at " + s2 + s3;
+        if (isRepeatAll) {
+            sr1 = s5 + " everyday.";
         } else {
-            sr1= s5+sr0;
-
+            sr1 = s5 + sr0;
         }
 
         mReminderReviewField.setText(sr1);
-
     }
 
     public void setOnButtonClickListener(OnButtonClickListener listener) {
-
-
         this.listener = listener;
     }
 

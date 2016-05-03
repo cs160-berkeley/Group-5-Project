@@ -340,6 +340,8 @@ public class FamilyMemberFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         if (this.role == 1) {
             inflater.inflate(R.menu.fragment_menu_family_member, menu);
+        } else {
+            inflater.inflate(R.menu.fragment_menu_patient, menu);
         }
     }
 

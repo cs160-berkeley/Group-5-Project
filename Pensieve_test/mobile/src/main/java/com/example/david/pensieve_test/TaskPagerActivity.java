@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import java.util.List;
 import java.util.UUID;
@@ -16,6 +17,7 @@ import java.util.UUID;
  * Created by david on 4/17/16.
  */
 public class TaskPagerActivity extends AppCompatActivity {
+    private final String TAG = "@>@>@>";
     public static final String EXTRA_TASK_ID = "com.example.david.pensieve_test.task_id";
 
     private ViewPager mViewPager;
@@ -47,11 +49,14 @@ public class TaskPagerActivity extends AppCompatActivity {
                     @Override
                     public void OnOKButtonClick() {
                         finish();
+                        Log.d(TAG, "ok clicked");
                     }
 
                     @Override
                     public void OnCancelButtonClick() {
                         finish();
+
+                        Log.d(TAG, "canceled");
                     }
                 });
                 return taskFragment;

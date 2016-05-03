@@ -46,8 +46,7 @@ public class TaskManager {
         String uuidString = task.getId().toString();
         ContentValues values = getContentValues(task);
         Log.i("delete: ", uuidString);
-
-        mDatabase.delete(TasksTable.NAME, TasksTable.Cols.UUID + " = ?", null);
+        mDatabase.execSQL("DELETE FROM tasks WHERE UUID = '" + uuidString + "'");
     }
 
     public List<Tasks> getTasksList(){

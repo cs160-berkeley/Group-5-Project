@@ -45,7 +45,6 @@ public class TaskManager {
     public void deleteTask(Tasks task) {
         String uuidString = task.getId().toString();
         ContentValues values = getContentValues(task);
-        Log.i("delete: ", uuidString);
         mDatabase.execSQL("DELETE FROM tasks WHERE UUID = '" + uuidString + "'");
     }
 
@@ -108,7 +107,8 @@ public class TaskManager {
         values.put(TasksTable.Cols.UUID, task.getId().toString());
         values.put(TasksTable.Cols.TITLE, task.getTitle());
         values.put(TasksTable.Cols.TIME, task.getTime());
-        values.put(TasksTable.Cols.COMPLETED, task.isCompleted() ? 1 : 0);
+
+        values.put(TasksTable.Cols.COMPLETED, task.isCompleted());
 
         values.put(TasksTable.Cols.MTIMEAMPM, task.getTimeAMPM());
         values.put(TasksTable.Cols.REMINDTIME, task.getRemindTime());
@@ -120,8 +120,6 @@ public class TaskManager {
         values.put(TasksTable.Cols.REPEATTHURSDAY, task.isRepeatThursday() ? 1 : 0);
         values.put(TasksTable.Cols.REPEATFRIDAY, task.isRepeatFriday() ? 1 : 0);
         values.put(TasksTable.Cols.REPEATSATURDAY, task.isRepeatSaturday() ? 1 : 0);
-
-
         return values;
     }
 

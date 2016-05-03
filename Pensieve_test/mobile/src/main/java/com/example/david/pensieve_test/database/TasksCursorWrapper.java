@@ -44,7 +44,8 @@ public class TasksCursorWrapper extends CursorWrapper {
         Tasks task = new Tasks(UUID.fromString(uuid));
         task.setTitle(name);
         task.setTime(time);
-        task.setCompleted(isCompleted != 0);
+
+        task.setCompleted(isCompleted);
 
         task.setTimeAMPM(mtimeam_pm);
         task.setRemindTime(remind_time);
@@ -56,7 +57,6 @@ public class TasksCursorWrapper extends CursorWrapper {
         task.setRepeatThursday(isRepeatthursday != 0);
         task.setRepeatFriday(isRepeatfriday != 0);
         task.setRepeatSaturday(isRepeatsaturday != 0);
-
 
         return task;
     }

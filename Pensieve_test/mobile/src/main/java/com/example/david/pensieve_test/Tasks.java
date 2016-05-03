@@ -15,7 +15,7 @@ public class Tasks {
     private UUID mId;
     private String mTitle;
     private String mTime;
-    private boolean mCompleted;
+    private int mCompleted = -1;
 
     private String mTimeAMPM ;
     private String remindTime ;
@@ -69,12 +69,21 @@ public class Tasks {
     }
 
 
-    public boolean isCompleted() {
+    public int isCompleted() {
+//        if (mCompleted == null) {
+//            return Boolean.FALSE;
+//        }
         return mCompleted;
     }
 
-    public void setCompleted(boolean completed) {
-        mCompleted = completed;
+    public void setCompleted(int completed) {
+        if (completed < 0) {
+            this.mCompleted = -1;
+        } else if (completed == 0) {
+            this.mCompleted = completed;
+        } else {
+            this.mCompleted = 1;
+        }
     }
 
     public boolean isRepeatSaturday() {

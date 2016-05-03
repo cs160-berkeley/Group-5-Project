@@ -177,7 +177,8 @@
                 android:textAlignment="gravity"
                 android:textColor="#FE6691"
                 android:textSize="38sp"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"

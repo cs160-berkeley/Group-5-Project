@@ -211,15 +211,20 @@ public class TaskFragment extends Fragment {
                 int minute = dialog.getMinute();
 
                 mTasks.setTimeAMPM(hourOfDay > 11 ? "PM" : "AM");
-
+                if (hourOfDay == 0) {
+                    hourOfDay = 12;
+                }
                 String sTime = String.format("%d:%02d", hourOfDay, minute);
                 mTasks.setTime(sTime);
 
                 updateRemindReview();
 
                 TaskManager.get(getActivity()).updateTask(mTasks);
-                if (listener != null)
+                if (listener != null) {
                     listener.OnOKButtonClick();
+                }
+//                Tasks task = new Tasks();
+//                TaskManager.get(getActivity()).addTask(task);
             }
         }) ;
 

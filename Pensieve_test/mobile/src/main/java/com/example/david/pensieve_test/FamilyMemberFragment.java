@@ -223,7 +223,6 @@ public class FamilyMemberFragment extends Fragment {
             if (mLinearLayoutwrapper.getVisibility() == View.GONE) {
                 mLinearLayoutwrapper.setVisibility(View.VISIBLE);
                 mLinearLayoutwrapper1.setVisibility(role == 1 ? View.VISIBLE : View.GONE);
-                mNote.requestFocus();
                 mInputMethod.showSoftInput(mNote, InputMethodManager.SHOW_IMPLICIT);
                 mNote.setOnEditorActionListener(
                         new EditText.OnEditorActionListener() {
@@ -241,6 +240,7 @@ public class FamilyMemberFragment extends Fragment {
                             }
                         });
                 mView = mLinearLayoutwrapper;
+
             } else {
                 mLinearLayoutwrapper.setVisibility(View.GONE);
             }
@@ -299,7 +299,8 @@ public class FamilyMemberFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_add_task:
                 Tasks task = new Tasks();
-                TaskManager.get(getActivity()).addTask(task);  //adds task to list
+                TaskManager.get(getActivity()).addTask(task);
+                //adds task to list
                 Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId()); //task
                 startActivity(intent);
                 return true;

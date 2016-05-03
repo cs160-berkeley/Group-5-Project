@@ -10,6 +10,8 @@ import com.example.david.pensieve_test.database.TasksCursorWrapper;
 import com.example.david.pensieve_test.database.TasksDbSchema.TasksTable;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -60,6 +62,7 @@ public class TaskManager {
             cursor.close();
         }
 
+        Collections.sort(tasks, new TaskComparator());
         return tasks;
     }
 

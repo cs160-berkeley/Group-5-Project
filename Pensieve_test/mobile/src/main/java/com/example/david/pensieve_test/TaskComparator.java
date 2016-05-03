@@ -22,11 +22,14 @@ public class TaskComparator implements Comparator<Tasks> {
                 return 0;
             }
             return -1;
+
         } catch (Exception e) {
+            // don't crash for empty tasks
             return -1;
         }
     }
 
+    // Inspired by:
     // http://stackoverflow.com/questions/8909075/convert-time-field-hm-into-integer-field-minutes-in-java
     int parseTime (String time, String whichHalf) {
         String[] hourMin = time.split(":");
@@ -34,8 +37,8 @@ public class TaskComparator implements Comparator<Tasks> {
         int min = Integer.parseInt(hourMin[1]);
 
         // Scale time to half day
-        if (whichHalf.equals("PM")) {
-            hour += 12;
+        if (whichHalf.equals("PM") && (hour != 12)) {
+            hour = hour + 12;
         } else if (whichHalf.equals("AM") && (hour == 12)) {
             hour = 0;
         }

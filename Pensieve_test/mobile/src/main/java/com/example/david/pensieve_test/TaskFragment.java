@@ -213,6 +213,8 @@ public class TaskFragment extends Fragment {
                 mTasks.setTimeAMPM(hourOfDay > 11 ? "PM" : "AM");
                 if (hourOfDay == 0) {
                     hourOfDay = 12;
+                } else if (hourOfDay > 11) {
+                    hourOfDay -= 12;
                 }
                 String sTime = String.format("%d:%02d", hourOfDay, minute);
                 mTasks.setTime(sTime);

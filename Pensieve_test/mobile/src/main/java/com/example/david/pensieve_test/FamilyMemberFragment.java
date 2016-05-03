@@ -324,8 +324,6 @@ public class FamilyMemberFragment extends Fragment {
     private Runnable sendReminderToWatch = new Runnable() {
         @Override
         public void run() {
-
-
             startWatch();
             //mHandler.postDelayed(this, 10000); //10 sec
         }

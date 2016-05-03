@@ -1,5 +1,6 @@
 package com.example.david.pensieve_test;
 
+import android.content.Context;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -206,16 +208,11 @@ public class TaskFragment extends Fragment {
                 mTasks.setRemindTime(s2.toString());
 
                 int hourOfDay = dialog.getHour();
+                int minute = dialog.getMinute();
+
                 mTasks.setTimeAMPM(hourOfDay > 11 ? "PM" : "AM");
 
-                int minute = dialog.getMinute();
-                int hour;
-                if (hourOfDay > 11)
-                    hour = hourOfDay - 12;
-                else
-                    hour = hourOfDay;
-
-                String sTime = String.format("%02d:%02d", hour, minute);
+                String sTime = String.format("%d:%02d", hourOfDay, minute);
                 mTasks.setTime(sTime);
 
                 updateRemindReview();
@@ -263,13 +260,17 @@ public class TaskFragment extends Fragment {
             }
 
             @Override
+            // http://stackoverflow.com/questions/6070805/prevent-enter-key-on-edittext-but-still-show-the-text-as-multi-line
+            // Escape newlines when entering task title
             public void afterTextChanged(Editable s) {
-
+                for (int i = s.length(); i > 0; i--) {
+                    if (s.subSequence(i-1, i).toString().equals("\n")) {
+                        s.replace(i-1, i, "");
+                    }
+                }
+                String textString = s.toString();
             }
         });
-
-
-
         return v;
     }
 
@@ -282,7 +283,7 @@ public class TaskFragment extends Fragment {
 
         String sr0 = (isRepeat?" every":"") + (isSundayCheck? " Sunday" :"") +
                 (isMondayCheck? " Monday" :"") + (isTuesdayCheck? " Tuesday" :"") +
-                (isWednesdayCheck? " Wednesday" :"") + (isThursdayCheck? " Thurday" :"") +
+                (isWednesdayCheck? " Wednesday" :"") + (isThursdayCheck? " Thursday" :"") +
                 (isFridayCheck? " Friday" :"") + (isSaturdayCheck? " Saturday" :"") +
                  ".";
 

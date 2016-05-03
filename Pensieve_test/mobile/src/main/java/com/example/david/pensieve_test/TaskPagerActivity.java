@@ -43,7 +43,7 @@ public class TaskPagerActivity extends AppCompatActivity {
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fm) {
             @Override
             public Fragment getItem(int position) {
-                Tasks t = mTasks.get(position);
+                final Tasks t = mTasks.get(position);
                 TaskFragment taskFragment = TaskFragment.newInstance(t.getId());
                 taskFragment.setOnButtonClickListener(new TaskFragment.OnButtonClickListener() {
                     @Override
@@ -57,6 +57,7 @@ public class TaskPagerActivity extends AppCompatActivity {
                         finish();
 
                         Log.d(TAG, "canceled");
+                        TaskManager.get(getBaseContext()).deleteTask(t);
                     }
                 });
                 return taskFragment;

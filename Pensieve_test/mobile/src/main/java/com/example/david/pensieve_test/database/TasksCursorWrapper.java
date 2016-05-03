@@ -29,7 +29,6 @@ public class TasksCursorWrapper extends CursorWrapper {
         String time = getString(getColumnIndex(TasksTable.Cols.TIME));
         int isCompleted = getInt(getColumnIndex(TasksTable.Cols.COMPLETED));
 
-
         String mtimeam_pm = getString(getColumnIndex(TasksTable.Cols.MTIMEAMPM));
         String remind_time = getString(getColumnIndex(TasksTable.Cols.REMINDTIME));
         int isRepeatsunday = getInt(getColumnIndex(TasksTable.Cols.REPEATSUNDAY));
@@ -56,7 +55,6 @@ public class TasksCursorWrapper extends CursorWrapper {
         task.setRepeatThursday(isRepeatthursday != 0);
         task.setRepeatFriday(isRepeatfriday != 0);
         task.setRepeatSaturday(isRepeatsaturday != 0);
-
 
         return task;
     }

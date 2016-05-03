@@ -20,7 +20,6 @@ public class cantRemember extends Activity{
 
     private String todoTask = "";
     private Boolean set = Boolean.FALSE;
-    //private FloatingActionButton button;
 
     private Button mButton;
 
@@ -28,16 +27,6 @@ public class cantRemember extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cant_remember);
-
-//        button = (FloatingActionButton) findViewById(R.id.question);
-//        button.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                button.setColorFilter(0x99c7c7c7,
-////                        android.graphics.PorterDuff.Mode.MULTIPLY);
-//                //button.setBackgroundTintMode();
-//            }
-//        });
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -49,28 +38,15 @@ public class cantRemember extends Activity{
         }
 
         mButton = (Button) findViewById(R.id.question);
-//        mButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                mButton.setBackgroundResource(R.drawable.question_changed);
-//
-//                if (set) {
-//                    Intent i = new Intent(getBaseContext(), WToPService.class);
-//                    i.putExtra("/dataToPhone", todoTask); //null
-//                    startService(i);
-//                    Log.d(TAG, "again what is todoTask? " + todoTask);
-//                }
-//            }
-//        });
-//
         mButton.setOnTouchListener(new View.OnTouchListener() {
             public boolean onTouch(View arg0, MotionEvent arg1) {
                 if (arg1.getAction() == MotionEvent.ACTION_DOWN) {
                     mButton.setBackgroundResource(R.drawable.question_changed);
+                    Log.d(TAG, "pressed");
                 } else {
                     mButton.setBackgroundResource(R.drawable.question);
                     if (set) {
-                        Intent i = new Intent(getBaseContext(), WToPService.class);
+                        Intent i = new Intent(getBaseContext(), WatchToPhoneService.class); //WToPService
                         i.putExtra("/dataToPhone", todoTask); //null
                         startService(i);
                         Log.d(TAG, "again what is todoTask? " + todoTask);

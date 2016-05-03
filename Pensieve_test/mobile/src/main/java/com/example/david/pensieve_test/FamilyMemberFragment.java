@@ -303,8 +303,11 @@ public class FamilyMemberFragment extends Fragment {
                 TaskManager.get(getActivity()).addTask(task);
                 //adds task to list
 
-                Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId()); //task
-                startActivity(intent);
+                Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId());
+                startActivityForResult(intent, 1);
+
+                Log.d(TAG, "testing title " + task.getTitle());
+                Log.d(TAG, "testing time " + task.getTime());
 
 
                 return true;
@@ -350,18 +353,4 @@ public class FamilyMemberFragment extends Fragment {
         getActivity().startService(sendIntent);
     }
 
-//    private void setUpItemTouchHelper() {
-//        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
-//
-//            @Override
-//            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-//                return false;
-//            }
-//
-//            @Override
-//            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-//
-//            }
-//        }
-//    }
 }

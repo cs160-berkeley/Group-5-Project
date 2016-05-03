@@ -1,6 +1,7 @@
 package com.example.david.pensieve_test;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -283,6 +284,17 @@ public class TaskFragment extends Fragment {
                 String textString = s.toString();
             }
         });
+
+//
+//        //EDITING
+//        if (mTimeField.getText() == "") {
+//            Intent returnIntent = new Intent();
+//            returnIntent.putExtra("result", "empty_title");
+//            setResult();
+//            finish();
+//        }
+
+
         return v;
     }
 

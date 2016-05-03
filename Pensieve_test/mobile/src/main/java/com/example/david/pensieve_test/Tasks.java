@@ -16,6 +16,7 @@ public class Tasks {
     private String mTitle;
     private String mTime;
     private boolean mCompleted;
+    private String note;
 
     private String mTimeAMPM ;
     private String remindTime ;
@@ -67,7 +68,6 @@ public class Tasks {
     public void setTimeAMPM(String AMPM) {
         mTimeAMPM = AMPM;
     }
-
 
     public boolean isCompleted() {
         return mCompleted;

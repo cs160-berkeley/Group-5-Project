@@ -43,13 +43,13 @@ import java.util.TimerTask;
  * Created by david on 4/17/16.
  */
 public class FamilyMemberFragment extends Fragment {
-    private final String TAG = "@>@>@>";
+    protected int role;
 
+    private final String TAG = "@>@>@>";
     private RecyclerView mRecyclerView;
     private TaskAdapter mAdapter;
     private InputMethodManager mInputMethod;
     private View mView;
-    protected int role;
     private Handler mHandler = new Handler();
     private final static int green = Color.parseColor("#A5D6A7");
     private final static int red = Color.parseColor("#EF9A9A");
@@ -76,57 +76,6 @@ public class FamilyMemberFragment extends Fragment {
         if (this.role == 0) {
             mHandler.postDelayed(sendReminderToWatch, 5000); //5 sec
         }
-
-        // Periodically check if
-//        class updateCurrentTask extends TimerTask {
-//            public void run() {
-//                TaskManager taskManager = TaskManager.get(getActivity());
-//                List<Tasks> tasksArrayList = taskManager.getTasksList();
-//
-//                for (Tasks task : tasksArrayList) {
-//                    String time = task.getTime();
-//                    if (time != null && !time.isEmpty()) {
-//                        try {
-//                            SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
-//                            Date current_time = getCurrentTime();
-//                            Date start_time = sdf.parse(time + " " + task.getTimeAMPM());
-//                            if ("PM".equals(task.getTimeAMPM()))
-//                                start_time = addMinutesToDate(60 * 12, start_time);
-//                            Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
-//
-//                            if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0)
-//                                    && (current_time.compareTo(end_time) < 0)) {
-//                                mTitleTextView.setText("› " + task.getTitle());
-//                                mTitleTextView.setTextColor(FamilyMemberFragment.pink);
-//                                mTimeTextview.setTextColor(FamilyMemberFragment.pink);
-//                                mTimeAMPMTextview.setTextColor(FamilyMemberFragment.pink);
-//                            } else if (task.isCompleted() == -1) {
-//                                Random rand = (new Random());
-//                                int seed = (rand.nextInt()) % 2;
-//                                if (seed == 0) {
-//                                    task.setCompleted(1);
-//                                    taskManager.updateTask(task);
-//                                    mStatusBar.setBackgroundColor(FamilyMemberFragment.green);
-//                                } else {
-//                                    task.setCompleted(0);
-//                                    taskManager.updateTask(task);
-//                                    mStatusBar.setBackgroundColor(FamilyMemberFragment.red); // red
-//                                }
-//                            }
-//
-//                        } catch (final ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//                mAdapter.setTasks(tasksArrayList);
-//                updateUI();
-//            }
-//        }
-//        Timer updateTimer = new Timer();
-//        updateTimer.scheduleAtFixedRate(new updateCurrentTask(), 0, 10000);
-//        this.updateTimer = updateTimer;
-
     }
 
     @Override
@@ -147,7 +96,7 @@ public class FamilyMemberFragment extends Fragment {
     *  @return  A date object with the specified number of minutes added to it
     */
     private Date addMinutesToDate(int minutes, Date beforeTime) {
-        final long ONE_MINUTE_IN_MILLIS = 60000; //millisecs
+        final long ONE_MINUTE_IN_MILLIS = 60000; // Millisecs
 
         long curTimeInMs = beforeTime.getTime();
         Date afterAddingMins = new Date(curTimeInMs + (minutes * ONE_MINUTE_IN_MILLIS));
@@ -232,14 +181,10 @@ public class FamilyMemberFragment extends Fragment {
                     Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
 
                     int taskStatus = task.isCompleted();
-                    Log.i("Task Status: ", Integer.toString(taskStatus));
-
                     if (taskStatus == 0) {
                         mStatusBar.setBackgroundColor(FamilyMemberFragment.green);
-                        Log.i("Set Color: ", "Green");
                     } else {
                         mStatusBar.setBackgroundColor(FamilyMemberFragment.red);
-                        Log.i("Set Color: ", "Red");
                     }
 
                     if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
@@ -254,58 +199,22 @@ public class FamilyMemberFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-
-//                  TaskManager taskManager = TaskManager.get(getActivity());
-
-//            String time = task.getTime();
-//            if (time != null && !time.isEmpty()) {
-//                try {
-//                    SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
-//                    Date current_time = getCurrentTime();
-//                    Date start_time = sdf.parse(time);
-//                    Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
-//                    Log.i("Completed: ", Integer.toString(task.isCompleted()));
-//                    if (task.isCompleted() == -1) {
-//                        Random rand = (new Random());
-//                        int seed = (rand.nextInt()) % 2;
-//
-//                        // Randomly tag tasks as green/completed or red/not completed
-//                        Log.i("seed: ", Integer.toString(seed));
-//                        TaskManager taskManager = TaskManager.get(getActivity());
-//                        if (seed == 0) {
-//                            task.setCompleted(1);
-//                            taskManager.updateTask(task);
-//                            mStatusBar.setBackgroundColor(Color.parseColor("#A5D6A7")); // green
-//                        } else {
-//                            task.setCompleted(0);
-//                            taskManager.updateTask(task);
-//                            mStatusBar.setBackgroundColor(Color.parseColor("#EF9A9A")); // red
-//                        }
-//                    }
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
         }
 
         @Override
         public boolean onLongClick(View v) {
             if (this.role == 1) {
-                Log.i("View: ", v.toString());
                 new AlertDialog.Builder(getActivity())
-                        //set message, title, and icon
+                        // Set message, title, and icon
                         .setTitle("Delete")
                         .setMessage("Are you sure you want to delete this entry?")
                         .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-
-//                                Log.d(TAG, "before size " + TaskManager.get(getActivity()).getTasksList().size());
                                 TaskManager.get(getActivity()).deleteTask(mTasks);
                                 dialog.dismiss();
                                 updateUI();
-//                                Log.d(TAG, "after size " + TaskManager.get(getActivity()).getTasksList().size());
                             }
                         })
-
                         .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -318,8 +227,6 @@ public class FamilyMemberFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-//                Intent intent = TaskPagerActivity.newIntent(getActivity(), mTasks.getId());
-//                startActivity(intent);
             if (mView != null && mView != mLinearLayoutwrapper)
                 mView.setVisibility(View.GONE);
             if (mLinearLayoutwrapper.getVisibility() == View.GONE) {
@@ -342,7 +249,6 @@ public class FamilyMemberFragment extends Fragment {
                             }
                         });
                 mView = mLinearLayoutwrapper;
-
             } else {
                 mLinearLayoutwrapper.setVisibility(View.GONE);
             }
@@ -413,10 +319,10 @@ public class FamilyMemberFragment extends Fragment {
                 Tasks task = new Tasks();
                 Random rand = (new Random());
                 int seed = ((rand.nextInt()) % 2);
-                Log.i("Seed: ", Integer.toString(seed));
                 task.setCompleted(seed);
                 TaskManager.get(getActivity()).addTask(task);
-                //adds task to list
+
+                // Adds task to list
                 Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId());
                 startActivityForResult(intent, 1);
                 return true;
@@ -460,7 +366,7 @@ public class FamilyMemberFragment extends Fragment {
         String watchToData = "";
 
         List<Tasks> t = TaskManager.get(getActivity()).getTasksList();
-        Tasks task = t.get(0); //sends 1st one
+        Tasks task = t.get(0); // Sends 1st one
 
         watchToData += task.getTitle() + "@@@" + task.getTime() + "@@@" + task.getTimeAMPM();
 

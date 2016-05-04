@@ -26,9 +26,6 @@ public class Notification extends Activity {
         time = (TextView) findViewById(R.id.time1);
         ampm = (TextView) findViewById(R.id.time2);
 
-
-
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 

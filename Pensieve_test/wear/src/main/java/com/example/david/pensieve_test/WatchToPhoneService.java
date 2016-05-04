@@ -50,26 +50,6 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
 
         Log.d(TAG, "what is sendData? " + sendData);
 
-        return START_STICKY;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mWatchApiClient.disconnect();
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
-    @Override //alternate method to connecting: no longer create this in a new thread, but as a callback
-    public void onConnected(Bundle bundle) {
-        Log.d(TAG, "in onconnected");
-
-        Log.d(TAG, "in Connected , what is sendData? " + sendData);
-
         Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
                 .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
                     @Override
@@ -88,7 +68,23 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                         onDestroy(); //destroy
                     }
                 });
+
+        return START_STICKY;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mWatchApiClient.disconnect();
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
+
+    @Override //alternate method to connecting: no longer create this in a new thread, but as a callback
+    public void onConnected(Bundle bundle) {}
 
     @Override //we need this to implement GoogleApiClient.ConnectionsCallback
     public void onConnectionSuspended(int i) {}

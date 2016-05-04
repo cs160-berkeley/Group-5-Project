@@ -17,7 +17,7 @@ public class Tasks {
     private String mTime;
     private String mNote;
     private String mPatientNote;
-    private int mCompleted = -1;
+    private int mCompleted = 0; // 0 is false, 1 is true
 
     private String mTimeAMPM;
     private String remindTime;
@@ -85,7 +85,7 @@ public class Tasks {
     }
 
     public int isCompleted() {
-        if (this.mCompleted == 0) {
+        if (this.mCompleted <= 0) {
                 return 0;
         } else {
            return 1;
@@ -93,10 +93,8 @@ public class Tasks {
     }
 
     public void setCompleted(int completed) {
-        if (completed < 0) {
-            this.mCompleted = -1;
-        } else if (completed == 0) {
-            this.mCompleted = completed;
+        if (completed <= 0) {
+            this.mCompleted = 0;
         } else {
             this.mCompleted = 1;
         }

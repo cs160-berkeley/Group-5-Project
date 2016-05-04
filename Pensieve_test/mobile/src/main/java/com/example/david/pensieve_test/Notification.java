@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class Notification extends Activity {
     TextView title;
     TextView time;
     TextView ampm;
+    Tasks mTask;
 
     @Override
     public void onCreate(Bundle savedBundleInstance) {
@@ -32,6 +34,7 @@ public class Notification extends Activity {
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+        Log.d("NOTIFICATION", "Received Can't remember notification");
 
         if (extras != null) {
             data = extras.getString("/send_data");
@@ -40,7 +43,10 @@ public class Notification extends Activity {
             title.setText(lst[0]);
             time.setText(lst[1]);
             ampm.setText(lst[2]);
-
+            TaskManager taskManager = TaskManager.get(getApplicationContext());
+            mTask = taskManager.getTask(java.util.UUID.fromString(lst[3]));
+            mTask.setCompleted(0);
+            taskManager.updateTask(mTask);
         }
 
         Button ok = (Button) findViewById(R.id.btn_theyre_OK);

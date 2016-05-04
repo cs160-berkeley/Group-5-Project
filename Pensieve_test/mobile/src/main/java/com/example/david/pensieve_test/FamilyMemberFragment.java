@@ -227,13 +227,15 @@ public class FamilyMemberFragment extends Fragment {
                     int startTimeDifference = currentTime.compareTo(startTime);
                     int endTimeDifference = currentTime.compareTo(endTime);
 
+
                     if (startTimeDifference < 0) {
                         mStatusBar.setBackgroundColor(Color.TRANSPARENT);
-                    } else if (taskStatus == 0) {
+                    } else if (taskStatus == 1) {
                         mStatusBar.setBackgroundColor(FamilyMemberFragment.green);
                     } else {
                         mStatusBar.setBackgroundColor(FamilyMemberFragment.red);
                     }
+
 
                     if ((startTimeDifference >= 0) && (endTimeDifference < 0)) {
                         mTitleTextView.setText("› " + task.getTitle());
@@ -437,7 +439,7 @@ public class FamilyMemberFragment extends Fragment {
         if (t.size() > 0) {
             Tasks task = t.get(0); // Sends 1st one
 
-            watchToData += task.getTitle() + "@@@" + task.getTime() + "@@@" + task.getTimeAMPM();
+            watchToData += task.getTitle() + "@@@" + task.getTime() + "@@@" + task.getTimeAMPM() + "@@@" + task.getId();
 
             Intent sendIntent = new Intent(getActivity(), PhoneToWatchService.class);
             sendIntent.putExtra("dataToWatch", watchToData);

@@ -391,9 +391,6 @@ public class FamilyMemberFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_add_task:
                 Tasks task = new Tasks();
-                Random rand = (new Random());
-                int seed = ((rand.nextInt()) % 2);
-                task.setCompleted(seed);
                 TaskManager.get(getActivity()).addTask(task);
 
                 // Adds task to lists

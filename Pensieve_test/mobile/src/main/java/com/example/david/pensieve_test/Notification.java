@@ -26,9 +26,6 @@ public class Notification extends Activity {
         time = (TextView) findViewById(R.id.time1);
         ampm = (TextView) findViewById(R.id.time2);
 
-
-
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -41,7 +38,6 @@ public class Notification extends Activity {
             ampm.setText(lst[2]);
 
         }
-
 
         Button ok = (Button) findViewById(R.id.btn_theyre_OK);
         ok.setOnClickListener(new View.OnClickListener() {

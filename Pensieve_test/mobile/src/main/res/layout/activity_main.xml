@@ -35,9 +35,9 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:paddingTop="0dp"
-        android:text="   Are you a..."
+        android:text="Are you a..."
         android:textColor="#FFFE6691"
-        android:textSize="25sp"
+        android:textSize="32sp"
         android:textStyle="italic" />
 
     <View

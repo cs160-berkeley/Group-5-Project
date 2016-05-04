@@ -10,6 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.Time;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,10 +31,13 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by david on 4/17/16.
@@ -176,17 +181,11 @@ public class FamilyMemberFragment extends Fragment {
                     Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
 
                     int taskStatus = task.isCompleted();
-
-                    if (current_time.compareTo(end_time) > 0){
-                        mStatusBar.setBackgroundColor(FamilyMemberFragment.red);
-                    }
-
                     if (taskStatus == 0) {
                         mStatusBar.setBackgroundColor(FamilyMemberFragment.green);
                     } else {
                         mStatusBar.setBackgroundColor(FamilyMemberFragment.red);
                     }
-
 
                     if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
                         mTitleTextView.setText("› " + task.getTitle());
@@ -196,18 +195,11 @@ public class FamilyMemberFragment extends Fragment {
                         mStatusBar.setBackgroundColor(Color.TRANSPARENT);
                     }
 
-
-
-
-
-
                 } catch (final ParseException e) {
                     e.printStackTrace();
                 }
             }
         }
-
-
 
         @Override
         public boolean onLongClick(View v) {

@@ -37,7 +37,7 @@ public class PListenerService extends WearableListenerService {
             Intent i = new Intent(this, TaskListActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            i.putExtra("role", "0"); //goes to patient screen
+            i.putExtra("role", "0"); // Goes to patient screen
             startActivity(i);
 
             Log.d(TAG, "In PListener, sent nothing to Phone");

@@ -49,6 +49,30 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         sendData = (String) intent.getExtras().get("/dataToPhone");
 
         Log.d(TAG, "what is sendData? " + sendData);
+        if (nodes.isEmpty()) {
+            Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
+                    .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
+                        @Override
+                        public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
+                            nodes = getConnectedNodesResult.getNodes();
+                            Log.d(TAG, "found nodes");
+                            //when we find a connected node, we populate the list declared above
+                            //finally, we can send a message
+                            if(sendData.equals("nothing")) {
+                                sendMessage("/send_nothing", "nothing");
+                            } else {
+                                sendMessage("/send_data", sendData);
+                            }
+                            Log.wtf(TAG, "sent");
+                        }
+                    });
+        } else {
+            if(sendData.equals("nothing")) {
+                sendMessage("/send_nothing", "nothing");
+            } else {
+                sendMessage("/send_data", sendData);
+            }
+        }
 
         return START_STICKY;
     }
@@ -65,30 +89,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     }
 
     @Override //alternate method to connecting: no longer create this in a new thread, but as a callback
-    public void onConnected(Bundle bundle) {
-        Log.d(TAG, "in onconnected");
-
-        Log.d(TAG, "in Connected , what is sendData? " + sendData);
-
-        Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
-                .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
-                    @Override
-                    public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
-                        nodes = getConnectedNodesResult.getNodes();
-                        Log.d(TAG, "found nodes");
-                        //when we find a connected node, we populate the list declared above
-                        //finally, we can send a message
-                        if(sendData.equals("nothing")) {
-                            sendMessage("/send_nothing", "nothing");
-                        } else {
-                            sendMessage("/send_data", sendData);
-                        }
-                        Log.wtf(TAG, "sent");
-
-                        onDestroy(); //destroy
-                    }
-                });
-    }
+    public void onConnected(Bundle bundle) {}
 
     @Override //we need this to implement GoogleApiClient.ConnectionsCallback
     public void onConnectionSuspended(int i) {}

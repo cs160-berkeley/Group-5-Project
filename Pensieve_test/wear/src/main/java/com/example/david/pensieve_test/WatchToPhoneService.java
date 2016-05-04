@@ -49,25 +49,32 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         sendData = (String) intent.getExtras().get("/dataToPhone");
 
         Log.d(TAG, "what is sendData? " + sendData);
+        if (nodes == null) {
+            Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
+                    .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
+                        @Override
+                        public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
+                            nodes = getConnectedNodesResult.getNodes();
+                            Log.d(TAG, "found nodes");
+                            //when we find a connected node, we populate the list declared above
+                            //finally, we can send a message
+                            if(sendData.equals("nothing")) {
+                                sendMessage("/send_nothing", "nothing");
+                            } else {
+                                sendMessage("/send_data", sendData);
+                            }
+                            Log.wtf(TAG, "sent");
 
-        Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
-                .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
-                    @Override
-                    public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
-                        nodes = getConnectedNodesResult.getNodes();
-                        Log.d(TAG, "found nodes");
-                        //when we find a connected node, we populate the list declared above
-                        //finally, we can send a message
-                        if(sendData.equals("nothing")) {
-                            sendMessage("/send_nothing", "nothing");
-                        } else {
-                            sendMessage("/send_data", sendData);
+                            onDestroy(); //destroy
                         }
-                        Log.wtf(TAG, "sent");
-
-                        onDestroy(); //destroy
-                    }
-                });
+                    });
+        } else {
+            if(sendData.equals("nothing")) {
+                sendMessage("/send_nothing", "nothing");
+            } else {
+                sendMessage("/send_data", sendData);
+            }
+        }
 
         return START_STICKY;
     }

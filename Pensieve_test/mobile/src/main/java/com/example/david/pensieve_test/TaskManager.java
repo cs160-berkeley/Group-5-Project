@@ -24,6 +24,7 @@ public class TaskManager {
 
     private Context mContext;
     private SQLiteDatabase mDatabase;
+    private String TAG = "TaskManager";
 
     public static TaskManager get(Context context) {
         if(sTaskManager == null){
@@ -86,6 +87,7 @@ public class TaskManager {
     public void updateTask(Tasks task){
         String uuidString = task.getId().toString();
         ContentValues values = getContentValues(task);
+        Log.d(TAG, "IN UPDATE TASK. VALUES = " + values.toString());
 
         mDatabase.update(TasksTable.NAME, values, TasksTable.Cols.UUID + " = ?", new String[]{uuidString});
     }
@@ -106,6 +108,7 @@ public class TaskManager {
         values.put(TasksTable.Cols.UUID, task.getId().toString());
         values.put(TasksTable.Cols.TITLE, task.getTitle());
         values.put(TasksTable.Cols.TIME, task.getTime());
+        values.put(TasksTable.Cols.NOTE, task.getNote());
 
         values.put(TasksTable.Cols.COMPLETED, task.isCompleted());
 

@@ -130,6 +130,7 @@ public class FamilyMemberFragment extends Fragment {
         private Tasks mTasks;
         private ImageView mImageView;
         private int role;
+        private TaskManager mTaskManager = TaskManager.get(getActivity());
 
         public TaskHolder(View itemView, int role) {
             super(itemView);
@@ -150,8 +151,7 @@ public class FamilyMemberFragment extends Fragment {
                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                     if (pos == 0) {
                         mImageView.setBackgroundResource(R.drawable.day_graph);
-                    }
-                    else if (pos == 1) {
+                    } else if (pos == 1) {
                         mImageView.setBackgroundResource(R.drawable.week_graph);
                     } else if (pos == 2) {
                         mImageView.setBackgroundResource(R.drawable.month_graph);
@@ -164,12 +164,25 @@ public class FamilyMemberFragment extends Fragment {
                 public void onNothingSelected(AdapterView<?> parent) {
                 }
             });
+
+            // Save every keystroke to the database
             mNote = (EditText) itemView.findViewById(R.id.note);
+            mNote.setOnKeyListener(new View.OnKeyListener() {
+                public boolean onKey(View v, int keyCode, KeyEvent event) {
+                    Log.d(TAG, "Key pressed. Current text = " + mNote.getText().toString());
+                    mTasks.setNote(mNote.getText().toString());
+                    mTaskManager.updateTask(mTasks);
+                    return false;
+                }
+            });
+
             mImageView = (ImageView) itemView.findViewById(R.id.chart);
         }
 
         public void bindTask(Tasks task) {
             mTasks = task;
+            System.out.println("Note from database == " + mTasks.getNote());
+            mNote.setText(mTasks.getNote());
             mTitleTextView.setText(task.getTitle());
             mTitleTextView.setTextColor(Color.BLACK);
             mTimeTextview.setText(task.getTime());

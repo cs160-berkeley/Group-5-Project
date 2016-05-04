@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 /**
  * Created by david on 4/17/16.
@@ -233,17 +234,19 @@ public class FamilyMemberFragment extends Fragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which) {
                                     case 0:
-                                        Log.i("Notify Task: ", "Log");
-                                        break;
-
-                                    case 1:
                                         TaskManager.get(getActivity()).deleteTask(mTasks);
                                         dialog.dismiss();
                                         updateUI();
                                         break;
 
+                                    case 1:
+                                        UUID firstTaskId = mTasks.getId();
+                                        Intent intent = TaskPagerActivity.newIntent(getActivity(), firstTaskId);
+                                        startActivityForResult(intent, 1);
+                                        break;
+
                                     case 2:
-                                        Log.i("Edit Task: ", "Log");
+                                        sendReminderToWatch.run();
                                         break;
 
                                     case 3:

@@ -39,6 +39,7 @@ public class TaskFragment extends Fragment {
 
     private TextView mAddTaskOK;
     private TextView mAddTaskCancel;
+    boolean editMode;
 
     private ImageView mSundayButton;
     private boolean isSundayCheck = false;
@@ -76,9 +77,37 @@ public class TaskFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        UUID taskId = (UUID) getArguments().getSerializable(TASK_ID);
+        mTasks = TaskManager.get(getActivity()).getTask(taskId);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        editMode = false;
+
+        // Check to see if we are in edit mode
+        if (savedInstanceState == null) {
+            Bundle extras = getActivity().getIntent().getExtras();
+            if(extras == null) {
+                editMode = false;
+            } else {
+                editMode = extras.getBoolean("EDIT_MODE");
+            }
+        } else {
+            editMode = (Boolean) savedInstanceState.getSerializable("EDIT_MODE");
+        }
+        Log.d(TAG, "Edit Mode = " + editMode);
+
         Calendar calendar = Calendar.getInstance();
-        hour = calendar.get(Calendar.HOUR_OF_DAY);
-        minute = calendar.get(Calendar.MINUTE);
+        if (editMode) {
+            String[] nums = mTasks.getTime().split(":");
+            hour = Integer.parseInt(nums[0]);
+            minute = Integer.parseInt(nums[1]);
+        } else {
+            hour = calendar.get(Calendar.HOUR_OF_DAY);
+            minute = calendar.get(Calendar.MINUTE);
+        }
+
         dialog = new TimePickerFragment();
 
         Bundle args = new Bundle();
@@ -99,27 +128,6 @@ public class TaskFragment extends Fragment {
             public void OnCancelButtonClick() {
             }
         });
-
-        UUID taskId = (UUID) getArguments().getSerializable(TASK_ID);
-        mTasks = TaskManager.get(getActivity()).getTask(taskId);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        boolean editMode = false;
-
-        // Check to see if we are in edit mode
-        if (savedInstanceState == null) {
-            Bundle extras = getActivity().getIntent().getExtras();
-            if(extras == null) {
-                editMode = false;
-            } else {
-                editMode = extras.getBoolean("EDIT_MODE");
-            }
-        } else {
-            editMode = (Boolean) savedInstanceState.getSerializable("EDIT_MODE");
-        }
-        Log.d(TAG, "Edit Mode = " + editMode);
 
         View v = inflater.inflate(R.layout.new_task_c, container, false);
 
@@ -274,6 +282,8 @@ public class TaskFragment extends Fragment {
                 if (timePickerUsed) {
                     int hourOfDay = dialog.getHour();
                     int minute = dialog.getMinute();
+                    //int hourOfDay = Integer.parseInt(mTasks.getTime().substring(0, 2));
+                    //int minute = Integer.parseInt(mTasks.getTime().substring(3));
 
                     mTasks.setTimeAMPM(hourOfDay > 11 ? "PM" : "AM");
 

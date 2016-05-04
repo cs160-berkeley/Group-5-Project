@@ -57,7 +57,7 @@ public class yes extends Activity {
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
-                Toast.makeText(yes.this, "right", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(yes.this, "right", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(yes.this, cantRemember.class);
                 startActivity(intent);

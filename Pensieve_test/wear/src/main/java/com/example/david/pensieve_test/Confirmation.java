@@ -44,7 +44,7 @@ public class Confirmation extends Activity{
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
-                Toast.makeText(Confirmation.this, "right", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Confirmation.this, "right", Toast.LENGTH_SHORT).show();
 
                 if (set) {
                     Intent intent = new Intent(Confirmation.this, cantRemember.class);
@@ -65,7 +65,7 @@ public class Confirmation extends Activity{
             @Override
             public void onSwipeLeft() {
                 super.onSwipeLeft();
-                Toast.makeText(Confirmation.this, "left", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Confirmation.this, "left", Toast.LENGTH_SHORT).show();
 
                 if (set) {
                     Intent intent = new Intent(Confirmation.this, cantRemember.class);

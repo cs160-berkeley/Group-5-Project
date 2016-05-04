@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
-                Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
 
 //                Intent intent = new Intent(MainActivity.this, Confirmation.class);
 //                if (todoTask != "") {
@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
             @Override
             public void onSwipeLeft() {
                 super.onSwipeLeft();
-                Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
                 Log.d("WATCH_MAINACTIVITY", "Passing taskId=" + taskId +" and data=" + todoTask);
 
                 Intent intent = new Intent(MainActivity.this, Confirmation.class);

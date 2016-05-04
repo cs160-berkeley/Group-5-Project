@@ -99,7 +99,7 @@
         android:padding="10dp"
         android:paddingTop="0dp"
         android:text="Mom handled it"
-        android:textColor="#FFFE6691"
+        android:textColor="#FE6691"
         android:textSize="38sp"
         android:textStyle="italic"
         android:textAlignment="center"
@@ -110,34 +110,15 @@
         android:layout_height="0dp"
         android:layout_weight="0.25" />
 
-    <!--<Button-->
-        <!--android:id="@+id/btn_call_them"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-
-        <!--android:background="#fefefe"-->
-        <!--android:text="Call Them"-->
-        <!--android:textAllCaps="false"-->
-        <!--android:textColor="#FFFE6691"-->
-        <!--android:textSize="38sp"-->
-        <!--android:layout_weight="0.07"-->
-        <!--android:fontFamily="sans-serif-light" />-->
-
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="16dp"-->
-
-        <!--android:background="@drawable/view_dropshadow" />-->
-
     <Button
-        android:id="@+id/btn_call"
+        android:id="@+id/btn_dismiss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
-        android:background="#fefefe"
-        android:text="Call Mom"
+        android:background="#FFFFFF"
+        android:text="Dismiss"
         android:textAllCaps="false"
-        android:textColor="#FFFE6691"
+        android:textColor="#FE6691"
         android:textSize="38sp"
         android:layout_weight="0.07"
         android:fontFamily="sans-serif-light"

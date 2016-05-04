@@ -60,7 +60,7 @@
         <EditText
             android:id="@+id/item_title"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:hint="Task Name"
             android:padding="15dp"
             android:textSize="20sp"
@@ -196,40 +196,19 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="15dp"
-
-            >
-            <!--android:layout_weight="0.1"-->
-
-        </TextView>
+            android:layout_height="15dp" />
 
         <TextView
-            android:layout_width="380dp"
-            android:layout_height="20dp"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:text="Reminder Review:"
-            android:textSize="18sp"
-
-            >
-            <!--android:layout_weight="0.1"-->
-
-        </TextView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-
-            >
-            <!--android:layout_weight="0.1"-->
-
-        </TextView>
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/pe_add_task_remind_time_review"
             android:layout_width="340dp"
-            android:layout_height="95dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_height="75dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_weight="0.03"
@@ -248,7 +227,7 @@
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="-5dp"
             android:layout_weight="0.08"
             android:background="#fcfcfc"
             android:orientation="horizontal"
@@ -260,7 +239,6 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0.45"
-                android:capitalize="none"
                 android:gravity="center"
                 android:text="Cancel"
                 android:textColor="#FE6691"
@@ -271,12 +249,11 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.1"
-                android:capitalize="none"
                 android:gravity="center"
                 android:text="|"
-                android:textColor="#080808"
-
-                android:textSize="18sp" />
+                android:layout_marginTop="-5dp"
+                android:textColor="#BDBDBD"
+                android:textSize="32sp" />
 
             <TextView
                 android:id="@+id/pe_add_task_ok"
@@ -284,7 +261,6 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0.45"
-                android:capitalize="none"
                 android:gravity="center"
                 android:text="OK"
                 android:textColor="#FE6691"

@@ -100,10 +100,19 @@
         android:textAlignment="center"
         android:fontFamily="sans-serif-light"  />
 
-    <View
+    <TextView
+        android:id="@+id/handled_time"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.25" />
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:paddingTop="0dp"
+        android:text=""
+        android:textColor="#FE6691"
+        android:textSize="38sp"
+        android:textStyle="italic"
+        android:textAlignment="center"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginBottom="20dp"/>
 
     <Button
         android:id="@+id/btn_dismiss"
@@ -116,7 +125,8 @@
         android:textSize="38sp"
         android:layout_weight="0.07"
         android:fontFamily="sans-serif-light"
-        android:allowUndo="true" />
+        android:allowUndo="true"
+         />
 
     <View
         android:layout_width="match_parent"

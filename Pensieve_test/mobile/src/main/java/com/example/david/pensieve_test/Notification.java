@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by david on 5/1/16.
  */
@@ -48,6 +52,10 @@ public class Notification extends Activity {
                 extras.putString("EXTRA_TITLE",title.getText().toString());
                 extras.putString("EXTRA_TIME", time.getText().toString());
                 extras.putString("EXTRA_AMPM", ampm.getText().toString());
+                Date handledDate = FamilyMemberFragment.getCurrentTime();
+                DateFormat handledFormat = new SimpleDateFormat("H:mm");
+                String handled = handledFormat.format(handledDate);
+                extras.putString("EXTRA_HANDLED", handled);
                 i.putExtras(extras);
                 //i.putExtra("role", "0");
                 startActivity(i);

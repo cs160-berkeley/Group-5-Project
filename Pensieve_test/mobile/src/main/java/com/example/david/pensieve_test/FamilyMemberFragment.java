@@ -103,7 +103,7 @@ public class FamilyMemberFragment extends Fragment {
         return afterAddingMins;
     }
 
-    private Date getCurrentTime() {
+    public static Date getCurrentTime() {
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
@@ -214,23 +214,85 @@ public class FamilyMemberFragment extends Fragment {
         @Override
         public boolean onLongClick(View v) {
             if (this.role == 1) {
-                new AlertDialog.Builder(getActivity())
-                        // Set message, title, and icon
-                        .setTitle("Delete")
-                        .setMessage("Are you sure you want to delete this entry?")
-                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                TaskManager.get(getActivity()).deleteTask(mTasks);
-                                dialog.dismiss();
-                                updateUI();
-                            }
-                        })
-                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Actions");
+                final CharSequence[] items = {
+                        "Delete",
+                        "Edit",
+                        "Notify",
+                        "Cancel"
+                };
+
+                builder.setItems(items, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
+                                switch (which) {
+                                    case 0:
+                                        Log.i("Notify Task: ", "Log");
+                                        break;
+
+                                    case 1:
+                                        TaskManager.get(getActivity()).deleteTask(mTasks);
+                                        dialog.dismiss();
+                                        updateUI();
+                                        break;
+
+                                    case 2:
+                                        Log.i("Edit Task: ", "Log");
+                                        break;
+
+                                    case 3:
+                                        dialog.dismiss();
+                                        break;
+
+                                }
                             }
-                        })
-                        .show();
+                        }
+                );
+
+                builder.create().show();
+//                new AlertDialog.Builder(getActivity())
+//                        // Set message, title, and icon
+//                        .setTitle("Delete")
+//                        .setMessage("Are you sure you want to delete this entry?")
+//                        .setItems(new CharSequence[]
+//                                {"Cancel", "Delete"},
+//                                new DialogInterface.OnClickListener() {
+//                                    public void onClick(DialogInterface dialog, int which) {
+//                                        switch (which) {
+//                                            case 0:
+//                                                dialog.dismiss();
+//                                                break;
+//
+//                                            case 1:
+//                                                TaskManager.get(getActivity()).deleteTask(mTasks);
+//                                                dialog.dismiss();
+//                                                updateUI();
+//                                                break;
+//
+//                                            case 2:
+//                                                Log.i("Edit Task: ", "Log");
+//                                                break;
+//
+//                                            case 3:
+//                                                Log.i("Notify Task: ", "Log");
+//                                                break;
+//
+//                                        }
+//                                    }
+//                                }).create().show();
+//                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int whichButton) {
+//                                TaskManager.get(getActivity()).deleteTask(mTasks);
+//                                dialog.dismiss();
+//                                updateUI();
+//                            }
+//                        })
+//                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.dismiss();
+//                            }
+//                        })
+//                        .show();
             }
             return false;
         }
@@ -332,7 +394,7 @@ public class FamilyMemberFragment extends Fragment {
                 task.setCompleted(seed);
                 TaskManager.get(getActivity()).addTask(task);
 
-                // Adds task to list
+                // Adds task to lists
                 Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId());
                 startActivityForResult(intent, 1);
                 return true;

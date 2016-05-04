@@ -12,7 +12,6 @@
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:orientation="vertical"
-
         android:weightSum="1">
 
         <RelativeLayout
@@ -22,7 +21,6 @@
             android:layout_weight="0."
             android:background="#fcfcfc"
             android:gravity="center"
-
             android:weightSum="1">
 
             <LinearLayout
@@ -64,9 +62,10 @@
             android:hint="Task Name"
             android:padding="15dp"
             android:textSize="20sp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginTop="0dp" />
 
         <TextView
+            android:id="@+id/repeat"
             android:layout_width="380dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
@@ -79,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="0dp"
             android:orientation="horizontal"
             android:padding="10dp"
             android:weightSum="7">
@@ -146,7 +145,7 @@
             android:layout_width="380dp"
             android:layout_height="25dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:paddingLeft="15dp"
             android:text="Length:"
             android:textSize="18sp"
@@ -196,11 +195,11 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="15dp" />
+            android:layout_height="10dp" />
 
         <TextView
             android:layout_width="200dp"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             android:layout_marginLeft="15dp"
             android:text="Reminder Review:"
             android:textSize="18sp" />
@@ -208,9 +207,11 @@
         <TextView
             android:id="@+id/pe_add_task_remind_time_review"
             android:layout_width="340dp"
-            android:layout_height="75dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
             android:layout_weight="0.03"
             android:text="Task Name at 12:00 p.m."
             android:textColor="#FE6691"

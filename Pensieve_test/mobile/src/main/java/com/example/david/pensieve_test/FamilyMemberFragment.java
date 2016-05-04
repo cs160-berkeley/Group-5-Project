@@ -434,12 +434,16 @@ public class FamilyMemberFragment extends Fragment {
         String watchToData = "";
 
         List<Tasks> t = TaskManager.get(getActivity()).getTasksList();
-        Tasks task = t.get(0); // Sends 1st one
+        if (t.size() > 0) {
+            Tasks task = t.get(0); // Sends 1st one
 
-        watchToData += task.getTitle() + "@@@" + task.getTime() + "@@@" + task.getTimeAMPM();
+            watchToData += task.getTitle() + "@@@" + task.getTime() + "@@@" + task.getTimeAMPM();
 
-        Intent sendIntent = new Intent(getActivity(), PhoneToWatchService.class);
-        sendIntent.putExtra("dataToWatch", watchToData);
-        getActivity().startService(sendIntent);
+            Intent sendIntent = new Intent(getActivity(), PhoneToWatchService.class);
+            sendIntent.putExtra("dataToWatch", watchToData);
+            getActivity().startService(sendIntent);
+        } else {
+            Log.d("START_WATCH", "There are no tasks to send a notification to the watch");
+        }
     }
 }

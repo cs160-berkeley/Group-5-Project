@@ -68,7 +68,7 @@ public class cantRemember extends Activity{
             @Override
             public void onSwipeRight() {
                 super.onSwipeRight();
-                Toast.makeText(cantRemember.this, "right", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(cantRemember.this, "right", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(cantRemember.this, Confirmation.class);
                 startActivity(intent);
@@ -78,7 +78,7 @@ public class cantRemember extends Activity{
             @Override
             public void onSwipeLeft() {
                 super.onSwipeLeft();
-                Toast.makeText(cantRemember.this, "left", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(cantRemember.this, "left", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(cantRemember.this, yes.class);
                 intent.putExtra("taskId", taskId);

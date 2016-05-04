@@ -137,6 +137,10 @@ public class TaskFragment extends Fragment {
 
 
         mSundayButton = (ImageView) v.findViewById(R.id.imageButtonSunday);
+        if (mTasks.isRepeatSunday()) {
+            mSundayButton.setImageResource(R.drawable.p_sunday);
+            isSundayCheck = true;
+        }
         mSundayButton.setOnClickListener(new View.OnClickListener() {
                                              public void onClick(View v) {
                                                  if (isSundayCheck)
@@ -144,12 +148,17 @@ public class TaskFragment extends Fragment {
                                                  else
                                                      mSundayButton.setImageResource(R.drawable.p_sunday);
                                                  isSundayCheck = !isSundayCheck;
+                                                 mTasks.setRepeatSunday(isSundayCheck);
                                                  updateRemindReview();
 
                                              }
                                          }
         );
         mMondayButton = (ImageView) v.findViewById(R.id.imageButtonMonday);
+        if (mTasks.isRepeatMonday()) {
+            mMondayButton.setImageResource(R.drawable.p_monday);
+            isMondayCheck = true;
+        }
         mMondayButton.setOnClickListener(new View.OnClickListener() {
                                              public void onClick(View v) {
                                                  if (isMondayCheck)
@@ -157,12 +166,17 @@ public class TaskFragment extends Fragment {
                                                  else
                                                      mMondayButton.setImageResource(R.drawable.p_monday);
                                                  isMondayCheck = !isMondayCheck;
+                                                 mTasks.setRepeatMonday(isMondayCheck);
                                                  updateRemindReview();
 
                                              }
                                          }
         );
         mTuesdayButton = (ImageView) v.findViewById(R.id.imageButtonTuesday);
+        if (mTasks.isRepeatTuesday()) {
+            mTuesdayButton.setImageResource(R.drawable.p_tuesday);
+            isTuesdayCheck = true;
+        }
         mTuesdayButton.setOnClickListener(new View.OnClickListener() {
                                               public void onClick(View v) {
                                                   if (isTuesdayCheck)
@@ -170,12 +184,17 @@ public class TaskFragment extends Fragment {
                                                   else
                                                       mTuesdayButton.setImageResource(R.drawable.p_tuesday);
                                                   isTuesdayCheck = !isTuesdayCheck;
+                                                  mTasks.setRepeatTuesday(isTuesdayCheck);
                                                   updateRemindReview();
 
                                               }
                                           }
         );
         mWednesdayButton = (ImageView) v.findViewById(R.id.imageButtonWednesday);
+        if (mTasks.isRepeatWednesday()) {
+            mWednesdayButton.setImageResource(R.drawable.p_wednesday);
+            isWednesdayCheck = true;
+        }
         mWednesdayButton.setOnClickListener(new View.OnClickListener() {
                                                 public void onClick(View v) {
                                                     if (isWednesdayCheck)
@@ -183,12 +202,17 @@ public class TaskFragment extends Fragment {
                                                     else
                                                         mWednesdayButton.setImageResource(R.drawable.p_wednesday);
                                                     isWednesdayCheck = !isWednesdayCheck;
+                                                    mTasks.setRepeatWednesday(isWednesdayCheck);
                                                     updateRemindReview();
 
                                                 }
                                             }
         );
         mThursdayButton = (ImageView) v.findViewById(R.id.imageButtonThurday);
+        if (mTasks.isRepeatThursday()) {
+            mThursdayButton.setImageResource(R.drawable.p_thursday);
+            isThursdayCheck = true;
+        }
         mThursdayButton.setOnClickListener(new View.OnClickListener() {
                                               public void onClick(View v) {
                                                   if (isThursdayCheck)
@@ -196,12 +220,17 @@ public class TaskFragment extends Fragment {
                                                   else
                                                       mThursdayButton.setImageResource(R.drawable.p_thursday);
                                                   isThursdayCheck = !isThursdayCheck;
+                                                  mTasks.setRepeatThursday(isThursdayCheck);
                                                   updateRemindReview();
 
                                               }
                                           }
         );
         mFridayButton = (ImageView) v.findViewById(R.id.imageButtonFriday);
+        if (mTasks.isRepeatFriday()) {
+            mFridayButton.setImageResource(R.drawable.p_friday);
+            isFridayCheck = true;
+        }
         mFridayButton.setOnClickListener(new View.OnClickListener() {
                                              public void onClick(View v) {
                                                  if (isFridayCheck)
@@ -209,12 +238,17 @@ public class TaskFragment extends Fragment {
                                                  else
                                                      mFridayButton.setImageResource(R.drawable.p_friday);
                                                  isFridayCheck = !isFridayCheck;
+                                                 mTasks.setRepeatFriday(isFridayCheck);
                                                  updateRemindReview();
 
                                              }
                                          }
         );
         mSaturdayButton = (ImageView) v.findViewById(R.id.imageButtonSaturday);
+        if (mTasks.isRepeatSaturday()) {
+            mSaturdayButton.setImageResource(R.drawable.p_saturday);
+            isSaturdayCheck = true;
+        }
         mSaturdayButton.setOnClickListener(new View.OnClickListener() {
                                                public void onClick(View v) {
                                                    if (isSaturdayCheck)
@@ -222,6 +256,7 @@ public class TaskFragment extends Fragment {
                                                    else
                                                        mSaturdayButton.setImageResource(R.drawable.p_saturday);
                                                    isSaturdayCheck = !isSaturdayCheck;
+                                                   mTasks.setRepeatSaturday(isSaturdayCheck);
                                                    updateRemindReview();
 
                                                }
@@ -322,6 +357,7 @@ public class TaskFragment extends Fragment {
                 String textString = s.toString();
             }
         });
+        updateRemindReview();
         return v;
     }
 

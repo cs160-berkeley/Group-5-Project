@@ -69,7 +69,7 @@ public class FamilyMemberFragment extends Fragment {
         mInputMethod = (InputMethodManager) getActivity().getBaseContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         if (this.role == 0) {
-            mHandler.postDelayed(sendReminderToWatch, 5000); //5 sec
+            mHandler.postDelayed(sendReminderToWatch, 3000); //5 sec
         }
     }
 

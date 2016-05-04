@@ -14,13 +14,13 @@ import java.util.UUID;
 public class Tasks {
     private UUID mId;
     private String mTitle;
-    private String mTime;
+    private String mTime = "12:00";
     private String mNote;
     private String mPatientNote;
     private int mCompleted = 0; // 0 is false, 1 is true
 
-    private String mTimeAMPM;
-    private String remindTime;
+    private String mTimeAMPM = "PM";
+    private String remindTime = "10";
     private boolean repeatSunday;
     private boolean repeatMonday;
     private boolean repeatTuesday;

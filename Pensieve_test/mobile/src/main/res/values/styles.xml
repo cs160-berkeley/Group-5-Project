@@ -7,6 +7,17 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlHighlight">?colorAccent</item>
+        <item name="android:dialogTheme">@style/Theme.Dialog</item> <!-- TimePicker dialog -->
+        <item name="android:alertDialogTheme">@style/Theme.Dialog</item> <!-- Alert dialog -->
+    </style>
+
+    <style name="Theme.Dialog"
+        parent="android:Theme.Material.Light.Dialog">
+
+        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+
     </style>
 
 </resources>

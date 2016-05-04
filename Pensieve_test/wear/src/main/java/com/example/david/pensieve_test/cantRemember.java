@@ -20,6 +20,7 @@ public class cantRemember extends Activity{
 
     private String todoTask = "";
     private Boolean set = Boolean.FALSE;
+    private String taskId = "";
 
     private Button mButton;
 
@@ -27,12 +28,17 @@ public class cantRemember extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cant_remember);
+        Log.d("CANTREMEMBER", "On can't remember watch screen");
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
+        //TODO: get taskId
+
         if (extras != null) {
             todoTask = extras.getString("/dont_remember");
+            taskId = extras.getString("taskId");
+            Log.d("CANTREMEMBER", "Received extras: taskId=" + taskId + " and data=" + todoTask);
             set = Boolean.TRUE;
         }
 
@@ -47,6 +53,8 @@ public class cantRemember extends Activity{
                     if (set) {
                         Intent i = new Intent(getBaseContext(), WatchToPhoneService.class); //WToPService
                         i.putExtra("/dataToPhone", todoTask); //null
+                        i.putExtra("taskId", taskId);
+                        Log.d("CANTREMEMBER", "Clicked on can't remember button, sending to phone: taskId=" + taskId + " and data=" + todoTask);
                         startService(i);
                     }
                 }
@@ -73,6 +81,7 @@ public class cantRemember extends Activity{
                 Toast.makeText(cantRemember.this, "left", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(cantRemember.this, yes.class);
+                intent.putExtra("taskId", taskId);
                 startActivity(intent);
 
                 Log.d(TAG, "swipe left");

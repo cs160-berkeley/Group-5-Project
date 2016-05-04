@@ -4,6 +4,7 @@ package com.example.david.pensieve_test;
  * Created by david on 3/1/16.
  */
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.google.android.gms.wearable.MessageEvent;
@@ -36,10 +37,10 @@ public class PListenerService extends WearableListenerService {
 
             Intent i = new Intent(this, TaskListActivity.class);
             i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
+            i.putExtra(DATA, nothing);
             i.putExtra("role", "0"); // Goes to patient screen
-            startActivity(i);
 
+            startActivity(i);
             Log.d(TAG, "In PListener, sent nothing to Phone");
         } else {
             Log.d(TAG, "does not match");

@@ -22,6 +22,7 @@ public class TaskPagerActivity extends AppCompatActivity {
 
     private ViewPager mViewPager;
     private List<Tasks> mTasks;
+    private boolean editMode = false;
 
     public static Intent newIntent(Context packageContext, UUID taskId) {
         Intent intent = new Intent(packageContext, TaskPagerActivity.class);
@@ -32,6 +33,20 @@ public class TaskPagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Check to see if we are in edit mode
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                editMode = false;
+            } else {
+                editMode = extras.getBoolean("EDIT_MODE");
+            }
+        } else {
+            editMode = (Boolean) savedInstanceState.getSerializable("EDIT_MODE");
+        }
+        Log.d("TASK_PAGER_ACTIVITY", "Edit Mode = " + editMode);
+
         setContentView(R.layout.activity_task_pager);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -55,9 +70,13 @@ public class TaskPagerActivity extends AppCompatActivity {
                     @Override
                     public void OnCancelButtonClick() {
                         finish();
-                        TaskManager.get(getBaseContext()).deleteTask(t);
                         Log.d(TAG, "canceled");
-                        TaskManager.get(getBaseContext()).deleteTask(t);
+
+                        // Only delete if we are canceling upon new task creation
+                        if (!editMode) {
+                            TaskManager.get(getBaseContext()).deleteTask(t);
+                            TaskManager.get(getBaseContext()).deleteTask(t);
+                        }
                     }
                 });
 

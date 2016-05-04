@@ -130,12 +130,12 @@
         <!--android:background="@drawable/view_dropshadow" />-->
 
     <Button
-        android:id="@+id/btn_call"
+        android:id="@+id/btn_dismiss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
         android:background="#fefefe"
-        android:text="Call Mom"
+        android:text="Dismiss"
         android:textAllCaps="false"
         android:textColor="#FFFE6691"
         android:textSize="38sp"

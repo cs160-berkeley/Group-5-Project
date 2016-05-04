@@ -26,6 +26,9 @@ public class Notification extends Activity {
         time = (TextView) findViewById(R.id.time1);
         ampm = (TextView) findViewById(R.id.time2);
 
+
+
+
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
 
@@ -44,7 +47,7 @@ public class Notification extends Activity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getBaseContext(), TaskListActivity.class);
+                Intent i = new Intent(getBaseContext(), NotificationConfirm.class);
                 i.putExtra("role", "0");
                 startActivity(i);
             }

@@ -60,6 +60,8 @@ public class TaskPagerActivity extends AppCompatActivity {
                         TaskManager.get(getBaseContext()).deleteTask(t);
                     }
                 });
+
+
                 return taskFragment;
             }
 
@@ -68,6 +70,8 @@ public class TaskPagerActivity extends AppCompatActivity {
                 return mTasks.size();
             }
         });
+
+
 
         for (int i = 0; i < mTasks.size(); i++) {
             if (mTasks.get(i).getId().equals(taskId)) {

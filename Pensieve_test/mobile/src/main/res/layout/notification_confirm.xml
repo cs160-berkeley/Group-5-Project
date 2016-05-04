@@ -80,7 +80,7 @@
                 android:maxLines="1"
                 android:textColor="#656363"
                 android:textSize="15sp"
-                android:text="PM"
+                android:text="FAILURE"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="sans"  />
 

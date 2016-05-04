@@ -48,7 +48,12 @@ public class Notification extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getBaseContext(), NotificationConfirm.class);
-                i.putExtra("role", "0");
+                Bundle extras = new Bundle();
+                extras.putString("EXTRA_TITLE",title.getText().toString());
+                extras.putString("EXTRA_TIME", time.getText().toString());
+                extras.putString("EXTRA_AMPM", ampm.getText().toString());
+                i.putExtras(extras);
+                //i.putExtra("role", "0");
                 startActivity(i);
             }
         });

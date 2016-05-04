@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /*
@@ -17,6 +18,17 @@ public class NotificationConfirm extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification_confirm);
+
+
+        TextView time = (TextView) findViewById(R.id.time1);
+        TextView ampm = (TextView) findViewById(R.id.time2);
+        TextView title = (TextView) findViewById(R.id.title);
+
+        time.setText(getIntent().getStringExtra("EXTRA_TIME"));
+        title.setText(getIntent().getStringExtra("EXTRA_TITLE"));
+        ampm.setText(getIntent().getStringExtra("EXTRA_AMPM"));
+
+
         Button ok = (Button) findViewById(R.id.btn_dismiss);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

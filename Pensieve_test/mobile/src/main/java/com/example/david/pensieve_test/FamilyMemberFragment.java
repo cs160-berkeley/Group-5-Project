@@ -55,6 +55,7 @@ public class FamilyMemberFragment extends Fragment {
     private final static int green = Color.parseColor("#A5D6A7");
     private final static int red = Color.parseColor("#EF9A9A");
     private final static int pink = Color.parseColor("#FE6691");
+    private UUID taskIdForNotification;
 
     public static FamilyMemberFragment newInstance(int role) {
         Bundle args = new Bundle();
@@ -74,9 +75,11 @@ public class FamilyMemberFragment extends Fragment {
 
         mInputMethod = (InputMethodManager) getActivity().getBaseContext().getSystemService(Context.INPUT_METHOD_SERVICE);
 
+        /*
         if (this.role == 0) {
             mHandler.postDelayed(sendReminderToWatch, 3000); //5 sec
         }
+        */
     }
 
     @Override
@@ -280,6 +283,7 @@ public class FamilyMemberFragment extends Fragment {
                                         break;
 
                                     case 2:
+                                        taskIdForNotification = mTasks.getId();
                                         sendReminderToWatch.run();
                                         break;
 
@@ -434,9 +438,11 @@ public class FamilyMemberFragment extends Fragment {
 
     private void startWatch(){
         String watchToData = "";
+        TaskManager taskManager = TaskManager.get(getActivity());
+        Tasks task = taskManager.getTask(taskIdForNotification);
 
-        List<Tasks> t = TaskManager.get(getActivity()).getTasksList();
-        if (t.size() > 0) {
+        // List<Tasks> t = TaskManager.get(getActivity()).getTasksList();
+        /*if (t.size() > 0) {
             Tasks task = t.get(0); // Sends 1st one
 
             watchToData += task.getTitle() + "@@@" + task.getTime() + "@@@" + task.getTimeAMPM() + "@@@" + task.getId();
@@ -447,5 +453,10 @@ public class FamilyMemberFragment extends Fragment {
         } else {
             Log.d("START_WATCH", "There are no tasks to send a notification to the watch");
         }
+        */
+        watchToData += task.getTitle() + "@@@" + task.getTime() + "@@@" + task.getTimeAMPM() + "@@@" + task.getId();
+        Intent sendIntent = new Intent(getActivity(), PhoneToWatchService.class);
+        sendIntent.putExtra("dataToWatch", watchToData);
+        getActivity().startService(sendIntent);
     }
 }

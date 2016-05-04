@@ -49,7 +49,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
         sendData = (String) intent.getExtras().get("/dataToPhone");
 
         Log.d(TAG, "what is sendData? " + sendData);
-        if (nodes == null) {
+        if (nodes.isEmpty()) {
             Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
                     .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
                         @Override

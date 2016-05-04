@@ -13,10 +13,12 @@ public class MainActivity extends Activity {
     private final String TAG = "@>@>@>";
     private String todoTask = "";
     private String taskId = "";
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
         setContentView(R.layout.activity_main);
 
         Intent intent = getIntent();

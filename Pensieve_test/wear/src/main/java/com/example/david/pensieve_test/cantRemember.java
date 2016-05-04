@@ -21,12 +21,13 @@ public class cantRemember extends Activity{
     private String todoTask = "";
     private Boolean set = Boolean.FALSE;
     private String taskId = "";
-
+    public static Activity activity;
     private Button mButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
         setContentView(R.layout.cant_remember);
         Log.d("CANTREMEMBER", "On can't remember watch screen");
 
@@ -58,6 +59,24 @@ public class cantRemember extends Activity{
                         startService(i);
                     }
                 }
+                // Dismiss watch notifications
+                if (MainActivity.activity != null) {
+                    MainActivity.activity.finish();
+                }
+
+                if (Confirmation.activity != null) {
+                    Confirmation.activity.finish();
+                }
+
+                if (yes.activity != null) {
+                    yes.activity.finish();
+                }
+
+                if (BlankScreen.activity != null) {
+                    BlankScreen.activity.finish();
+                }
+
+                finish();
             return true;
             }
         });

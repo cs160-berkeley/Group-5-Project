@@ -19,10 +19,12 @@ public class yes extends Activity {
 
     private Button mButton;
     private String taskId = "";
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
         setContentView(R.layout.yes);
         Log.d("YES", "On the yes watch screen");
 
@@ -48,6 +50,24 @@ public class yes extends Activity {
                     i.putExtra("taskId", taskId);
                     startService(i);
                 }
+                // Dismiss watch notifications
+                if (MainActivity.activity != null) {
+                    MainActivity.activity.finish();
+                }
+
+                if (Confirmation.activity != null) {
+                    Confirmation.activity.finish();
+                }
+
+                if (cantRemember.activity != null) {
+                    cantRemember.activity.finish();
+                }
+
+                if (BlankScreen.activity != null) {
+                    BlankScreen.activity.finish();
+                }
+
+                finish();
                 return true;
             }
         });

@@ -1,6 +1,7 @@
 package com.example.david.pensieve_test;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.wearable.view.CircledImageView;
@@ -17,10 +18,12 @@ public class Confirmation extends Activity{
     private String todoTask = "";
     private Boolean set = Boolean.FALSE;
     private String taskId = "";
+    public static Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        activity = this;
         setContentView(R.layout.confirmation);
 
         Intent intent = getIntent();

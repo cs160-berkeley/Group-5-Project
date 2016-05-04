@@ -401,10 +401,12 @@ public class FamilyMemberFragment extends Fragment {
                 startActivityForResult(intent, 1);
                 return true;
 
+            /*
             case R.id.menu_settings:
                 Intent i = new Intent(getActivity(), Notification.class);
                 startActivity(i);
                 return true;
+            */
 
             case R.id.menu_logout:
                 Intent j = new Intent(getActivity(), MainScreen.class);

@@ -3,6 +3,7 @@ package com.example.david.pensieve_test.database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.david.pensieve_test.database.TasksDbSchema.TasksTable;
 
@@ -10,7 +11,7 @@ import com.example.david.pensieve_test.database.TasksDbSchema.TasksTable;
  * Created by david on 4/17/16.
  */
 public class TaskBaseHelper extends SQLiteOpenHelper {
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private static final String DATABASE_NAME = "taskBaseCN.db";
 
     public TaskBaseHelper(Context context) {
@@ -24,6 +25,7 @@ public class TaskBaseHelper extends SQLiteOpenHelper {
                         TasksTable.Cols.UUID + ", " +
                         TasksTable.Cols.TITLE + ", " +
                         TasksTable.Cols.TIME + ", " +
+                        TasksTable.Cols.NOTE + ", " +
                         TasksTable.Cols.COMPLETED + ", " +
 
                         TasksTable.Cols.MTIMEAMPM + ", " +
@@ -41,6 +43,11 @@ public class TaskBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        Log.d("ON_UPGRADE", "Upgrading database to new version");
 
+        // If you need to add a new column
+        if (newVersion > oldVersion) {
+            db.execSQL("ALTER TABLE " + TasksTable.NAME + " ADD COLUMN " + TasksTable.Cols.NOTE + " STRING;");
+        }
     }
 }

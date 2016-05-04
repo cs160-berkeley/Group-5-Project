@@ -27,6 +27,7 @@ public class TasksCursorWrapper extends CursorWrapper {
         String uuid = getString(getColumnIndex(TasksTable.Cols.UUID));
         String name = getString(getColumnIndex(TasksTable.Cols.TITLE));
         String time = getString(getColumnIndex(TasksTable.Cols.TIME));
+        String note = getString(getColumnIndex(TasksTable.Cols.NOTE));
         int isCompleted = getInt(getColumnIndex(TasksTable.Cols.COMPLETED));
 
         String mtimeam_pm = getString(getColumnIndex(TasksTable.Cols.MTIMEAMPM));
@@ -43,6 +44,7 @@ public class TasksCursorWrapper extends CursorWrapper {
         Tasks task = new Tasks(UUID.fromString(uuid));
         task.setTitle(name);
         task.setTime(time);
+        task.setNote(note);
 
         task.setCompleted(isCompleted);
 

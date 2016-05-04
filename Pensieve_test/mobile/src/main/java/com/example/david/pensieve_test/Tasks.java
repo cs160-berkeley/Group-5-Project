@@ -15,6 +15,7 @@ public class Tasks {
     private UUID mId;
     private String mTitle;
     private String mTime;
+    private String mNote;
     private int mCompleted = -1;
 
     private String mTimeAMPM;
@@ -47,6 +48,12 @@ public class Tasks {
     public String getTitle() {
         return mTitle;
     }
+
+    public String getNote() {
+        return mNote;
+    }
+
+    public void setNote(String note) { mNote = note; }
 
     public void setTitle(String title) {
         mTitle = title;

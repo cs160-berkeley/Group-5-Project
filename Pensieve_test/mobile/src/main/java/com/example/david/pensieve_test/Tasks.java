@@ -5,11 +5,28 @@ import java.util.UUID;
 /**
  * Created by david on 4/17/16.
  */
+
+
+// Casey: add additional parameters needed for Tasks
+// repeat of days in week
+// time to reminder
+//
 public class Tasks {
     private UUID mId;
     private String mTitle;
     private String mTime;
-    private boolean mCompleted;
+    private int mCompleted = -1;
+
+    private String mTimeAMPM ;
+    private String remindTime ;
+    private boolean repeatSunday;
+    private boolean repeatMonday;
+    private boolean repeatTuesday;
+    private boolean repeatWednesday;
+    private boolean repeatThursday;
+    private boolean repeatFriday;
+    private boolean repeatSaturday;
+
 
     public Tasks() {
         this(UUID.randomUUID());
@@ -39,15 +56,100 @@ public class Tasks {
         return mTime;
     }
 
+    public String getTimeAMPM() {
+        return mTimeAMPM;
+    }
+
     public void setTime(String time) {
         mTime = time;
     }
 
-    public boolean isCompleted() {
+    public void setTimeAMPM(String AMPM) {
+        mTimeAMPM = AMPM;
+    }
+
+    public int isCompleted() {
+//        if (mCompleted == null) {
+//            return Boolean.FALSE;
+//        }
         return mCompleted;
     }
 
-    public void setCompleted(boolean completed) {
-        mCompleted = completed;
+    public void setCompleted(int completed) {
+        if (completed < 0) {
+            this.mCompleted = -1;
+        } else if (completed == 0) {
+            this.mCompleted = completed;
+        } else {
+            this.mCompleted = 1;
+        }
+    }
+
+    public boolean isRepeatSaturday() {
+        return repeatSaturday;
+    }
+
+    public void setRepeatSaturday(boolean repeatSaturday) {
+        this.repeatSaturday = repeatSaturday;
+    }
+
+    public String getRemindTime() {
+        return remindTime;
+    }
+
+    public void setRemindTime(String remindTime) {
+        this.remindTime = remindTime;
+    }
+
+    public boolean isRepeatSunday() {
+        return repeatSunday;
+    }
+
+    public void setRepeatSunday(boolean repeatSunday) {
+        this.repeatSunday = repeatSunday;
+    }
+
+    public boolean isRepeatMonday() {
+        return repeatMonday;
+    }
+
+    public void setRepeatMonday(boolean repeatMonday) {
+        this.repeatMonday = repeatMonday;
+    }
+
+    public boolean isRepeatTuesday() {
+        return repeatTuesday;
+    }
+
+    public void setRepeatTuesday(boolean repeatTuesday) {
+        this.repeatTuesday = repeatTuesday;
+    }
+
+    public boolean isRepeatWednesday() {
+        return repeatWednesday;
+    }
+
+    public void setRepeatWednesday(boolean repeatWednesday) {
+        this.repeatWednesday = repeatWednesday;
+    }
+
+    public boolean isRepeatThursday() {
+        return repeatThursday;
+    }
+
+    public void setRepeatThursday(boolean repeatThursday) {
+        this.repeatThursday = repeatThursday;
+    }
+
+    public boolean isRepeatFriday() {
+        return repeatFriday;
+    }
+
+    public void setRepeatFriday(boolean repeatFriday) {
+        this.repeatFriday = repeatFriday;
     }
 }
+
+
+
+

@@ -1,53 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
+    <!--android:foreground="?attr/selectableItemBackground"-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:weightSum="1.0">
 
         <TextView
             android:id="@+id/list_item_task"
-            android:layout_width="match_parent"
+            style="?android:textAppearanceSmallInverse"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:textSize="30dp"
-            android:layout_weight="1"
-            android:text="Hello?"
-            tools:text="Task Title"/>
+            android:layout_weight=".7"
+            android:gravity="left"
+            android:padding="20dp"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:fontFamily="sans-serif-light"
+            tools:text="Overlay" />
 
         <TextView
-            android:id="@+id/list_textClock"
-            android:layout_width="159dp"
-            android:layout_height="wrap_content"
-            android:textSize="30dp"
-            android:text="8:00am"
-            android:padding="4dp"/>
-
-        <TextView
-            android:id="@+id/list_status_bar"
+            android:id="@+id/list_textClockold"
+            style="?android:textAppearanceMedium"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:transitionName="image" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/list_textClock"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="8:00"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                android:transitionName="image" />
+
+            <TextView
+                android:id="@+id/list_textClockAMPM"
+                style="?android:textAppearanceMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="AM"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/list_status_bar"
+            android:layout_width="10dp"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
-            android:text="   "/>
+            android:background="#A5D6A7" />
+        <!-- above #A5D6A7 is the green color as default -->
 
     </LinearLayout>
 
-    <!--<ExpandableListView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="153dp"-->
-        <!--android:id="@+id/expandableListView"-->
-        <!--android:layout_below="@+id/list_item"-->
-        <!--android:layout_centerHorizontal="true"/>-->
+    <LinearLayout
+        android:id="@+id/ll_chart_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:focusableInTouchMode="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@drawable/view_dropshadow" />
+
+        <LinearLayout
+            android:id="@+id/ll_chart_wrapper1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="2dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="1.0">
+
+                <TextView
+                    style="?android:textAppearanceSmallInverse"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.2"
+                    android:gravity="center"
+                    android:text="Range:"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.4"
+                    android:textSize="14sp" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+
+                        <View
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="#A5D6A7" />
+
+                        <TextView
+                            style="?android:textAppearanceMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Remembered"
+                            android:textColor="#A5D6A7"
+                            android:textSize="14sp"
+                            android:transitionName="image" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+
+                        <View
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="#EF9A9A" />
+
+                        <TextView
+                            style="?android:textAppearanceMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="Forgot"
+                            android:textColor="#EF9A9A"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/chart"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:background="@drawable/day_graph"
+                android:scaleType="center" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="left|bottom"
+            android:hint="Add a note for this activity"
+            android:imeOptions="actionDone"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="@drawable/view_dropshadow" />
 
 
 </LinearLayout>
-
-
-

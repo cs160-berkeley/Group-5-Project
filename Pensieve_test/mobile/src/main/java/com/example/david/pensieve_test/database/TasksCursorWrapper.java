@@ -29,11 +29,33 @@ public class TasksCursorWrapper extends CursorWrapper {
         String time = getString(getColumnIndex(TasksTable.Cols.TIME));
         int isCompleted = getInt(getColumnIndex(TasksTable.Cols.COMPLETED));
 
+        String mtimeam_pm = getString(getColumnIndex(TasksTable.Cols.MTIMEAMPM));
+        String remind_time = getString(getColumnIndex(TasksTable.Cols.REMINDTIME));
+        int isRepeatsunday = getInt(getColumnIndex(TasksTable.Cols.REPEATSUNDAY));
+        int isRepeatmonday = getInt(getColumnIndex(TasksTable.Cols.REPEATMONDAY));
+        int isRepeattuesday = getInt(getColumnIndex(TasksTable.Cols.REPEATTUESDAY));
+        int isRepeatwednesday = getInt(getColumnIndex(TasksTable.Cols.REPEATWEDNESDAY));
+        int isRepeatthursday = getInt(getColumnIndex(TasksTable.Cols.REPEATTHURSDAY));
+        int isRepeatfriday = getInt(getColumnIndex(TasksTable.Cols.REPEATFRIDAY));
+        int isRepeatsaturday = getInt(getColumnIndex(TasksTable.Cols.REPEATSATURDAY));
+
 
         Tasks task = new Tasks(UUID.fromString(uuid));
         task.setTitle(name);
         task.setTime(time);
-        task.setCompleted(isCompleted != 0);
+
+        task.setCompleted(isCompleted);
+
+        task.setTimeAMPM(mtimeam_pm);
+        task.setRemindTime(remind_time);
+
+        task.setRepeatSunday(isRepeatsunday != 0);
+        task.setRepeatMonday(isRepeatmonday != 0);
+        task.setRepeatTuesday(isRepeattuesday != 0);
+        task.setRepeatWednesday(isRepeatwednesday != 0);
+        task.setRepeatThursday(isRepeatthursday != 0);
+        task.setRepeatFriday(isRepeatfriday != 0);
+        task.setRepeatSaturday(isRepeatsaturday != 0);
 
         return task;
     }

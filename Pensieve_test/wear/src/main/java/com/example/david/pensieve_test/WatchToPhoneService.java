@@ -1,48 +1,56 @@
 package com.example.david.pensieve_test;
 
-/**
- * Created by david on 3/3/16.
- */
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.MessageApi;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.NodeApi;
 import com.google.android.gms.wearable.Wearable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created by david on 3/1/16.
+ * Created by joleary and noon on 2/19/16 at very late in the night. (early in the morning?)
  */
-public class WatchToPhoneService extends Service {
-
-    Boolean isZipCode = Boolean.FALSE;
-    private String name;
-
-    private static final String TAG = "@>@>@>@>";
+public class WatchToPhoneService extends Service implements GoogleApiClient.ConnectionCallbacks {
+    private static final String TAG = "@>@>@>";
     private GoogleApiClient mWatchApiClient;
-    final Service _this = this;
+    private List<Node> nodes = new ArrayList<>();
+    private String sendData = "nothing";
 
     @Override
     public void onCreate() {
         super.onCreate();
-        mWatchApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Wearable.API)
-                .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
-                    @Override
-                    public void onConnected(Bundle connectionHint) {
-                    }
+        //initialize the googleAPIClient for message passing
 
+        mWatchApiClient = new GoogleApiClient.Builder( this )
+                .addApi( Wearable.API )
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
-                    public void onConnectionSuspended(int cause) {
+                    public void onConnectionFailed(ConnectionResult connectionResult) {
+                        Log.wtf(TAG, "why does it fail?");
                     }
-                }).build();
-        Log.d(TAG, "in watch to phone");
+                })
+                .build();
+        //and actually connect it
+        mWatchApiClient.connect();
+    }
+
+    @Override
+    public int onStartCommand (Intent intent, int flags, int startId) {
+        sendData = (String) intent.getExtras().get("/dataToPhone");
+
+        Log.d(TAG, "what is sendData? " + sendData);
+
+        return START_STICKY;
     }
 
     @Override
@@ -52,57 +60,44 @@ public class WatchToPhoneService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Bundle extras = intent.getExtras();
-
-        Log.d(TAG, "WtoP: on start command");
-
-        String thing = extras.getString("nameOrZip");
-
-//        try {
-//            int intZipCode = Integer.parseInt(thing);
-//            myZipCode = "" + intZipCode;
-//            isZipCode = Boolean.TRUE;
-//            Log.d(TAG, "is it getting through? ");
-//        } catch (NumberFormatException e) {
-//            name = thing;
-//            isZipCode = Boolean.FALSE;
-//            Log.d(TAG, "is it getting through? " + name);
-//        }
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                mWatchApiClient.connect();
-                sendMessage("/send_name", name);
-//                if(isZipCode){
-//                    sendMessage("/send_zipcode", myZipCode);
-//                } else {
-//                    sendMessage("/send_name", name);
-//                }
-                Log.wtf(TAG, "sent");
-            }
-        }).start();
-
-
-        return START_STICKY;
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 
+    @Override //alternate method to connecting: no longer create this in a new thread, but as a callback
+    public void onConnected(Bundle bundle) {
+        Log.d(TAG, "in onconnected");
 
-    @Override
-    public IBinder onBind(Intent intent) { return null; }
+        Log.d(TAG, "in Connected , what is sendData? " + sendData);
 
-    private void sendMessage(final String path, final String text){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                NodeApi.GetConnectedNodesResult nodes = Wearable.NodeApi.getConnectedNodes(mWatchApiClient).await();
-                for (Node node : nodes.getNodes()) {
-                    MessageApi.SendMessageResult result = Wearable.MessageApi.sendMessage(
-                            mWatchApiClient, node.getId(), path, text.getBytes()).await();
-                }
-            }
-        }).start();
+        Wearable.NodeApi.getConnectedNodes(mWatchApiClient)
+                .setResultCallback(new ResultCallback<NodeApi.GetConnectedNodesResult>() {
+                    @Override
+                    public void onResult(NodeApi.GetConnectedNodesResult getConnectedNodesResult) {
+                        nodes = getConnectedNodesResult.getNodes();
+                        Log.d(TAG, "found nodes");
+                        //when we find a connected node, we populate the list declared above
+                        //finally, we can send a message
+                        if(sendData.equals("nothing")) {
+                            sendMessage("/send_nothing", "nothing");
+                        } else {
+                            sendMessage("/send_data", sendData);
+                        }
+                        Log.wtf(TAG, "sent");
+
+                        onDestroy(); //destroy
+                    }
+                });
+    }
+
+    @Override //we need this to implement GoogleApiClient.ConnectionsCallback
+    public void onConnectionSuspended(int i) {}
+
+
+    private void sendMessage(final String path, final String text ) {
+        for (Node node : nodes) {
+            Wearable.MessageApi.sendMessage(mWatchApiClient, node.getId(), path, text.getBytes());
+        }
     }
 
 }

@@ -9,7 +9,7 @@
         android:id="@+id/cant_remember"
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:background="@drawable/test">
+        android:background="@drawable/background">
 
     </android.support.wearable.view.CircledImageView>
 
@@ -19,6 +19,17 @@
         android:background="@drawable/question"
         android:layout_width="70sp"
         android:layout_height="70sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Can&apos;t Remember"
+        android:id="@+id/textView"
+        android:layout_marginTop="18dp"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:layout_below="@+id/question"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

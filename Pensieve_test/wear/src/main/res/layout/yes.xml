@@ -4,12 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/yes">
+    android:background="@drawable/background">
 
     <android.support.wearable.view.CircledImageView
         android:id="@+id/yes"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:layout_alignParentEnd="true">
 
     </android.support.wearable.view.CircledImageView>
 
@@ -20,6 +21,17 @@
         android:background="@drawable/check"
         android:layout_width="70sp"
         android:layout_height="70sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Yes!"
+        android:id="@+id/textView2"
+        android:textColor="#ffffff"
+        android:textSize="20dp"
+        android:layout_below="@+id/check"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp" />
 
 
 </RelativeLayout>

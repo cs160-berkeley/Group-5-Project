@@ -135,6 +135,7 @@ public class FamilyMemberFragment extends Fragment {
         public TaskHolder(View itemView, int role) {
             super(itemView);
             this.role = role;
+            final int currentRole = role;
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_task);
@@ -169,8 +170,16 @@ public class FamilyMemberFragment extends Fragment {
             mNote = (EditText) itemView.findViewById(R.id.note);
             mNote.setOnKeyListener(new View.OnKeyListener() {
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
-                    Log.d(TAG, "Key pressed. Current text = " + mNote.getText().toString());
-                    mTasks.setNote(mNote.getText().toString());
+                    if (currentRole == 1) {
+                        // Update the family member's note
+                        Log.d(TAG, "Family member key pressed. Current text = " + mNote.getText().toString());
+                        mTasks.setNote(mNote.getText().toString());
+                    } else {
+                        // Update the patient's note
+                        Log.d(TAG, "Patient key pressed. Current text = " + mNote.getText().toString());
+                        mTasks.setPatientNote(mNote.getText().toString());
+                    }
+
                     mTaskManager.updateTask(mTasks);
                     return false;
                 }
@@ -181,8 +190,17 @@ public class FamilyMemberFragment extends Fragment {
 
         public void bindTask(Tasks task) {
             mTasks = task;
-            System.out.println("Note from database == " + mTasks.getNote());
-            mNote.setText(mTasks.getNote());
+
+            if (role == 1) {
+                // Show the family member note
+                Log.d(TAG + " bindTask", "Family member editText set");
+                mNote.setText(mTasks.getNote());
+            } else {
+                // Show the patient note
+                Log.d(TAG + " bindTask", "Patient editText set");
+                mNote.setText(mTasks.getPatientNote());
+            }
+
             mTitleTextView.setText(task.getTitle());
             mTitleTextView.setTextColor(Color.BLACK);
             mTimeTextview.setText(task.getTime());

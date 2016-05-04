@@ -16,6 +16,7 @@ public class Tasks {
     private String mTitle;
     private String mTime;
     private String mNote;
+    private String mPatientNote;
     private int mCompleted = -1;
 
     private String mTimeAMPM;
@@ -54,6 +55,14 @@ public class Tasks {
     }
 
     public void setNote(String note) { mNote = note; }
+
+    public String getPatientNote() {
+        return mPatientNote;
+    }
+
+    public void setPatientNote(String patientNote) {
+        mPatientNote = patientNote;
+    }
 
     public void setTitle(String title) {
         mTitle = title;

@@ -15,6 +15,7 @@ public class TasksDbSchema {
             public static final String TITLE = "title";
             public static final String TIME = "time";
             public static final String NOTE = "note";
+            public static final String PATIENT_NOTE = "patientNote";
             public static final String COMPLETED = "completed";
 
             public static final String MTIMEAMPM  = "mtimeampm"  ;

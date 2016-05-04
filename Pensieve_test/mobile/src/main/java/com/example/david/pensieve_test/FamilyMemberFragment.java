@@ -147,10 +147,16 @@ public class FamilyMemberFragment extends Fragment {
             mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                    if (pos == 0)
+                    if (pos == 0) {
                         mImageView.setBackgroundResource(R.drawable.day_graph);
-                    else if (pos == 1)
+                    }
+                    else if (pos == 1) {
                         mImageView.setBackgroundResource(R.drawable.week_graph);
+                    } else if (pos == 2) {
+                        mImageView.setBackgroundResource(R.drawable.month_graph);
+                    } else if (pos == 3) {
+                        mImageView.setBackgroundResource(R.drawable.year_graph);
+                    }
                 }
 
                 @Override

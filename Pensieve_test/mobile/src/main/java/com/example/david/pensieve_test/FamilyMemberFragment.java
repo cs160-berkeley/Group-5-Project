@@ -252,56 +252,11 @@ public class FamilyMemberFragment extends Fragment {
                                     case 3:
                                         dialog.dismiss();
                                         break;
-
                                 }
                             }
                         }
                 );
-
                 builder.create().show();
-//                new AlertDialog.Builder(getActivity())
-//                        // Set message, title, and icon
-//                        .setTitle("Delete")
-//                        .setMessage("Are you sure you want to delete this entry?")
-//                        .setItems(new CharSequence[]
-//                                {"Cancel", "Delete"},
-//                                new DialogInterface.OnClickListener() {
-//                                    public void onClick(DialogInterface dialog, int which) {
-//                                        switch (which) {
-//                                            case 0:
-//                                                dialog.dismiss();
-//                                                break;
-//
-//                                            case 1:
-//                                                TaskManager.get(getActivity()).deleteTask(mTasks);
-//                                                dialog.dismiss();
-//                                                updateUI();
-//                                                break;
-//
-//                                            case 2:
-//                                                Log.i("Edit Task: ", "Log");
-//                                                break;
-//
-//                                            case 3:
-//                                                Log.i("Notify Task: ", "Log");
-//                                                break;
-//
-//                                        }
-//                                    }
-//                                }).create().show();
-//                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int whichButton) {
-//                                TaskManager.get(getActivity()).deleteTask(mTasks);
-//                                dialog.dismiss();
-//                                updateUI();
-//                            }
-//                        })
-//                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        })
-//                        .show();
             }
             return false;
         }

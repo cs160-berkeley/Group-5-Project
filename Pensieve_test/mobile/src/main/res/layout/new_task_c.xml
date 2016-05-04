@@ -60,7 +60,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:hint="Task Name"
-            android:padding="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:textSize="20sp"
             android:layout_marginTop="0dp" />
 
@@ -69,7 +70,6 @@
             android:layout_width="380dp"
             android:layout_height="30dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_marginTop="20dp"
             android:text="Repeat:"
             android:textSize="18sp" />
@@ -81,7 +81,13 @@
             android:layout_marginTop="0dp"
             android:orientation="horizontal"
             android:padding="10dp"
-            android:weightSum="7">
+            android:weightSum="7.35">
+
+            <ImageButton
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".35"
+                android:background="@null" />
 
             <ImageButton
                 android:id="@+id/imageButtonSunday"
@@ -208,7 +214,7 @@
             android:id="@+id/pe_add_task_remind_time_review"
             android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="15dp"

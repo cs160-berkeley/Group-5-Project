@@ -39,7 +39,6 @@ public class Notification extends Activity {
 
         }
 
-
         Button ok = (Button) findViewById(R.id.btn_theyre_OK);
         ok.setOnClickListener(new View.OnClickListener() {
             @Override

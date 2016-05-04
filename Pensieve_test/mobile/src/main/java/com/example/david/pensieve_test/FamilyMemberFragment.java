@@ -10,8 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.format.Time;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,13 +29,10 @@ import android.widget.TextView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Created by david on 4/17/16.
@@ -118,11 +113,11 @@ public class FamilyMemberFragment extends Fragment {
 
     private class TaskHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         public TextView mTitleTextView;
-        private TextView mTimeAMPMTextview;
+        private TextView mTimeAMPMTextView;
         private TextView mTimeTextview;
         private View mStatusBar;
-        private LinearLayout mLinearLayoutwrapper;
-        private LinearLayout mLinearLayoutwrapper1;
+        private LinearLayout mLinearLayoutWrapper;
+        private LinearLayout mLinearLayoutWrapper1;
         private ArrayAdapter<CharSequence> mAdapter;
         private Spinner mSpinner;
         private EditText mNote;
@@ -137,10 +132,10 @@ public class FamilyMemberFragment extends Fragment {
             itemView.setOnLongClickListener(this);
             mTitleTextView = (TextView) itemView.findViewById(R.id.list_item_task);
             mTimeTextview = (TextView) itemView.findViewById(R.id.list_textClock);
-            mTimeAMPMTextview = (TextView) itemView.findViewById(R.id.list_textClockAMPM);
+            mTimeAMPMTextView = (TextView) itemView.findViewById(R.id.list_textClockAMPM);
             mStatusBar = (View) itemView.findViewById(R.id.list_status_bar);
-            mLinearLayoutwrapper = (LinearLayout) itemView.findViewById(R.id.ll_chart_wrapper);
-            mLinearLayoutwrapper1 = (LinearLayout) itemView.findViewById(R.id.ll_chart_wrapper1);
+            mLinearLayoutWrapper = (LinearLayout) itemView.findViewById(R.id.ll_chart_wrapper);
+            mLinearLayoutWrapper1 = (LinearLayout) itemView.findViewById(R.id.ll_chart_wrapper1);
             mSpinner = (Spinner) itemView.findViewById(R.id.spinner);
             mAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.range_array, android.R.layout.simple_spinner_item);
             mSpinner.setAdapter(mAdapter);
@@ -167,8 +162,8 @@ public class FamilyMemberFragment extends Fragment {
             mTitleTextView.setTextColor(Color.BLACK);
             mTimeTextview.setText(task.getTime());
             mTimeTextview.setTextColor(Color.BLACK);
-            mTimeAMPMTextview.setText(task.getTimeAMPM());
-            mTimeAMPMTextview.setTextColor(Color.BLACK);
+            mTimeAMPMTextView.setText(task.getTimeAMPM());
+            mTimeAMPMTextView.setTextColor(Color.BLACK);
 
             String time = task.getTime();
             if (time != null && !time.isEmpty()) {
@@ -191,10 +186,9 @@ public class FamilyMemberFragment extends Fragment {
                         mTitleTextView.setText("› " + task.getTitle());
                         mTitleTextView.setTextColor(FamilyMemberFragment.pink);
                         mTimeTextview.setTextColor(FamilyMemberFragment.pink);
-                        mTimeAMPMTextview.setTextColor(FamilyMemberFragment.pink);
+                        mTimeAMPMTextView.setTextColor(FamilyMemberFragment.pink);
                         mStatusBar.setBackgroundColor(Color.TRANSPARENT);
                     }
-
                 } catch (final ParseException e) {
                     e.printStackTrace();
                 }
@@ -227,11 +221,11 @@ public class FamilyMemberFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            if (mView != null && mView != mLinearLayoutwrapper)
+            if (mView != null && mView != mLinearLayoutWrapper)
                 mView.setVisibility(View.GONE);
-            if (mLinearLayoutwrapper.getVisibility() == View.GONE) {
-                mLinearLayoutwrapper.setVisibility(View.VISIBLE);
-                mLinearLayoutwrapper1.setVisibility(role == 1 ? View.VISIBLE : View.GONE);
+            if (mLinearLayoutWrapper.getVisibility() == View.GONE) {
+                mLinearLayoutWrapper.setVisibility(View.VISIBLE);
+                mLinearLayoutWrapper1.setVisibility(role == 1 ? View.VISIBLE : View.GONE);
                 mInputMethod.showSoftInput(mNote, InputMethodManager.SHOW_IMPLICIT);
                 mNote.setOnEditorActionListener(
                         new EditText.OnEditorActionListener() {
@@ -241,16 +235,16 @@ public class FamilyMemberFragment extends Fragment {
                                         actionId == EditorInfo.IME_ACTION_DONE ||
                                         event.getAction() == KeyEvent.ACTION_DOWN &&
                                                 event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                                    mLinearLayoutwrapper.setVisibility(View.GONE);
+                                    mLinearLayoutWrapper.setVisibility(View.GONE);
                                     mInputMethod.hideSoftInputFromWindow(mNote.getWindowToken(), 0);
                                     return true;
                                 }
                                 return false;
                             }
                         });
-                mView = mLinearLayoutwrapper;
+                mView = mLinearLayoutWrapper;
             } else {
-                mLinearLayoutwrapper.setVisibility(View.GONE);
+                mLinearLayoutWrapper.setVisibility(View.GONE);
             }
         }
 

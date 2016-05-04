@@ -169,20 +169,30 @@ public class FamilyMemberFragment extends Fragment {
             if (time != null && !time.isEmpty()) {
                 try {
                     SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
-                    Date current_time = getCurrentTime();
-                    Date start_time = sdf.parse(time + " " + task.getTimeAMPM());
-                    if ("PM".equals(task.getTimeAMPM()))
-                        start_time = addMinutesToDate(60 * 12, start_time);
-                    Date end_time = addMinutesToDate(Integer.valueOf(task.getRemindTime()), start_time);
+                    Date currentTime = getCurrentTime();
+                    String taskTimeAMPM = task.getTimeAMPM();
+                    Date startTime = sdf.parse(time + " " + taskTimeAMPM);
+
+                    int timeHour = Integer.parseInt(time.split(":")[0]);
+
+                    if (("PM".equals(task.getTimeAMPM())) && (timeHour != 12)) {
+                        startTime = addMinutesToDate(60 * 12, startTime);
+                    }
+                    Date endTime = addMinutesToDate(Integer.valueOf(task.getRemindTime()), startTime);
 
                     int taskStatus = task.isCompleted();
-                    if (taskStatus == 0) {
+                    int startTimeDifference = currentTime.compareTo(startTime);
+                    int endTimeDifference = currentTime.compareTo(endTime);
+
+                    if (startTimeDifference < 0) {
+                        mStatusBar.setBackgroundColor(Color.TRANSPARENT);
+                    } else if (taskStatus == 0) {
                         mStatusBar.setBackgroundColor(FamilyMemberFragment.green);
                     } else {
                         mStatusBar.setBackgroundColor(FamilyMemberFragment.red);
                     }
 
-                    if ((current_time.compareTo(start_time) == 0 || current_time.compareTo(start_time) > 0) && (current_time.compareTo(end_time) < 0)) {
+                    if ((startTimeDifference >= 0) && (endTimeDifference < 0)) {
                         mTitleTextView.setText("› " + task.getTitle());
                         mTitleTextView.setTextColor(FamilyMemberFragment.pink);
                         mTimeTextview.setTextColor(FamilyMemberFragment.pink);

@@ -265,13 +265,6 @@
                 android:text="OK"
                 android:textColor="#FE6691"
                 android:textSize="18sp" />
-
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:background="@drawable/view_dropshadow" />
-
     </LinearLayout>
 </ScrollView>

@@ -61,6 +61,7 @@ public class TaskFragment extends Fragment {
     private OnButtonClickListener listener;
     private int hour;
     private int minute;
+    boolean timePickerUsed = false;
 
     public static TaskFragment newInstance(UUID taskId) {
         Bundle args = new Bundle();
@@ -88,6 +89,7 @@ public class TaskFragment extends Fragment {
         dialog.setOnButtonClickListener(new TimePickerFragment.OnButtonClickListener() {
             @Override
             public void OnOKButtonClick() {
+                timePickerUsed = true;
                 mTimeField.setText(dialog.getTimetoString());
                 mTimeAMPMField.setText(dialog.getAMPM());
                 updateRemindReview();
@@ -104,10 +106,33 @@ public class TaskFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        boolean editMode = false;
+
+        // Check to see if we are in edit mode
+        if (savedInstanceState == null) {
+            Bundle extras = getActivity().getIntent().getExtras();
+            if(extras == null) {
+                editMode = false;
+            } else {
+                editMode = extras.getBoolean("EDIT_MODE");
+            }
+        } else {
+            editMode = (Boolean) savedInstanceState.getSerializable("EDIT_MODE");
+        }
+        Log.d(TAG, "Edit Mode = " + editMode);
+
         View v = inflater.inflate(R.layout.new_task_c, container, false);
 
         mTitleField = (EditText) v.findViewById(R.id.item_title);
+        if (mTasks.getTitle() != null) {
+            mTitleField.setText(mTasks.getTitle());
+        }
+
         mRemindTimeField = (EditText) v.findViewById(R.id.pe_add_task_remind_time);
+        if (mTasks.getRemindTime() != null) {
+            mRemindTimeField.setText(mTasks.getRemindTime());
+        }
+
         mReminderReviewField = (TextView) v.findViewById(R.id.pe_add_task_remind_time_review);
 
 
@@ -211,19 +236,23 @@ public class TaskFragment extends Fragment {
                 String s2 = mRemindTimeField.getText().toString();
                 mTasks.setRemindTime(s2.toString());
 
-                int hourOfDay = dialog.getHour();
-                int minute = dialog.getMinute();
+                if (timePickerUsed) {
+                    int hourOfDay = dialog.getHour();
+                    int minute = dialog.getMinute();
 
-                mTasks.setTimeAMPM(hourOfDay > 11 ? "PM" : "AM");
+                    mTasks.setTimeAMPM(hourOfDay > 11 ? "PM" : "AM");
 
-                if (hourOfDay == 0) {
-                    hourOfDay = 12;
-                } else if (hourOfDay >= 13) {
-                    hourOfDay -= 12;
+                    if (hourOfDay == 0) {
+                        hourOfDay = 12;
+                    } else if (hourOfDay >= 13) {
+                        hourOfDay -= 12;
+                    }
+
+                    String sTime = String.format("%d:%02d", hourOfDay, minute);
+                    Log.d("OK_BUTTON_CLICKED", "New time = " + sTime);
+                    mTasks.setTime(sTime);
                 }
 
-                String sTime = String.format("%d:%02d", hourOfDay, minute);
-                mTasks.setTime(sTime);
 
                 updateRemindReview();
 
@@ -249,8 +278,15 @@ public class TaskFragment extends Fragment {
 
         mTitleField.setText(mTasks.getTitle());
         mTimeField = (TextView) v.findViewById(R.id.time_text_view);
+        if (mTasks.getTime() != null) {
+            mTimeField.setText(mTasks.getTime());
+        }
+
         mTimeField.setPaintFlags(mTimeField.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         mTimeAMPMField = (TextView) v.findViewById(R.id.time_ampm_text_view);
+        if (mTasks.getTimeAMPM() != null) {
+            mTimeAMPMField.setText(mTasks.getTimeAMPM());
+        }
 
         mTimeField.setOnClickListener(new View.OnClickListener() {
             @Override

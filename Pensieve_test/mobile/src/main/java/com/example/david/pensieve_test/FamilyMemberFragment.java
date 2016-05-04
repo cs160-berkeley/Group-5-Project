@@ -273,6 +273,7 @@ public class FamilyMemberFragment extends Fragment {
                                     case 1:
                                         UUID firstTaskId = mTasks.getId();
                                         Intent intent = TaskPagerActivity.newIntent(getActivity(), firstTaskId);
+                                        intent.putExtra("EDIT_MODE", true);
                                         startActivityForResult(intent, 1);
                                         break;
 

@@ -17,8 +17,8 @@ public class Tasks {
     private String mTime;
     private int mCompleted = -1;
 
-    private String mTimeAMPM ;
-    private String remindTime ;
+    private String mTimeAMPM;
+    private String remindTime;
     private boolean repeatSunday;
     private boolean repeatMonday;
     private boolean repeatTuesday;
@@ -69,10 +69,11 @@ public class Tasks {
     }
 
     public int isCompleted() {
-//        if (mCompleted == null) {
-//            return Boolean.FALSE;
-//        }
-        return mCompleted;
+        if (this.mCompleted == 0) {
+                return 0;
+        } else {
+           return 1;
+        }
     }
 
     public void setCompleted(int completed) {

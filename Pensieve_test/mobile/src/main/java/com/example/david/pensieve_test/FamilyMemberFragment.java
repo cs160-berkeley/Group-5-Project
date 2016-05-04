@@ -38,6 +38,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 /**
  * Created by david on 4/17/16.
@@ -103,7 +104,7 @@ public class FamilyMemberFragment extends Fragment {
         return afterAddingMins;
     }
 
-    private Date getCurrentTime() {
+    public static Date getCurrentTime() {
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR_OF_DAY);
         int minute = cal.get(Calendar.MINUTE);
@@ -233,23 +234,42 @@ public class FamilyMemberFragment extends Fragment {
         @Override
         public boolean onLongClick(View v) {
             if (this.role == 1) {
-                new AlertDialog.Builder(getActivity())
-                        // Set message, title, and icon
-                        .setTitle("Delete")
-                        .setMessage("Are you sure you want to delete this entry?")
-                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                TaskManager.get(getActivity()).deleteTask(mTasks);
-                                dialog.dismiss();
-                                updateUI();
-                            }
-                        })
-                        .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Actions");
+                final CharSequence[] items = {
+                        "Delete",
+                        "Edit",
+                        "Notify",
+                        "Cancel"
+                };
+
+                builder.setItems(items, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
+                                switch (which) {
+                                    case 0:
+                                        TaskManager.get(getActivity()).deleteTask(mTasks);
+                                        dialog.dismiss();
+                                        updateUI();
+                                        break;
+
+                                    case 1:
+                                        UUID firstTaskId = mTasks.getId();
+                                        Intent intent = TaskPagerActivity.newIntent(getActivity(), firstTaskId);
+                                        startActivityForResult(intent, 1);
+                                        break;
+
+                                    case 2:
+                                        sendReminderToWatch.run();
+                                        break;
+
+                                    case 3:
+                                        dialog.dismiss();
+                                        break;
+                                }
                             }
-                        })
-                        .show();
+                        }
+                );
+                builder.create().show();
             }
             return false;
         }
@@ -351,7 +371,7 @@ public class FamilyMemberFragment extends Fragment {
                 task.setCompleted(seed);
                 TaskManager.get(getActivity()).addTask(task);
 
-                // Adds task to list
+                // Adds task to lists
                 Intent intent = TaskPagerActivity.newIntent(getActivity(), task.getId());
                 startActivityForResult(intent, 1);
                 return true;

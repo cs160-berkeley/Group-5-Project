@@ -279,43 +279,34 @@ public class TaskFragment extends Fragment {
                 for (int i = s.length(); i > 0; i--) {
                     if (s.subSequence(i-1, i).toString().equals("\n")) {
                         s.replace(i-1, i, "");
+                        EditText length = (EditText) getView().findViewById(R.id.pe_add_task_remind_time);
+                        length.requestFocus();
                     }
                 }
                 String textString = s.toString();
             }
         });
-
-//
-//        //EDITING
-//        if (mTimeField.getText() == "") {
-//            Intent returnIntent = new Intent();
-//            returnIntent.putExtra("result", "empty_title");
-//            setResult();
-//            finish();
-//        }
-
-
         return v;
     }
 
     public void updateRemindReview() {
 
         boolean isRepeat = isFridayCheck | isMondayCheck | isSaturdayCheck | isSundayCheck
-                | isThursdayCheck | isTuesdayCheck | isWednesdayCheck ;
+                | isThursdayCheck | isTuesdayCheck | isWednesdayCheck;
         boolean isRepeatAll = isFridayCheck & isMondayCheck & isSaturdayCheck & isSundayCheck
-                & isThursdayCheck & isTuesdayCheck & isWednesdayCheck ;
+                & isThursdayCheck & isTuesdayCheck & isWednesdayCheck;
 
-        String sr0 = (isRepeat?" every":"") + (isSundayCheck? " Sunday" :"") +
-                (isMondayCheck? " Monday" :"") + (isTuesdayCheck? " Tuesday" :"") +
-                (isWednesdayCheck? " Wednesday" :"") + (isThursdayCheck? " Thursday" :"") +
-                (isFridayCheck? " Friday" :"") + (isSaturdayCheck? " Saturday" :"") +
+        String sr0 = (isRepeat ? " every":"") + (isSundayCheck ? " Sunday" :"") +
+                (isMondayCheck ? " Monday" :"") + (isTuesdayCheck ? " Tuesday" :"") +
+                (isWednesdayCheck ? " Wednesday" :"") + (isThursdayCheck ? " Thursday" :"") +
+                (isFridayCheck ? " Friday" :"") + (isSaturdayCheck ? " Saturday" :"") +
                  ".";
 
 
         String s1 = mTitleField.getText().toString();
         String s2 = mTimeField.getText().toString();
         String s3 = (mTimeAMPMField.getText().toString().toLowerCase());
-        String sr1 ;
+        String sr1;
 
         String s5 = s1+" at "+s2+s3;
         if( isRepeatAll) {

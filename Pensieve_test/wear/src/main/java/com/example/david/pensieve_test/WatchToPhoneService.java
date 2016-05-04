@@ -64,8 +64,6 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                                 sendMessage("/send_data", sendData);
                             }
                             Log.wtf(TAG, "sent");
-
-                            onDestroy(); //destroy
                         }
                     });
         } else {

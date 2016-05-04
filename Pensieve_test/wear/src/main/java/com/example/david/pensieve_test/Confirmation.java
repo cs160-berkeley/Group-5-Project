@@ -16,6 +16,7 @@ public class Confirmation extends Activity{
 
     private String todoTask = "";
     private Boolean set = Boolean.FALSE;
+    private String taskId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,7 @@ public class Confirmation extends Activity{
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+        Log.d("CONFIRMATION", "On confirmation notification screen");
 
         if (extras != null) {
             todoTask = extras.getString("/task_item");
@@ -31,6 +33,9 @@ public class Confirmation extends Activity{
 
             TextView task_item = (TextView) findViewById(R.id.task_item);
             task_item.setText(lst[0]);
+            taskId = lst[3];
+            Log.d("CONFIRMATION", "TaskId = " + taskId);
+            Log.d("CONFIRMATION", "Explicit taskId = " + extras.getString("taskId"));
             set = Boolean.TRUE;
         }
 
@@ -43,11 +48,14 @@ public class Confirmation extends Activity{
 
                 if (set) {
                     Intent intent = new Intent(Confirmation.this, cantRemember.class);
+
                     if (todoTask != "") {
                         intent.putExtra("/dont_remember", todoTask);
+                        intent.putExtra("taskId", taskId);
                         Log.d(TAG, "dont remember todotask " + todoTask);
                     } else {
-                        intent.putExtra("/dont_remember", "NOTHING");
+                        intent.putExtra("/dont_remember", taskId);
+                        intent.putExtra("taskId", taskId);
                         Log.d(TAG, "dont remember todotask nothing");
                     }
                     startActivity(intent);
@@ -63,9 +71,11 @@ public class Confirmation extends Activity{
                     Intent intent = new Intent(Confirmation.this, cantRemember.class);
                     if (todoTask != "") {
                         intent.putExtra("/dont_remember", todoTask);
+                        intent.putExtra("taskId", taskId);
                         Log.d(TAG, "dont remember todotask " + todoTask);
                     } else {
-                        intent.putExtra("/dont_remember", "NOTHING");
+                        intent.putExtra("/dont_remember", taskId);
+                        intent.putExtra("taskId", taskId);
                         Log.d(TAG, "dont remember todotask nothing");
                     }
                     startActivity(intent);

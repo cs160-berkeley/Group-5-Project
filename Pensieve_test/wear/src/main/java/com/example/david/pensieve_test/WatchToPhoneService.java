@@ -24,6 +24,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     private GoogleApiClient mWatchApiClient;
     private List<Node> nodes = new ArrayList<>();
     private String sendData = "nothing";
+    private String taskId = "";
 
     @Override
     public void onCreate() {
@@ -47,6 +48,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
     @Override
     public int onStartCommand (Intent intent, int flags, int startId) {
         sendData = (String) intent.getExtras().get("/dataToPhone");
+        taskId = (String) intent.getExtras().get("taskId");
 
         Log.d(TAG, "what is sendData? " + sendData);
         if (nodes.isEmpty()) {
@@ -59,7 +61,7 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                             //when we find a connected node, we populate the list declared above
                             //finally, we can send a message
                             if(sendData.equals("nothing")) {
-                                sendMessage("/send_nothing", "nothing");
+                                sendMessage("/send_nothing", taskId);
                             } else {
                                 sendMessage("/send_data", sendData);
                             }
@@ -68,8 +70,10 @@ public class WatchToPhoneService extends Service implements GoogleApiClient.Conn
                     });
         } else {
             if(sendData.equals("nothing")) {
-                sendMessage("/send_nothing", "nothing");
+                Log.d("WATCHTOPHONESERVICE", "sendData equals 'nothing'");
+                sendMessage("/send_nothing", taskId);
             } else {
+                Log.d("WATCHTOPHONESERVICE", "sendData equals " + sendData);
                 sendMessage("/send_data", sendData);
             }
         }

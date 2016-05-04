@@ -18,11 +18,21 @@ public class yes extends Activity {
     private final String TAG = "@>@>@>";
 
     private Button mButton;
+    private String taskId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.yes);
+        Log.d("YES", "On the yes watch screen");
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras != null) {
+            taskId = extras.getString("taskId");
+            Log.d("YES", "Received extras: taskId=" + taskId);
+        }
 
         mButton = (Button) findViewById(R.id.check);
         mButton.setOnTouchListener(new View.OnTouchListener() {
@@ -31,9 +41,11 @@ public class yes extends Activity {
                     mButton.setBackgroundResource(R.drawable.check_changed);
                 } else {
                     mButton.setBackgroundResource(R.drawable.check);
+                    Log.d("YES", "Yes button clicked on watch. Sending to phone: taskId=" + taskId);
 
                     Intent i = new Intent(getBaseContext(), WatchToPhoneService.class);
                     i.putExtra("/dataToPhone", "nothing");
+                    i.putExtra("taskId", taskId);
                     startService(i);
                 }
                 return true;

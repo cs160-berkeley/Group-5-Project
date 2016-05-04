@@ -12,6 +12,8 @@ import android.util.Log;
  * Created by david on 4/17/16.
  */
 public class TaskListActivity extends AppCompatActivity {
+    private String data;
+    private Tasks mTask;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,23 @@ public class TaskListActivity extends AppCompatActivity {
 
         FragmentManager fm = getSupportFragmentManager();
         Fragment fragment = fm.findFragmentById(R.id.fragment_container);
+
+        Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        Log.d("TASKLISTACTIVITY", "Received task complete notification");
+
+        if (extras != null) {
+            data = extras.getString("/send_data");
+            if (data != null) {
+                String[] lst = data.split("@@@");
+
+                TaskManager taskManager = TaskManager.get(getApplicationContext());
+                Log.d("TASKLISTACTIVITY", "Received UUID: " + lst[0]);
+                mTask = taskManager.getTask(java.util.UUID.fromString(lst[0]));
+                mTask.setCompleted(1);
+                taskManager.updateTask(mTask);
+            }
+        }
 
         if (fragment == null) {
             Intent intent = getIntent();

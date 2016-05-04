@@ -12,6 +12,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity {
     private final String TAG = "@>@>@>";
     private String todoTask = "";
+    private String taskId = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +31,8 @@ public class MainActivity extends Activity {
 
             TextView time_item = (TextView) findViewById(R.id.watch_time);
             time_item.setText(lst[1] + " " + lst[2]);
+            taskId = lst[3];
+            Log.d("WATCH_MAINACTIVITY", "Received extras");
         }
 
         CircledImageView parag = (CircledImageView) findViewById(R.id.initial_reminder);
@@ -54,13 +57,16 @@ public class MainActivity extends Activity {
             public void onSwipeLeft() {
                 super.onSwipeLeft();
                 Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                Log.d("WATCH_MAINACTIVITY", "Passing taskId=" + taskId +" and data=" + todoTask);
 
                 Intent intent = new Intent(MainActivity.this, Confirmation.class);
                 if (todoTask != "") {
                     intent.putExtra("/task_item", todoTask);
+                    intent.putExtra("taskId", taskId);
                     Log.d(TAG, "title is not null " + todoTask);
                 } else {
                     intent.putExtra("/task_item", "NOTHING");
+                    intent.putExtra("taskId", taskId);
                     Log.d(TAG, "title is empty");
                 }
                 startActivity(intent);

@@ -109,6 +109,7 @@ public class TaskManager {
         values.put(TasksTable.Cols.TITLE, task.getTitle());
         values.put(TasksTable.Cols.TIME, task.getTime());
         values.put(TasksTable.Cols.NOTE, task.getNote());
+        values.put(TasksTable.Cols.PATIENT_NOTE, task.getPatientNote());
 
         values.put(TasksTable.Cols.COMPLETED, task.isCompleted());
 

@@ -4,7 +4,6 @@ Pensieve_test is the code for our app Pensieve. This was used for the demo and t
 
 PensieveSkeleton was the code for Prog 3. This is not code for our final project.
 
-Graph Challenge - you can ignore this
 
 
 ## Server

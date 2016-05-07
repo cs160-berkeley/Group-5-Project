@@ -1,9 +1,12 @@
 # Group-5-Project
 Group 5 Project
 
-PensieveSkeleton is code for Prog3. The video is based on this code
+Pensieve_test is the code for our app Pensieve. This was used for the demo and the showcase.
 
-Pensieve_test is our work in progress code for the actual app. This is for the showcase but not for Prog3
+PensieveSkeleton was the code for Prog 3. This is not code for our final project.
+
+Graph Challenge - you can ignore this
+
 
 ## Server
 The Pensieve server is hosted on Heroku and runs on Ruby on Rails. The server is used for phone-to-phone communication between family members and patients, and is used for account sign up, authorization, and message transfers.

@@ -1,5 +1,4 @@
 # Group-5-Project
-Group 5 Project
 
 Pensieve_test is the code for our app Pensieve. This was used for the demo and the showcase.
 
